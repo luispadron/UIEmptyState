@@ -10,12 +10,12 @@ Pod::Spec.new do |s|
                    DESC
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
-
+  s.homepage     = "https://github.com/luispadron/UIEmptyState"
   s.author             = { "Luis Padron" => "luispadronedu@gmail.com" }
   s.social_media_url   = "https://luispadron.com"
-
+  
   s.platform     = :ios, "8.0"
-
+  s.source       = { :git => "https://github.com/luispadron/UIEmptyState.git", :tag => "v#{s.version}" }
   s.source_files  = "UIEmptyState", "UIEmptyState/**/*.{h,m}"
 end
 

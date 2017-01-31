@@ -1,20 +1,10 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'UIEmptyStateTest' do
+target 'UIEmptyStateExample' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for UIEmptyStateTest
-  pod 'UIEmptyState', :path => '~/Programming/iOS/UIEmptyState'
-  target 'UIEmptyStateTestTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'UIEmptyStateTestUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+  # Pods for UIEmptyStateExample
+  pod 'UIEmptyState', :path => '..'
 end

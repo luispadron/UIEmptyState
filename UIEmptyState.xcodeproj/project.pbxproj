@@ -10,6 +10,7 @@
 		A0AABE561E3FED14006CD69C /* UIEmptyState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AABE4C1E3FED14006CD69C /* UIEmptyState.framework */; };
 		A0AABE5B1E3FED14006CD69C /* UIEmptyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */; };
 		A0AABE5D1E3FED14006CD69C /* UIEmptyState.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0B4EA951E4117FE006D888D /* UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EA931E4117F1006D888D /* UIEmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		A0AABE551E3FED14006CD69C /* UIEmptyStateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIEmptyStateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmptyStateTests.swift; sourceTree = "<group>"; };
 		A0AABE5C1E3FED14006CD69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0B4EA931E4117F1006D888D /* UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIEmptyState.swift; path = UIEmptyStateTests/UIEmptyState.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */,
+				A0B4EA931E4117F1006D888D /* UIEmptyState.swift */,
 				A0AABE501E3FED14006CD69C /* Info.plist */,
 			);
 			path = UIEmptyState;
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B4EA951E4117FE006D888D /* UIEmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +364,7 @@
 		A0AABE641E3FED14006CD69C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4FNMZ7SN42;
 				INFOPLIST_FILE = UIEmptyStateTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,6 +377,7 @@
 		A0AABE651E3FED14006CD69C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4FNMZ7SN42;
 				INFOPLIST_FILE = UIEmptyStateTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -400,6 +406,7 @@
 				A0AABE621E3FED14006CD69C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0AABE631E3FED14006CD69C /* Build configuration list for PBXNativeTarget "UIEmptyStateTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +415,7 @@
 				A0AABE651E3FED14006CD69C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

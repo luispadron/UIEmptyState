@@ -2,15 +2,15 @@ PODS:
   - UIEmptyState (0.1)
 
 DEPENDENCIES:
-  - UIEmptyState (from `~/Programming/iOS/UIEmptyState`)
+  - UIEmptyState (from `..`)
 
 EXTERNAL SOURCES:
   UIEmptyState:
-    :path: "~/Programming/iOS/UIEmptyState"
+    :path: ".."
 
 SPEC CHECKSUMS:
   UIEmptyState: 6e7d48af2dd233c0c397ca1711ef81f515d14b78
 
-PODFILE CHECKSUM: 2687794d499b2842acd1966d8b5c53cdd6515b47
+PODFILE CHECKSUM: 27be4512cc05701b0d2fc8b1789d3e4889c4600c
 
 COCOAPODS: 1.2.0.beta.1

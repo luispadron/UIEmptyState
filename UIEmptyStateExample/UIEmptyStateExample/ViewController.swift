@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import UIEmptyState
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, UIEmptyStateDataSource {
 
     var pokemon = ["Charizard", "Pikachu", "Espeon", "Umbreon"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.emptyStateDataSource = self
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,6 +39,7 @@ class ViewController: UITableViewController {
             pokemon.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
+            self.reloadTableViewEmptyState()
         }
     }
 

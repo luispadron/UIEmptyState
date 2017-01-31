@@ -10,7 +10,7 @@
 		A0AABE561E3FED14006CD69C /* UIEmptyState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AABE4C1E3FED14006CD69C /* UIEmptyState.framework */; };
 		A0AABE5B1E3FED14006CD69C /* UIEmptyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */; };
 		A0AABE5D1E3FED14006CD69C /* UIEmptyState.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0B4EA951E4117FE006D888D /* UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EA931E4117F1006D888D /* UIEmptyState.swift */; };
+		A0B4EAB51E411C73006D888D /* UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB41E411C73006D888D /* UIEmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		A0AABE551E3FED14006CD69C /* UIEmptyStateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIEmptyStateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmptyStateTests.swift; sourceTree = "<group>"; };
 		A0AABE5C1E3FED14006CD69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0B4EA931E4117F1006D888D /* UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIEmptyState.swift; path = UIEmptyStateTests/UIEmptyState.swift; sourceTree = SOURCE_ROOT; };
+		A0B4EAB41E411C73006D888D /* UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */,
-				A0B4EA931E4117F1006D888D /* UIEmptyState.swift */,
 				A0AABE501E3FED14006CD69C /* Info.plist */,
+				A0B4EAB41E411C73006D888D /* UIEmptyState.swift */,
 			);
 			path = UIEmptyState;
 			sourceTree = "<group>";
@@ -152,6 +152,7 @@
 					A0AABE4B1E3FED13006CD69C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4FNMZ7SN42;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A0AABE541E3FED14006CD69C = {
@@ -201,7 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0B4EA951E4117FE006D888D /* UIEmptyState.swift in Sources */,
+				A0B4EAB51E411C73006D888D /* UIEmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +327,7 @@
 		A0AABE611E3FED14006CD69C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FNMZ7SN42;
@@ -338,6 +340,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispadron.UIEmptyState;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -345,6 +348,7 @@
 		A0AABE621E3FED14006CD69C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FNMZ7SN42;

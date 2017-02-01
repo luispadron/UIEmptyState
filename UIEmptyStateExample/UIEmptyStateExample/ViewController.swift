@@ -42,6 +42,10 @@ class ViewController: UITableViewController, UIEmptyStateDataSource {
             self.reloadTableViewEmptyState()
         }
     }
+    
+    func titleForEmptyStateView() -> NSAttributedString {
+        return NSAttributedString(string: "Ayeeeeeeeeeeeeeee")
+    }
 
     @IBAction func plusTouched(_ sender: Any) {
         // Add a new item

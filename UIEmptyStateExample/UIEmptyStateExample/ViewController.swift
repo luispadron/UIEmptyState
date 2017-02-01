@@ -11,7 +11,7 @@ import UIEmptyState
 
 class ViewController: UITableViewController, UIEmptyStateDataSource {
 
-    var pokemon = ["Charizard", "Pikachu", "Espeon", "Umbreon"]
+    var pokemon = ["Charizard"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,14 @@ class ViewController: UITableViewController, UIEmptyStateDataSource {
         }
     }
 
+    @IBAction func plusTouched(_ sender: Any) {
+        // Add a new item
+        tableView.beginUpdates()
+        pokemon.append("New-Pokemon")
+        tableView.insertRows(at: [IndexPath(row: pokemon.count-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        self.reloadTableViewEmptyState()
+    }
 
 }
 

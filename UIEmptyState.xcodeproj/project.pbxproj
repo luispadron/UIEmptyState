@@ -10,7 +10,8 @@
 		A0AABE561E3FED14006CD69C /* UIEmptyState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AABE4C1E3FED14006CD69C /* UIEmptyState.framework */; };
 		A0AABE5B1E3FED14006CD69C /* UIEmptyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */; };
 		A0AABE5D1E3FED14006CD69C /* UIEmptyState.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0B4EAB51E411C73006D888D /* UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB41E411C73006D888D /* UIEmptyState.swift */; };
+		A0B4EAB51E411C73006D888D /* UIEmptyStateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */; };
+		A0B4EAB71E416B74006D888D /* UITableViewController+UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +31,8 @@
 		A0AABE551E3FED14006CD69C /* UIEmptyStateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIEmptyStateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmptyStateTests.swift; sourceTree = "<group>"; };
 		A0AABE5C1E3FED14006CD69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0B4EAB41E411C73006D888D /* UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyState.swift; sourceTree = "<group>"; };
+		A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyStateDataSource.swift; sourceTree = "<group>"; };
+		A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+UIEmptyState.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +77,8 @@
 			children = (
 				A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */,
 				A0AABE501E3FED14006CD69C /* Info.plist */,
-				A0B4EAB41E411C73006D888D /* UIEmptyState.swift */,
+				A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */,
+				A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */,
 			);
 			path = UIEmptyState;
 			sourceTree = "<group>";
@@ -202,7 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0B4EAB51E411C73006D888D /* UIEmptyState.swift in Sources */,
+				A0B4EAB51E411C73006D888D /* UIEmptyStateDataSource.swift in Sources */,
+				A0B4EAB71E416B74006D888D /* UITableViewController+UIEmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -313,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

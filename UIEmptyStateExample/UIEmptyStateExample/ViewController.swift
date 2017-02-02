@@ -51,6 +51,5 @@ class ViewController: UITableViewController, UIEmptyStateDataSource {
         tableView.endUpdates()
         self.reloadTableViewEmptyState()
     }
-
 }
 

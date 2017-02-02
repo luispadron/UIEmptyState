@@ -34,15 +34,14 @@ extension UITableViewController {
     
     public func reloadTableViewEmptyState() {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: self.tableView) else {
-            if let presentedView = emptyStateView { presentedView.removeFromSuperview() }
+            if let presentedView = emptyStateView { presentedView.isHidden = true }
             return
         }
         
         
         if let createdView = emptyStateView {
-            // View was already created we can go ahead and just add it back to the superView
-            self.view.addSubview(createdView)
-            self.view.bringSubview(toFront: createdView)
+            // View was already created we can go ahead and just show it again
+            createdView.isHidden = false
         } else {
             // We can create the view now
             let newView = source.viewForEmptyState()
@@ -52,6 +51,9 @@ extension UITableViewController {
             // Add as a subView, bring it infront of the tableView
             self.view.addSubview(newView)
             self.view.bringSubview(toFront: newView)
+            // Add center constraints
+            newView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            newView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         }
     }
     

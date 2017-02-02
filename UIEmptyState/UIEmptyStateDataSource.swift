@@ -21,6 +21,10 @@ public protocol UIEmptyStateDataSource: class {
     func buttonTitleForEmptyStateView() -> NSAttributedString?
     /// Determines the image for the button
     func buttonImageForEmptyStateView() -> UIImage?
+    /// Determines the message which will be displayed in the detail view
+    func detailMessageForEmptyStateView() -> NSAttributedString?
+    /// Determines the amount of spacing between the views
+    func spacingForViewsInEmptyStateView() -> CGFloat
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
@@ -42,6 +46,13 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
         } else {
             emptyStateView.frame = self.view.frame
         }
+        
+        emptyStateView.image = imageForEmptyStateView()
+        emptyStateView.buttonTitle = buttonTitleForEmptyStateView()
+        emptyStateView.buttonImage = buttonImageForEmptyStateView()
+        emptyStateView.detailMessage = detailMessageForEmptyStateView()
+        emptyStateView.spacing = spacingForViewsInEmptyStateView()
+
         return emptyStateView
     }
     
@@ -50,14 +61,22 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
     }
     
     public func imageForEmptyStateView() -> UIImage? {
-        return nil
+        return #imageLiteral(resourceName: "testImage")
     }
     
     public func buttonTitleForEmptyStateView() -> NSAttributedString? {
-        return nil
+        return NSAttributedString(string: "Add an item", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
     }
     
     public func buttonImageForEmptyStateView() -> UIImage? {
         return nil
+    }
+    
+    public func detailMessageForEmptyStateView() -> NSAttributedString? {
+        return NSAttributedString(string: "I'm the detail message, aren't I cool.", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
+    }
+    
+    public func spacingForViewsInEmptyStateView() -> CGFloat {
+        return 20
     }
 }

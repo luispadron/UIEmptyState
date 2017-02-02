@@ -15,6 +15,7 @@ open class UIEmptyStateView: UIStackView {
     /// The title for the titleView
     open var title: NSAttributedString {
         didSet {
+            // Need to remove the constraints and then add them back in after calling size to fit
             titleView.removeConstraints(titleView.constraints)
             self.titleView.attributedText = self.title
             titleView.sizeToFit()
@@ -26,10 +27,8 @@ open class UIEmptyStateView: UIStackView {
     open var image: UIImage? {
         didSet {
             guard let img = image else { return }
-            if self.subviews.index(of: imageView) == nil {
-                self.addArrangedSubview(imageView)
-            }
             imageView.image = img
+            handleAdding(view: imageView)
         }
     }
     
@@ -37,21 +36,16 @@ open class UIEmptyStateView: UIStackView {
     open var buttonTitle: NSAttributedString? {
         didSet {
             guard let buttTitle = buttonTitle else { return }
-            if self.subviews.index(of: button) == nil {
-                self.addArrangedSubview(button)
-            }
             button.setAttributedTitle(buttTitle, for: .normal)
+            handleAdding(view: button)
         }
     }
     /// The image for the button
     open var buttonImage: UIImage? {
         didSet {
             guard let buttImage = buttonImage else { return }
-            if self.subviews.index(of: button) == nil {
-                self.addArrangedSubview(button)
-            }
             button.setBackgroundImage(buttonImage, for: .normal)
-            button.setNeedsDisplay()
+            handleAdding(view: button)
         }
     }
     
@@ -59,14 +53,13 @@ open class UIEmptyStateView: UIStackView {
     open var detailMessage: NSAttributedString? {
         didSet {
             guard let message = detailMessage else { return }
-            if self.subviews.index(of: detailView) == nil {
-                self.addArrangedSubview(detailView)
-            }
+            // Need to remove the constraints and then add them back in after calling size to fit
             detailView.removeConstraints(detailView.constraints)
             detailView.attributedText = message
             detailView.sizeToFit()
             detailView.widthAnchor.constraint(equalToConstant: detailView.frame.width).isActive = true
             detailView.heightAnchor.constraint(equalToConstant: detailView.frame.height).isActive = true
+            handleAdding(view: detailView)
         }
     }
     /// The spacing in between each of the views
@@ -82,6 +75,7 @@ open class UIEmptyStateView: UIStackView {
         view.attributedText = self.title
         view.textAlignment = .center
         view.lineBreakMode = .byWordWrapping
+        view.tag = 2
         return view
     }()
     
@@ -91,6 +85,7 @@ open class UIEmptyStateView: UIStackView {
         view.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         view.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         view.contentMode = .scaleAspectFit
+        view.tag = 1
         return view
     }()
     
@@ -99,6 +94,7 @@ open class UIEmptyStateView: UIStackView {
         let button = UIButton(type: .roundedRect)
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
+        button.tag = 4
         return button
     }()
     
@@ -107,6 +103,7 @@ open class UIEmptyStateView: UIStackView {
        let view = UILabel()
         view.textAlignment = .center
         view.lineBreakMode = .byWordWrapping
+        view.tag = 3
         return view
     }()
     
@@ -118,6 +115,7 @@ open class UIEmptyStateView: UIStackView {
         self.axis = .vertical
         self.distribution = .equalSpacing
         self.alignment = .center
+        self.backgroundColor = UIColor.red
         self.spacing = viewSpacing ?? 0
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addArrangedSubview(titleView)
@@ -125,5 +123,30 @@ open class UIEmptyStateView: UIStackView {
     
     public required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helper methods
+    
+    /// Handles adding the views to the stack view
+    // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
+    private func handleAdding(view: UIView) {
+        // If already added we can return
+        if self.subviews.index(of: view) != nil { return }
+        
+        // Tags correspond to the views AND the order we want them in
+        switch view.tag {
+        case 1:
+            self.insertArrangedSubview(view, at: 0)
+        case 2:
+            self.insertArrangedSubview(view, at: 1)
+        case 3:
+            var index = self.arrangedSubviews.count - 1
+            if index == 0 { index += 1 }
+            self.insertArrangedSubview(view, at: index)
+        case 4:
+            self.insertArrangedSubview(view, at: self.arrangedSubviews.count)
+        default:
+            return
+        }
     }
 }

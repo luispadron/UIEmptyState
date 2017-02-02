@@ -48,9 +48,9 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
         }
         
         emptyStateView.image = imageForEmptyStateView()
+        emptyStateView.detailMessage = detailMessageForEmptyStateView()
         emptyStateView.buttonTitle = buttonTitleForEmptyStateView()
         emptyStateView.buttonImage = buttonImageForEmptyStateView()
-        emptyStateView.detailMessage = detailMessageForEmptyStateView()
         emptyStateView.spacing = spacingForViewsInEmptyStateView()
 
         return emptyStateView

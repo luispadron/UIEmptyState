@@ -10,13 +10,13 @@ import UIKit
 import UIEmptyState
 
 class ViewController: UITableViewController, UIEmptyStateDataSource {
-
     var pokemon = ["Charizard"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.emptyStateDataSource = self
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,10 +41,6 @@ class ViewController: UITableViewController, UIEmptyStateDataSource {
             tableView.endUpdates()
             self.reloadTableViewEmptyState()
         }
-    }
-    
-    func titleForEmptyStateView() -> NSAttributedString {
-        return NSAttributedString(string: "Ayeeeeeeeeeeeeeee")
     }
 
     @IBAction func plusTouched(_ sender: Any) {

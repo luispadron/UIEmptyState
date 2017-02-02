@@ -38,7 +38,6 @@ extension UITableViewController {
             return
         }
         
-        
         if let createdView = emptyStateView {
             // View was already created we can go ahead and just show it again
             createdView.isHidden = false
@@ -51,9 +50,6 @@ extension UITableViewController {
             // Add as a subView, bring it infront of the tableView
             self.view.addSubview(newView)
             self.view.bringSubview(toFront: newView)
-            // Add center constraints
-            newView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            newView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         }
     }
     

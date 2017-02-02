@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class UIEmptyStateView: UIStackView {
+open class UIEmptyStateView: UIView {
     
     // MARK: - Properties
     
@@ -63,17 +63,21 @@ open class UIEmptyStateView: UIStackView {
         }
     }
     /// The spacing in between each of the views
-    open var viewSpacing: CGFloat? {
+    open var spacing: CGFloat? {
         didSet {
-            self.spacing = self.viewSpacing ?? 0
+            self.contentView.spacing = spacing ?? 0
         }
     }
+    
+    /// The content view which encloses the rest of the subviews, of type UIStackView
+    open lazy var contentView = UIStackView()
     
     /// The title view which displays the value of `title`, place below the image view
     open lazy var titleView: UILabel = {
         let view = UILabel()
         view.attributedText = self.title
         view.textAlignment = .center
+        view.numberOfLines = 0
         view.lineBreakMode = .byWordWrapping
         view.tag = 2
         return view
@@ -102,6 +106,7 @@ open class UIEmptyStateView: UIStackView {
     open lazy var detailView: UILabel = {
        let view = UILabel()
         view.textAlignment = .center
+        view.numberOfLines = 0
         view.lineBreakMode = .byWordWrapping
         view.tag = 3
         return view
@@ -112,13 +117,7 @@ open class UIEmptyStateView: UIStackView {
     public required init(frame: CGRect, title: NSAttributedString) {
         self.title = title
         super.init(frame: frame)
-        self.axis = .vertical
-        self.distribution = .equalSpacing
-        self.alignment = .center
-        self.backgroundColor = UIColor.red
-        self.spacing = viewSpacing ?? 0
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.addArrangedSubview(titleView)
+        self.initializeViews()
     }
     
     public required init(coder: NSCoder) {
@@ -126,6 +125,21 @@ open class UIEmptyStateView: UIStackView {
     }
     
     // MARK: - Helper methods
+    
+    private func initializeViews() {
+        contentView.axis = .vertical
+        contentView.distribution = .equalSpacing
+        contentView.alignment = .center
+        contentView.backgroundColor = UIColor.red
+        contentView.spacing = spacing ?? 0
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addArrangedSubview(titleView)
+        self.addSubview(contentView)
+        // Add center constraints
+        // Add center constraints
+        contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    }
     
     /// Handles adding the views to the stack view
     // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
@@ -136,15 +150,14 @@ open class UIEmptyStateView: UIStackView {
         // Tags correspond to the views AND the order we want them in
         switch view.tag {
         case 1:
-            self.insertArrangedSubview(view, at: 0)
+            contentView.insertArrangedSubview(view, at: 0)
         case 2:
-            self.insertArrangedSubview(view, at: 1)
+            contentView.insertArrangedSubview(view, at: 1)
         case 3:
-            var index = self.arrangedSubviews.count - 1
-            if index == 0 { index += 1 }
-            self.insertArrangedSubview(view, at: index)
+            if contentView.arrangedSubviews.count == 3 { contentView.insertArrangedSubview(view, at: 2) }
+            else { contentView.insertArrangedSubview(view, at: contentView.arrangedSubviews.count) }
         case 4:
-            self.insertArrangedSubview(view, at: self.arrangedSubviews.count)
+            contentView.insertArrangedSubview(view, at: contentView.arrangedSubviews.count)
         default:
             return
         }

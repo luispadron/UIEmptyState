@@ -25,6 +25,8 @@ public protocol UIEmptyStateDataSource: class {
     func detailMessageForEmptyStateView() -> NSAttributedString?
     /// Determines the amount of spacing between the views
     func spacingForViewsInEmptyStateView() -> CGFloat
+    /// Determines the background color for the emptyStateView 
+    func backgroundColorForEmptyStateView() -> UIColor
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
@@ -39,33 +41,29 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
     }
     
     public func viewForEmptyState() -> UIView {
-        let emptyStateView = UIEmptyStateView(frame: CGRect.zero, title: titleForEmptyStateView())
-        if let navBar = self.navigationController?.navigationBar {
-            let height = self.view.frame.height - navBar.frame.height
-            emptyStateView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: height)
-        } else {
-            emptyStateView.frame = self.view.frame
-        }
-        
+        let emptyStateView = UIEmptyStateView(frame: self.view.frame, title: titleForEmptyStateView())
+        // Call and assign the data source methods
+        emptyStateView.backgroundColor = backgroundColorForEmptyStateView()
         emptyStateView.image = imageForEmptyStateView()
         emptyStateView.detailMessage = detailMessageForEmptyStateView()
         emptyStateView.buttonTitle = buttonTitleForEmptyStateView()
         emptyStateView.buttonImage = buttonImageForEmptyStateView()
         emptyStateView.spacing = spacingForViewsInEmptyStateView()
-
+        // Some auto resize constraints
+        emptyStateView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return emptyStateView
     }
     
     public func titleForEmptyStateView() -> NSAttributedString {
-        return NSAttributedString(string: "I'm a Title", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 17)])
+        return NSAttributedString(string: "UIEmptyState", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 17)])
     }
     
     public func imageForEmptyStateView() -> UIImage? {
-        return #imageLiteral(resourceName: "testImage")
+        return nil
     }
     
     public func buttonTitleForEmptyStateView() -> NSAttributedString? {
-        return NSAttributedString(string: "Add an item", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
+        return nil
     }
     
     public func buttonImageForEmptyStateView() -> UIImage? {
@@ -73,10 +71,15 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
     }
     
     public func detailMessageForEmptyStateView() -> NSAttributedString? {
-        return NSAttributedString(string: "I'm the detail message, aren't I cool.", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
+        return NSAttributedString(string: "Implement the UIEmptyStateDataSource methods to change me.\nThanks for using this library!",
+                                  attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
     }
     
     public func spacingForViewsInEmptyStateView() -> CGFloat {
-        return 20
+        return 12
+    }
+    
+    public func backgroundColorForEmptyStateView() -> UIColor {
+        return UIColor.clear
     }
 }

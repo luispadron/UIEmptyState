@@ -13,7 +13,8 @@ extension UITableViewController {
     /// Private struct of keys to be used with objective-c associated objects
     private struct Keys {
         static var emptyStateView = "com.luispadron.emptyStateView"
-        static var emptyStateDataSource = "com.luispadron.emptyStateDelegate"
+        static var emptyStateDataSource = "com.luispadron.emptyStateDataSource"
+        static var emptyStateDelegate = "com.luispadron.emptyStateDelegate"
     }
     
     /// The data source for the Empty View
@@ -26,18 +27,34 @@ extension UITableViewController {
         }
     }
     
+    public weak var emptyStateDelegate: UIEmptyStateDelegate? {
+        get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
+    
     /// The empty state view associated to the tableViewController
     public var emptyStateView: UIView? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateView) as? UIView }
-        set { objc_setAssociatedObject(self, &Keys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        set {
+            objc_setAssociatedObject(self, &Keys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN)
+            // Set the views delegate
+            if let view = emptyStateView as? UIEmptyStateView { view.delegate = emptyStateDelegate }
+        }
     }
     
     public func reloadTableViewEmptyState() {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: self.tableView) else {
-            if let presentedView = emptyStateView { presentedView.isHidden = true }
+            if let presentedView = emptyStateView {
+                // Show the view and allow scrolling again
+                presentedView.isHidden = true
+                self.tableView.isScrollEnabled = true
+            }
             return
         }
         
+        // Check whether we allow scrolling or not
+        self.tableView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        // Toggle or create the view if not created yet
         if let createdView = emptyStateView {
             // View was already created we can go ahead and just show it again
             createdView.isHidden = false

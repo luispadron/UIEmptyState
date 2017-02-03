@@ -9,8 +9,9 @@
 import UIKit
 
 open class UIEmptyStateView: UIView {
-    
     // MARK: - Properties
+    
+    open weak var delegate: UIEmptyStateDelegate?
     
     /// The title for the titleView
     open var title: NSAttributedString {
@@ -99,6 +100,7 @@ open class UIEmptyStateView: UIView {
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
         button.tag = 4
+        button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
         return button
     }()
     
@@ -127,6 +129,9 @@ open class UIEmptyStateView: UIView {
     // MARK: - Helper methods
     
     private func initializeViews() {
+        // Add gesture recognizer to view
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
+        // Set up the stack view
         contentView.axis = .vertical
         contentView.distribution = .equalSpacing
         contentView.alignment = .center
@@ -134,6 +139,7 @@ open class UIEmptyStateView: UIView {
         contentView.spacing = spacing ?? 0
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addArrangedSubview(titleView)
+        
         self.addSubview(contentView)
         // Add center constraints
         // Add center constraints
@@ -161,5 +167,15 @@ open class UIEmptyStateView: UIView {
         default:
             return
         }
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func viewWasTouched(view: UIView) {
+        delegate?.emptyStateViewWasTapped(view: self)
+    }
+    
+    @objc private func buttonTouched(button: UIButton) {
+        delegate?.emptyStatebuttonWasTapped(button: button)
     }
 }

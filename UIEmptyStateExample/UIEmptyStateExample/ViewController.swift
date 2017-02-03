@@ -9,12 +9,12 @@
 import UIKit
 import UIEmptyState
 
-class ViewController: UITableViewController, UIEmptyStateDataSource {
+class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
     var pokemon = ["Charizard"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.emptyStateDelegate = self
         self.emptyStateDataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -41,6 +41,18 @@ class ViewController: UITableViewController, UIEmptyStateDataSource {
             tableView.endUpdates()
             self.reloadTableViewEmptyState()
         }
+    }
+    
+    func buttonTitleForEmptyStateView() -> NSAttributedString? {
+        return NSAttributedString(string: "Touch me")
+    }
+    
+    func emptyStatebuttonWasTapped(button: UIButton) {
+        print("Button touched: \(button)")
+    }
+    
+    func emptyStateViewWasTapped(view: UIView) {
+        print("View was touched: \(view)")
     }
 
     @IBAction func plusTouched(_ sender: Any) {

@@ -27,6 +27,8 @@ public protocol UIEmptyStateDataSource: class {
     func spacingForViewsInEmptyStateView() -> CGFloat
     /// Determines the background color for the emptyStateView 
     func backgroundColorForEmptyStateView() -> UIColor
+    /// Whether the empty state view allows scrolling or not
+    func emptyStateViewAllowsScrolling() -> Bool
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
@@ -81,5 +83,9 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
     
     public func backgroundColorForEmptyStateView() -> UIColor {
         return UIColor.clear
+    }
+    
+    public func emptyStateViewAllowsScrolling() -> Bool {
+        return false
     }
 }

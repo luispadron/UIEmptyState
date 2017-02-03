@@ -18,6 +18,9 @@ extension UITableViewController {
     }
     
     /// The data source for the Empty View
+    ///
+    /// Default conformance for UITableViewController is provided,
+    /// however feel free to implement these methods to customize your view.
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
         set {
@@ -27,12 +30,20 @@ extension UITableViewController {
         }
     }
     
+    /// The delegate for UIEmptyStateView
+    ///
+    /// **Important:** this delegate and its functions are only used when using UIEmptyStateView.
+    /// If you will provide a custome view in the UIEmptyStateDataSource you must handle how this delegate operates
     public weak var emptyStateDelegate: UIEmptyStateDelegate? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
         set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     /// The empty state view associated to the tableViewController
+    ///
+    /// **Note:** this view corresponds and is created from the UIEmptyDataSource method: `func viewForEmptyState() -> UIView`
+    /// 
+    /// By default this view is of type `UIEmptyStateView`
     public var emptyStateView: UIView? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateView) as? UIView }
         set {
@@ -42,6 +53,9 @@ extension UITableViewController {
         }
     }
     
+    /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
+    /// 
+    /// **Important:** This should be called whenever changes are made to the tableview data source or after reloading the tableview
     public func reloadTableViewEmptyState() {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: self.tableView) else {
             if let presentedView = emptyStateView {

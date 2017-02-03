@@ -9,6 +9,7 @@
 import UIKit
 
 open class UIEmptyStateView: UIView {
+    
     // MARK: - Properties
     
     open weak var delegate: UIEmptyStateDelegate?
@@ -70,50 +71,6 @@ open class UIEmptyStateView: UIView {
         }
     }
     
-    /// The content view which encloses the rest of the subviews, of type UIStackView
-    open lazy var contentView = UIStackView()
-    
-    /// The title view which displays the value of `title`, place below the image view
-    open lazy var titleView: UILabel = {
-        let view = UILabel()
-        view.attributedText = self.title
-        view.textAlignment = .center
-        view.numberOfLines = 0
-        view.lineBreakMode = .byWordWrapping
-        view.tag = 2
-        return view
-    }()
-    
-    /// The image view which displays the value of `image`, placed above the title label
-    open lazy var imageView: UIImageView = {
-        let view = UIImageView()
-        view.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
-        view.contentMode = .scaleAspectFit
-        view.tag = 1
-        return view
-    }()
-    
-    /// The button for the empty state view, title is set to the value of `buttonTitle`, place at the bottom of the view
-    open lazy var button: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        button.contentVerticalAlignment = .center
-        button.contentHorizontalAlignment = .center
-        button.tag = 4
-        button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
-        return button
-    }()
-    
-    /// The optional detail view, placed under title view, only displayed if detailMessage has a value
-    open lazy var detailView: UILabel = {
-       let view = UILabel()
-        view.textAlignment = .center
-        view.numberOfLines = 0
-        view.lineBreakMode = .byWordWrapping
-        view.tag = 3
-        return view
-    }()
-    
     // MARK: - Initializers
     
     public required init(frame: CGRect, title: NSAttributedString) {
@@ -171,11 +128,60 @@ open class UIEmptyStateView: UIView {
     
     // MARK: - Actions
     
+    /// Selector for when `self` has been tapped, calls the delegate
     @objc private func viewWasTouched(view: UIView) {
         delegate?.emptyStateViewWasTapped(view: self)
     }
     
+    /// Selector for when the button inside the contentView has been tapped, calls the delegate
     @objc private func buttonTouched(button: UIButton) {
         delegate?.emptyStatebuttonWasTapped(button: button)
     }
+    
+    
+    // MARK: - Subviews
+    
+    /// The content view which encloses the rest of the subviews, of type UIStackView
+    open lazy var contentView = UIStackView()
+    
+    /// The title view which displays the value of `title`, place below the image view
+    open lazy var titleView: UILabel = {
+        let view = UILabel()
+        view.attributedText = self.title
+        view.textAlignment = .center
+        view.numberOfLines = 0
+        view.lineBreakMode = .byWordWrapping
+        view.tag = 2
+        return view
+    }()
+    
+    /// The image view which displays the value of `image`, placed above the title label
+    open lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
+        view.contentMode = .scaleAspectFit
+        view.tag = 1
+        return view
+    }()
+    
+    /// The button for the empty state view, title is set to the value of `buttonTitle`, place at the bottom of the view
+    open lazy var button: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.contentVerticalAlignment = .center
+        button.contentHorizontalAlignment = .center
+        button.tag = 4
+        button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
+        return button
+    }()
+    
+    /// The optional detail view, placed under title view, only displayed if detailMessage has a value
+    open lazy var detailView: UILabel = {
+        let view = UILabel()
+        view.textAlignment = .center
+        view.numberOfLines = 0
+        view.lineBreakMode = .byWordWrapping
+        view.tag = 3
+        return view
+    }()
 }

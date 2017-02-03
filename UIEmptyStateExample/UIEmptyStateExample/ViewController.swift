@@ -58,7 +58,6 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
     @IBAction func plusTouched(_ sender: Any) {
         // Add a new item
         tableView.beginUpdates()
-        pokemon.append("New-Pokemon")
         tableView.insertRows(at: [IndexPath(row: pokemon.count-1, section: 0)], with: .automatic)
         tableView.endUpdates()
         self.reloadTableViewEmptyState()

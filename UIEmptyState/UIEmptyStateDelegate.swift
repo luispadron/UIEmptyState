@@ -8,8 +8,8 @@
 
 /// The delegate for UIEmptyStateView
 ///
-/// **Important:** this delegate and its functions are only used when using UIEmptyStateView.
-/// If you will provide a custome view in the UIEmptyStateDataSource you must handle how this delegate operates
+/// **Important:** this delegate and its functions are only used when using `UIEmptyStateView`.
+/// If you will provide a custom view in the `UIEmptyStateDataSource` `viewForEmptyState` you must handle how this delegate operates
 public protocol UIEmptyStateDelegate: class {
     /// The call back for when the button inside the emptyStateView is tapped
     ///

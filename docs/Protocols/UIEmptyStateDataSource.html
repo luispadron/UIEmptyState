@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>UIEmptyStateDataSource Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/UIEmptyStateDataSource" class="dashAnchor"></a>
+
+    <a title="UIEmptyStateDataSource Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          UIEmptyState Docs
+        </a>
+         (100% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/luispadron/UIEmptyState">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">UIEmptyState Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      UIEmptyStateDataSource Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UIEmptyStateView.html">UIEmptyStateView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UITableViewController.html">UITableViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/UIEmptyStateDataSource.html">UIEmptyStateDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/UIEmptyStateDelegate.html">UIEmptyStateDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>UIEmptyStateDataSource</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">UIEmptyStateDataSource</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                </div>
+              </div>
+            <p>The data source for the Empty View</p>
+
+<p>Default conformance for UITableViewController is provided,
+however feel free to implement these methods to customize your view.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource24shouldShowEmptyStateViewFT12forTableViewCSo11UITableView_Sb"></a>
+                    <a name="//apple_ref/swift/Method/shouldShowEmptyStateView(forTableView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource24shouldShowEmptyStateViewFT12forTableViewCSo11UITableView_Sb">shouldShowEmptyStateView(forTableView:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines whether should or should not show the empty view, by default it will count tableView rows to determine</p>
+
+<ul>
+<li>paramaters:
+
+<ul>
+<li>tableView: The tableview which the emptyStateView will display over</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation for determining if should show the emptystate view, counts number of rows in tableview</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="n">forTableView</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Boolean value of whether view should or should not be displayed</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource17viewForEmptyStateFT_CSo6UIView"></a>
+                    <a name="//apple_ref/swift/Method/viewForEmptyState()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource17viewForEmptyStateFT_CSo6UIView">viewForEmptyState()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the view to use for the empty state, by default this is a nice stack view</p>
+
+<p><strong>Important:</strong> By default this will return a UIEmptyStateView, implementing this method will
+cause the delegation of button and view touches to no longer work, unless you implement those yourself as well.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>viewForEmptyState</code>, returns a UIEmptyStateView</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">viewForEmptyState</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIView</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource22titleForEmptyStateViewFT_CSo18NSAttributedString"></a>
+                    <a name="//apple_ref/swift/Method/titleForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource22titleForEmptyStateViewFT_CSo18NSAttributedString">titleForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the title for the Empty View, by default this just returns an intro message, override for custom title
+- returns:
+    NSAttributedString which will be set to the titles label</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>titleForEmptyStateView</code>, returns an intro title</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">titleForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NSAttributedString which will be set to the titles label</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource22imageForEmptyStateViewFT_GSqCSo7UIImage_"></a>
+                    <a name="//apple_ref/swift/Method/imageForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource22imageForEmptyStateViewFT_GSqCSo7UIImage_">imageForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the image which will be used inside the Empty State View&rsquo;s image view, default value is nil
+- returns:
+    UImage? optional image, if nil, image view will not be displayed</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>imageForEmptyStateView</code>, returns nil</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">imageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UImage? optional image, if nil, image view will not be displayed</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonTitleForEmptyStateViewFT_GSqCSo18NSAttributedString_"></a>
+                    <a name="//apple_ref/swift/Method/buttonTitleForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonTitleForEmptyStateViewFT_GSqCSo18NSAttributedString_">buttonTitleForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the title for the button of the Empty State View, by default this is nil
+- returns:
+    NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>buttonTitleForEmptyStateView</code>, returns nil</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonTitleForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonImageForEmptyStateViewFT_GSqCSo7UIImage_"></a>
+                    <a name="//apple_ref/swift/Method/buttonImageForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonImageForEmptyStateViewFT_GSqCSo7UIImage_">buttonImageForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the image for the button, by default this will return nil
+- returns:
+    UIImage? optional image for the buttons .backgroundImage</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>buttonImageForEmptyStateView</code>, returns nil</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonImageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UIImage? optional image for the buttons .backgroundImage</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource27buttonSizeForEmptyStateViewFT_GSqVSC6CGSize_"></a>
+                    <a name="//apple_ref/swift/Method/buttonSizeForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource27buttonSizeForEmptyStateViewFT_GSqVSC6CGSize_">buttonSizeForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the size of the button, by default it will constrain the view to the size of the title plus some padding.
+Implement this method to send a custom size for the button, useful when adding a buttonImage to the button
+- returns:
+    CGSize? optional size for the button</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>buttonSizeForEmptyStateView</code>, returns nil, thus size will be calculated using size of <code>buttonTitle</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonSizeForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CGSize? optional size for the button</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource30detailMessageForEmptyStateViewFT_GSqCSo18NSAttributedString_"></a>
+                    <a name="//apple_ref/swift/Method/detailMessageForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource30detailMessageForEmptyStateViewFT_GSqCSo18NSAttributedString_">detailMessageForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the message which will be displayed in the detail view of the empty state view, by default this will return an intro message
+- returns:
+    NSAttributedString? optional attributed message to be displayed in a label under the title view</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>detailMessageForEmptyStateView</code>, returns an intro message</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">detailMessageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NSAttributedString? optional attributed message to be displayed in a label under the title view</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource31spacingForViewsInEmptyStateViewFT_V12CoreGraphics7CGFloat"></a>
+                    <a name="//apple_ref/swift/Method/spacingForViewsInEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource31spacingForViewsInEmptyStateViewFT_V12CoreGraphics7CGFloat">spacingForViewsInEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the amount of spacing between the views, by default this is 12
+- returns: 
+    CGFloat the spacing amount between each view in the empty state view&rsquo;s stack view</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>spacingForViewsInEmptyStateView</code>, returns 12</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">spacingForViewsInEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CGFloat the spacing amount between each view in the empty state view’s stack view</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource32backgroundColorForEmptyStateViewFT_CSo7UIColor"></a>
+                    <a name="//apple_ref/swift/Method/backgroundColorForEmptyStateView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource32backgroundColorForEmptyStateViewFT_CSo7UIColor">backgroundColorForEmptyStateView()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines the background color for the emptyStateView, by default this value is UIColor.clear
+- returns: 
+    UIColor the color for the empty state views background color</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>backgroundColorForEmptyStateView</code>, returns <code>UIColor.clear</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">backgroundColorForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UIColor the color for the empty state views background color</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource29emptyStateViewAllowsScrollingFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewAllowsScrolling()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource29emptyStateViewAllowsScrollingFT_Sb">emptyStateViewAllowsScrolling()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the empty state view allows scrolling or not, by default this is false</p>
+
+<p><strong>Note:</strong> This is only called when view is displayed, if not displayed scrolling will be enabled for the table view
+- returns:
+    Bool a boolean value which will determine if the empty state view allows scrolling</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>emptyStateViewAllowsScrolling</code>, returns <code>false</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAllowsScrolling</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Bool a boolean value which will determine if the empty state view allows scrolling</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-04)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

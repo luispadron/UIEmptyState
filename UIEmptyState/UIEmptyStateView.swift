@@ -8,10 +8,13 @@
 
 import UIKit
 
+/// A UIView which has a stack view and inside the stackview are 1-4 other views
+/// This view is used as the default view for the `emptyStateView` in the `UIEmptyStateDataSource`
 open class UIEmptyStateView: UIView {
     
     // MARK: - Properties
     
+    /// The delegate for the view, gets called when user taps button or self
     open weak var delegate: UIEmptyStateDelegate?
     
     /// The title for the titleView
@@ -52,7 +55,7 @@ open class UIEmptyStateView: UIView {
         }
     }
     
-    // The size of the button
+    /// The size of the button
     open var buttonSize: CGSize? {
         didSet {
             guard let size = buttonSize else { return }

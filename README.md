@@ -1,6 +1,6 @@
 ## UIEmptyState
 
-![banner]()
+![banner](https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/banner.jpg)
 
 
 _screenshots will go here_

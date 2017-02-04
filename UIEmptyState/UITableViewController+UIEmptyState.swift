@@ -23,11 +23,7 @@ extension UITableViewController {
     /// however feel free to implement these methods to customize your view.
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
-        set {
-            objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN)
-            // Reload after setting
-            reloadTableViewEmptyState()
-        }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     /// The delegate for UIEmptyStateView

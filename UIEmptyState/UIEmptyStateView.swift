@@ -171,6 +171,9 @@ open class UIEmptyStateView: UIView {
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
         button.tag = 4
+        let textSize = self.buttonTitle?.size()
+        button.heightAnchor.constraint(equalToConstant: (textSize?.height ?? 30) + 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: (textSize?.width ?? 200) + 20).isActive = true
         button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
         return button
     }()

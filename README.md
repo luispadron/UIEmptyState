@@ -60,11 +60,11 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
 
 ## Documentation
 
-#### [Read the documentation here]()
+#### [Read the documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 
 ## Example Project
 
-Coming soon
+#### Clone this repo and run the `UIEmptyStateExample` project
 
 ## License (MIT)
 

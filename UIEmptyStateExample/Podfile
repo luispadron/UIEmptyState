@@ -1,9 +1,0 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
-
-target 'UIEmptyStateExample' do
-  use_frameworks!
-
-  # Pods for UIEmptyStateExample
-  pod 'UIEmptyState', :path => '~/Programming/iOS/UIEmptyState'
-end

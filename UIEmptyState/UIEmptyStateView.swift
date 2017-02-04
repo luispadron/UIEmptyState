@@ -50,7 +50,7 @@ open class UIEmptyStateView: UIView {
     open var buttonImage: UIImage? {
         didSet {
             guard let buttImage = buttonImage else { return }
-            button.setBackgroundImage(buttonImage, for: .normal)
+            button.setBackgroundImage(buttImage, for: .normal)
             handleAdding(view: button)
         }
     }

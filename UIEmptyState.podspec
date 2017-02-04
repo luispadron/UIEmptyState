@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   Easily conform to the protocol to provide a visually appealing view to an empty table view controller.
                    DESC
   s.homepage     = "https://github.com/luispadron/UIEmptyState"
-  # s.screenshots  = ""
+  s.screenshots  = "https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen1.jpg", "https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen2.jpg", "https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen3.jpg"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Luis Padron" => "luis@luispadron.com" }
   s.social_media_url   = "https://luispadron.com"

@@ -42,12 +42,25 @@ open class UIEmptyStateView: UIView {
             handleAdding(view: button)
         }
     }
+    
     /// The image for the button
     open var buttonImage: UIImage? {
         didSet {
             guard let buttImage = buttonImage else { return }
             button.setBackgroundImage(buttonImage, for: .normal)
             handleAdding(view: button)
+        }
+    }
+    
+    // The size of the button
+    open var buttonSize: CGSize? {
+        didSet {
+            guard let size = buttonSize else { return }
+            // Remove old constraints
+            button.removeConstraints(button.constraints)
+            button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+            button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+            button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
     }
     
@@ -73,18 +86,21 @@ open class UIEmptyStateView: UIView {
     
     // MARK: - Initializers
     
+    /// Initializer for `UIEmptyStateView`, requires a frame and an `NSAttributedString` which will be used as it's title
     public required init(frame: CGRect, title: NSAttributedString) {
         self.title = title
         super.init(frame: frame)
         self.initializeViews()
     }
     
+    /// Unused initializer currently
     public required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Helper methods
     
+    /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
@@ -105,8 +121,8 @@ open class UIEmptyStateView: UIView {
     }
     
     /// Handles adding the views to the stack view
-    // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
     private func handleAdding(view: UIView) {
+        // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
         // If already added we can return
         if self.subviews.index(of: view) != nil { return }
         
@@ -165,15 +181,17 @@ open class UIEmptyStateView: UIView {
         return view
     }()
     
-    /// The button for the empty state view, title is set to the value of `buttonTitle`, place at the bottom of the view
+    /// The button for the empty state view, title is set to the value of `buttonTitle`, placed at the bottom of the view
     open lazy var button: UIButton = {
-        let button = UIButton(type: .roundedRect)
+        let button = UIButton(type: .custom)
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
         button.tag = 4
+        // Constrain button to size of text plus 20 points of padding
         let textSize = self.buttonTitle?.size()
         button.heightAnchor.constraint(equalToConstant: (textSize?.height ?? 30) + 20).isActive = true
         button.widthAnchor.constraint(equalToConstant: (textSize?.width ?? 200) + 20).isActive = true
+        // Add target to button tap
         button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
         return button
     }()

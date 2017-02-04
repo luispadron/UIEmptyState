@@ -25,8 +25,9 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         self.reloadTableViewEmptyState()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Some custom stuff
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Some custom button stuff
         let button = (self.emptyStateView as? UIEmptyStateView)?.button
         button?.layer.cornerRadius = 5
         button?.layer.borderWidth = 1

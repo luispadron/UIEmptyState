@@ -26,6 +26,8 @@ public protocol UIEmptyStateDelegate: class {
 
 /// Extension to add default conformance to UITableViewController, by default the method bodies are empty
 extension UIEmptyStateDelegate where Self: UITableViewController {
+    /// Default empty implementation of `emptyStateButtonWasTapped`
     public func emptyStatebuttonWasTapped(button: UIButton) { }
+    /// Default empty implementation of `emptyStateViewWasTapped`
     public func emptyStateViewWasTapped(view: UIView) { }
 }

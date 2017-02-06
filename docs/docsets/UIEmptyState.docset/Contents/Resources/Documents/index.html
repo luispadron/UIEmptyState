@@ -49,14 +49,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/UITableViewController.html">UITableViewController</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -83,7 +75,6 @@
 
 <ul>
 <li>iOS 9.0 or greater</li>
-<li>Using a <code>UITableViewController</code> Subclass</li>
 </ul>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
 <a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
@@ -104,10 +95,12 @@
 <a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
 
 <ol>
-<li>Make sure Carthage is install
-`brew install carthage</li>
-<li>Add this repo to your Cartfile
-<code>github &quot;luispadron/UIEmptyState&quot;</code></li>
+<li><p>Make sure Carthage is install</p>
+
+<p><code>brew install carthage</code></p></li>
+<li><p>Add this repo to your Cartfile</p>
+
+<p><code>github &quot;luispadron/UIEmptyState&quot;</code></p></li>
 </ol>
 <a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
 
@@ -115,7 +108,10 @@
 <li>Simply download the <code>UIEmptyState</code> source files and import them into your project.</li>
 </ol>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
-<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UITableViewController</span><span class="p">,</span> <span class="kt">UIEmptyStateDataSource</span><span class="p">,</span> <span class="kt">UIEmptyStateDelegate</span> <span class="p">{</span>
+
+<p>As long as you are using a <code>UIViewController</code> subclass you will get default conformance as well as the <code>reloadEmptyState</code> method.</p>
+<pre class="highlight swift"><code><span class="c1">// No subclassing required, simply conform to the two protocols</span>
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UITableViewController</span><span class="p">,</span> <span class="kt">UIEmptyStateDataSource</span><span class="p">,</span> <span class="kt">UIEmptyStateDelegate</span> <span class="p">{</span>
 
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
@@ -124,13 +120,50 @@
         <span class="k">self</span><span class="o">.</span><span class="n">emptyStateDelegate</span> <span class="o">=</span> <span class="k">self</span>
         <span class="c1">// Optionally remove seperator lines from empty cells</span>
         <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">tableFooterView</span> <span class="o">=</span> <span class="kt">UIView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="o">.</span><span class="n">zero</span><span class="p">)</span>
+        <span class="c1">// Set the initial state of the tableview</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>Whenever you need to reload the empty stateview for example, on data changes to your table view source, make sure to call <code>self.reloadTableViewEmptyState()</code></p>
+
+<p>Example: </p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// My data has changed here, I want to reload my tableview, </span>
+    <span class="c1">// and in case I no longer have data (user deleted, etc) also reload empty view</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">reloadData</span><span class="p">()</span>
+    <span class="c1">// Reload empty view as well</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">deleteFoo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// This works too, just call after end updates</span>
+    <span class="n">tableView</span><span class="o">.</span><span class="nf">beginUpdates</span><span class="p">()</span>
+    <span class="n">fooSource</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="n">indexPath</span><span class="o">.</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">tableView</span><span class="o">.</span><span class="nf">deleteRows</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="p">[</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">with</span><span class="p">:</span> <span class="o">.</span><span class="n">automatic</span><span class="p">)</span>
+    <span class="n">tableView</span><span class="o">.</span><span class="nf">endUpdates</span><span class="p">()</span>
+    <span class="c1">// Call reload of empty state </span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>If you need more help take a look at the example project here (Pokemon nerds, will like it): <a href="https://github.com/luispadron/UIEmptyState/tree/master/UIEmptyStateExample">Example</a></p>
 <a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
 <a href='#a-href-http-htmlpreview-github-io-https-github-com-luispadron-uiemptystate-blob-master-docs-index-html-read-the-documentation-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='a-href-http-htmlpreview-github-io-https-github-com-luispadron-uiemptystate-blob-master-docs-index-html-read-the-documentation-here-a'><a href="http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html">Read the documentation here</a></h4>
 <a href='#example-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example-project'>Example Project</h2>
 <a href='#clone-this-repo-and-run-the-code-uiemptystateexample-code-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='clone-this-repo-and-run-the-code-uiemptystateexample-code-project'>Clone this repo and run the <code>UIEmptyStateExample</code> project</h4>
+<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
+
+<ul>
+<li>[x] Add support for any <code>UIViewController</code> subclass, i.e <code>UICollectionView</code> etc.</li>
+<li>Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling</li>
+<li>Add animation to view appearance</li>
+<li>Add nicer animation to button taps, or view taps</li>
+<li>Add tests</li>
+<li>Clean up and continue to work on <code>UIEmptyStateView</code>, i.e add better constraints and more customization options</li>
+<li>If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+</li>
+</ul>
 <a href='#license-mit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license-mit'>License (MIT)</h2>
 <pre class="highlight plaintext"><code>Copyright (c) 2017 Luis Padron
 
@@ -148,7 +181,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-04)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-05)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

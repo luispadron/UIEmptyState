@@ -9,7 +9,6 @@
 ## Requirements
 
 - iOS 9.0 or greater
-- Using a `UITableViewController` subclass (for now)
 
 
 ## Installation
@@ -47,6 +46,8 @@
 
 ## Usage
 
+As long as you are using a `UIViewController` subclass you will get default conformance as well as the `reloadEmptyState` method.
+
 ```swift
 // No subclassing required, simply conform to the two protocols
 class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
@@ -59,7 +60,7 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         // Set the initial state of the tableview
-        self.reloadTableViewEmptyState()
+		self.reloadEmptyState(forTableView: self.tableView)
    }
 }
 ```
@@ -74,7 +75,7 @@ func foo() {
 	// and in case I no longer have data (user deleted, etc) also reload empty view
 	self.tableView.reloadData()
 	// Reload empty view as well
-	self.reloadTableViewEmptyState()
+	self.reloadEmptyState(forTableView: self.tableView)
 }
 
 func deleteFoo() {
@@ -84,7 +85,7 @@ func deleteFoo() {
 	tableView.deleteRows(at: [indexPath], with: .automatic)
 	tableView.endUpdates()
 	// Call reload of empty state 
-	self.reloadTableViewEmptyState()
+	self.reloadEmptyState(forTableView: self.tableView)
 }
 ```
 
@@ -99,8 +100,7 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 #### Clone this repo and run the `UIEmptyStateExample` project
 
 ## Roadmap
-
-- Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
+- [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
 - Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
 - Add animation to view appearance
 - Add nicer animation to button taps, or view taps

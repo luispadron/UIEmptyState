@@ -50,14 +50,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/UITableViewController.html">UITableViewController</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -83,7 +75,7 @@
               </div>
             <p>The data source for the Empty View</p>
 
-<p>Default conformance for UITableViewController is provided,
+<p>Default conformance for UIViewContoller is provided,
 however feel free to implement these methods to customize your view.</p>
 
           </div>
@@ -109,7 +101,7 @@ however feel free to implement these methods to customize your view.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines whether should or should not show the empty view, by default it will count tableView rows to determine</p>
+                        <p>Determines whether should or should not show the empty view for a specific tableView, by default it will count tableView rows to determine</p>
 
 <ul>
 <li>paramaters:
@@ -122,7 +114,7 @@ however feel free to implement these methods to customize your view.</p>
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation for determining if should show the emptystate view, counts number of rows in tableview</p>
+                        <p>Default implementation for UIViewController tableView determining if should show the emptystate view, counts number of rows in the tableView</p>
 
                       </div>
                       <div class="declaration">
@@ -130,6 +122,54 @@ however feel free to implement these methods to customize your view.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="n">forTableView</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Boolean value of whether view should or should not be displayed</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource24shouldShowEmptyStateViewFT17forCollectionViewCSo16UICollectionView_Sb"></a>
+                    <a name="//apple_ref/swift/Method/shouldShowEmptyStateView(forCollectionView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource24shouldShowEmptyStateViewFT17forCollectionViewCSo16UICollectionView_Sb">shouldShowEmptyStateView(forCollectionView:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines whether should or should not show the empty view for a specific collectionView, by default it will count collectionView items to determine</p>
+
+<ul>
+<li>paramaters:
+
+<ul>
+<li>collectionView: The collectionView which the emptyStateView will display over</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation for UIViewController collectionView determining if should show the emptystate view, counts number of items in the collectionView</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="n">forCollectionView</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -568,7 +608,7 @@ Implement this method to send a custom size for the button, useful when adding a
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-04)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-05)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

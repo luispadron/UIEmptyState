@@ -77,7 +77,7 @@ public protocol UIEmptyStateDataSource: class {
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
-extension UIEmptyStateDataSource where Self: UITableViewController {
+extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation for determining if should show the emptystate view, counts number of rows in tableview
     public func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool {
         let sections = tableView.numberOfSections

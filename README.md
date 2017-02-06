@@ -65,13 +65,13 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
 }
 ```
 
-Whenever you need to reload the empty stateview for example, on data changes to your table view source, make sure to call `self.reloadTableViewEmptyState()`
+Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState(for:)`
 
 Example: 
 
 ```swift
 func foo() {
-	// My data has changed here, I want to reload my tableview, 
+	// My data has changed here, I want to my tableview, 
 	// and in case I no longer have data (user deleted, etc) also reload empty view
 	self.tableView.reloadData()
 	// Reload empty view as well

@@ -71,7 +71,6 @@ extension UITableViewController {
         } else {
             // We can create the view now
             let newView = source.viewForEmptyState()
-            newView.frame = self.view.bounds
             // Add to emptyStateView property
             emptyStateView = newView
             // Add as a subView, bring it infront of the tableView

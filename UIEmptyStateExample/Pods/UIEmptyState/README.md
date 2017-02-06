@@ -9,7 +9,6 @@
 ## Requirements
 
 - iOS 9.0 or greater
-- Using a `UITableViewController` Subclass
 
 
 ## Installation
@@ -33,8 +32,10 @@
 ### Carthage
 
 1. Make sure Carthage is install
-	`brew install carthage
+
+	`brew install carthage`
 2. Add this repo to your Cartfile
+
 	`github "luispadron/UIEmptyState"`
 	
 
@@ -45,7 +46,10 @@
 
 ## Usage
 
+As long as you are using a `UIViewController` subclass you will get default conformance as well as the `reloadEmptyState` method.
+
 ```swift
+// No subclassing required, simply conform to the two protocols
 class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
     
     override func viewDidLoad() {
@@ -55,9 +59,37 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
         self.emptyStateDelegate = self
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        // Set the initial state of the tableview
+		self.reloadEmptyState(forTableView: self.tableView)
    }
 }
 ```
+
+Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState(for:)`
+
+Example: 
+
+```swift
+func foo() {
+	// My data has changed here, I want to my tableview, 
+	// and in case I no longer have data (user deleted, etc) also reload empty view
+	self.tableView.reloadData()
+	// Reload empty view as well
+	self.reloadEmptyState(forTableView: self.tableView)
+}
+
+func deleteFoo() {
+	// This works too, just call after end updates
+	tableView.beginUpdates()
+	fooSource.remove(at: indexPath.row)
+	tableView.deleteRows(at: [indexPath], with: .automatic)
+	tableView.endUpdates()
+	// Call reload of empty state 
+	self.reloadEmptyState(forTableView: self.tableView)
+}
+```
+
+If you need more help take a look at the example project here (Pokemon nerds, will like it): [Example](https://github.com/luispadron/UIEmptyState/tree/master/UIEmptyStateExample)
 
 ## Documentation
 
@@ -66,6 +98,16 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
 ## Example Project
 
 #### Clone this repo and run the `UIEmptyStateExample` project
+
+## Roadmap
+- [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
+- Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
+- Add animation to view appearance
+- Add nicer animation to button taps, or view taps
+- Add tests
+- Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
+- If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+
+
 
 ## License (MIT)
 

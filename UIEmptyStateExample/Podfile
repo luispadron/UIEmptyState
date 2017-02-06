@@ -5,5 +5,5 @@ target 'UIEmptyStateExample' do
   use_frameworks!
 
   # Pods for UIEmptyStateExample
-  pod 'UIEmptyState', :path => '~/Programming/iOS/UIEmptyState'
+  pod 'UIEmptyState'
 end

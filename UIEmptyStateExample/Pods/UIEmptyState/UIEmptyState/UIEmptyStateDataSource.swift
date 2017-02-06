@@ -9,17 +9,25 @@
 
 /// The data source for the Empty View
 ///
-/// Default conformance for UITableViewController is provided,
+/// Default conformance for UIViewContoller is provided,
 /// however feel free to implement these methods to customize your view.
 public protocol UIEmptyStateDataSource: class {
 
-    /// Determines whether should or should not show the empty view, by default it will count tableView rows to determine
+    /// Determines whether should or should not show the empty view for a specific tableView, by default it will count tableView rows to determine
     ///
     /// - paramaters:
     ///     - tableView: The tableview which the emptyStateView will display over
     /// - returns: 
     ///     Boolean value of whether view should or should not be displayed
     func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool
+    
+    /// Determines whether should or should not show the empty view for a specific collectionView, by default it will count collectionView items to determine
+    ///
+    /// - paramaters:
+    ///     - collectionView: The collectionView which the emptyStateView will display over
+    /// - returns:
+    ///     Boolean value of whether view should or should not be displayed
+    func shouldShowEmptyStateView(forCollectionView collectionView: UICollectionView) -> Bool
     
     /// Determines the view to use for the empty state, by default this is a nice stack view
     ///
@@ -76,9 +84,9 @@ public protocol UIEmptyStateDataSource: class {
     func emptyStateViewAllowsScrolling() -> Bool
 }
 
-/// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
-extension UIEmptyStateDataSource where Self: UITableViewController {
-    /// Default implementation for determining if should show the emptystate view, counts number of rows in tableview
+/// Extension for the UIEmptyDataSource which adds a default implementation for any UIViewController Subclass
+extension UIEmptyStateDataSource where Self: UIViewController {
+    /// Default implementation for UIViewController tableView determining if should show the emptystate view, counts number of rows in the tableView
     public func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool {
         let sections = tableView.numberOfSections
         var rows = 0
@@ -86,6 +94,16 @@ extension UIEmptyStateDataSource where Self: UITableViewController {
             rows += tableView.numberOfRows(inSection: section)
         }
         return rows == 0
+    }
+    
+    /// Default implementation for UIViewController collectionView determining if should show the emptystate view, counts number of items in the collectionView
+    public func shouldShowEmptyStateView(forCollectionView collectionView: UICollectionView) -> Bool {
+        let sections = collectionView.numberOfSections
+        var items = 0
+        for section in 0..<sections {
+            items += collectionView.numberOfItems(inSection: section)
+        }
+        return items == 0
     }
     
     /// Default implementation of `viewForEmptyState`, returns a UIEmptyStateView

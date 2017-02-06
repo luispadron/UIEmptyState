@@ -1,5 +1,5 @@
 //
-//  UITableViewController+UIEmptyState.swift
+//  UIViewController+UIEmptyState
 //  UIEmptyState
 //
 //  Created by Luis Padron on 1/31/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// Extension on UITableViewController which adds method and computed properties in order to allow empty view creation
-extension UITableViewController {
+/// Extension on UIViewController which adds method and computed properties in order to allow empty view creation
+extension UIViewController {
     /// Private struct of keys to be used with objective-c associated objects
     private struct Keys {
         static var emptyStateView = "com.luispadron.emptyStateView"
@@ -19,7 +19,7 @@ extension UITableViewController {
     
     /// The data source for the Empty View
     ///
-    /// Default conformance for UITableViewController is provided,
+    /// Default conformance for UIViewController is provided,
     /// however feel free to implement these methods to customize your view.
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
@@ -29,13 +29,13 @@ extension UITableViewController {
     /// The delegate for UIEmptyStateView
     ///
     /// **Important:** this delegate and its functions are only used when using UIEmptyStateView.
-    /// If you will provide a custome view in the UIEmptyStateDataSource you must handle how this delegate operates
+    /// If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
     public weak var emptyStateDelegate: UIEmptyStateDelegate? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
         set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
-    /// The empty state view associated to the tableViewController
+    /// The empty state view associated to the ViewController
     ///
     /// **Note:** this view corresponds and is created from the UIEmptyDataSource method: `func viewForEmptyState() -> UIView`
     /// 
@@ -51,19 +51,42 @@ extension UITableViewController {
     
     /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
     /// 
-    /// **Important:** This should be called whenever changes are made to the tableview data source or after reloading the tableview
-    public func reloadTableViewEmptyState() {
-        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: self.tableView) else {
+    /// **Important:** This should be called whenever changes are made to the tableView data source or after reloading the tableview
+    public func reloadEmptyState(forTableView tableView: UITableView) {
+        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: tableView) else {
+            // If shouldnt show view and has been created, hide and allow scrolling
             if let presentedView = emptyStateView {
-                // Show the view and allow scrolling again
                 presentedView.isHidden = true
-                self.tableView.isScrollEnabled = true
+                tableView.isScrollEnabled = true
             }
             return
         }
         
-        // Check whether we allow scrolling or not
-        self.tableView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        // Check whether scrolling for tableview is allowed or not
+        tableView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        showView(forSource: source)
+    }
+    
+    /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
+    ///
+    /// **Important:** This should be called whenever changes are made to the collectionView data source or after reloading the tableview
+    public func reloadEmptyState(forCollectionView collectionView: UICollectionView) {
+        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forCollectionView: collectionView) else {
+            if let presentedView = emptyStateView {
+                // If shouldn't show view and has been created, hide and allow scrolling
+                presentedView.isHidden = true
+                collectionView.isScrollEnabled = true
+            }
+            return
+        }
+        
+        // Check to see if scrolling is enabled
+        collectionView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        showView(forSource: source)
+    }
+    
+    /// Private helper method which will create the empty state view if not created, or show it if hidden
+    private func showView(forSource source: UIEmptyStateDataSource) {
         // Toggle or create the view if not created yet
         if let createdView = emptyStateView {
             // View was already created we can go ahead and just show it again
@@ -71,7 +94,6 @@ extension UITableViewController {
         } else {
             // We can create the view now
             let newView = source.viewForEmptyState()
-            newView.frame = self.view.bounds
             // Add to emptyStateView property
             emptyStateView = newView
             // Add as a subView, bring it infront of the tableView

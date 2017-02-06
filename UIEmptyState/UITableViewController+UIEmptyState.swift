@@ -52,7 +52,7 @@ extension UITableViewController {
     /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
     /// 
     /// **Important:** This should be called whenever changes are made to the tableview data source or after reloading the tableview
-    public func reloadTableViewEmptyState() {
+    public func reloadEmptyState() {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: self.tableView) else {
             if let presentedView = emptyStateView {
                 // Show the view and allow scrolling again

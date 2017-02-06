@@ -1,0 +1,16 @@
+PODS:
+  - UIEmptyState (0.1.1)
+
+DEPENDENCIES:
+  - UIEmptyState (from `~/Programming/iOS/UIEmptyState`)
+
+EXTERNAL SOURCES:
+  UIEmptyState:
+    :path: "~/Programming/iOS/UIEmptyState"
+
+SPEC CHECKSUMS:
+  UIEmptyState: 2dece1c6c59815fde28c84d1c95420153c89abac
+
+PODFILE CHECKSUM: dafef053e376f967a2230a81ab89d8576909e6f3
+
+COCOAPODS: 1.2.0

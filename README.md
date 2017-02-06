@@ -59,8 +59,13 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
         self.emptyStateDelegate = self
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        // Set the initial state of the tableview
-		self.reloadEmptyState(forTableView: self.tableView)
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+   	super.viewDidAppear(animated)
+	 // Set the initial state of the tableview, called here because cells should be done loading by now
+	 // Number of cells are used to determine if the view should be shown or not
+	self.reloadEmptyState(forTableView: self.tableView)
    }
 }
 ```

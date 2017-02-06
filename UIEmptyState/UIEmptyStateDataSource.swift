@@ -9,7 +9,7 @@
 
 /// The data source for the Empty View
 ///
-/// Default conformance for UITableViewController is provided,
+/// Default conformance for UIViewContoller is provided,
 /// however feel free to implement these methods to customize your view.
 public protocol UIEmptyStateDataSource: class {
 
@@ -76,7 +76,7 @@ public protocol UIEmptyStateDataSource: class {
     func emptyStateViewAllowsScrolling() -> Bool
 }
 
-/// Extension for the UIEmptyDataSource which adds a default implementation for any UITableViewController
+/// Extension for the UIEmptyDataSource which adds a default implementation for any UIViewController Subclass
 extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation for determining if should show the emptystate view, counts number of rows in tableview
     public func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool {

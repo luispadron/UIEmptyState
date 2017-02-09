@@ -1,5 +1,10 @@
 # UIEmptyState Changelog
 
+## Version 0.2.1
+
+- Add fix for updating view, titles can now be changed on the fly using data source methods
+- Some small amount of refactoring
+
 ## Version 0.2.0
 
 - Now works with any UIViewController subclass

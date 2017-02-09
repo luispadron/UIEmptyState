@@ -54,11 +54,9 @@ extension UIViewController {
     /// **Important:** This should be called whenever changes are made to the tableView data source or after reloading the tableview
     public func reloadEmptyState(forTableView tableView: UITableView) {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: tableView) else {
-            // If shouldnt show view and has been created, hide and allow scrolling
-            if let presentedView = emptyStateView {
-                presentedView.isHidden = true
-                tableView.isScrollEnabled = true
-            }
+            // If shouldnt show view remove from superview, enable scrolling again
+            emptyStateView?.isHidden = true
+            tableView.isScrollEnabled = true
             return
         }
         
@@ -72,11 +70,9 @@ extension UIViewController {
     /// **Important:** This should be called whenever changes are made to the collectionView data source or after reloading the tableview
     public func reloadEmptyState(forCollectionView collectionView: UICollectionView) {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forCollectionView: collectionView) else {
-            if let presentedView = emptyStateView {
-                // If shouldn't show view and has been created, hide and allow scrolling
-                presentedView.isHidden = true
-                collectionView.isScrollEnabled = true
-            }
+            // If shouldnt show view remove from superview, enable scrolling again
+            emptyStateView?.isHidden = true
+            collectionView.isScrollEnabled = true
             return
         }
         
@@ -87,10 +83,20 @@ extension UIViewController {
     
     /// Private helper method which will create the empty state view if not created, or show it if hidden
     private func showView(forSource source: UIEmptyStateDataSource) {
-        // Toggle or create the view if not created yet
         if let createdView = emptyStateView {
-            // View was already created we can go ahead and just show it again
+            // View has been created, update it and then reshow
             createdView.isHidden = false
+            if let view = createdView as? UIEmptyStateView {
+                view.backgroundColor = source.backgroundColorForEmptyStateView()
+                view.title = source.titleForEmptyStateView()
+                view.image = source.imageForEmptyStateView()
+                view.detailMessage = source.detailMessageForEmptyStateView()
+                view.buttonTitle = source.buttonTitleForEmptyStateView()
+                view.buttonImage = source.buttonImageForEmptyStateView()
+                view.buttonSize = source.buttonSizeForEmptyStateView()
+                view.spacing = source.spacingForViewsInEmptyStateView()
+                view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            }
         } else {
             // We can create the view now
             let newView = source.viewForEmptyState()

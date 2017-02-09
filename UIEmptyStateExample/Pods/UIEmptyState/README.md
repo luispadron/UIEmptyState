@@ -59,7 +59,12 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
         self.emptyStateDelegate = self
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        // Set the initial state of the tableview
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+   		super.viewDidAppear(animated)
+	 	// Set the initial state of the tableview, called here because cells should be done loading by now
+	 	// Number of cells are used to determine if the view should be shown or not
 		self.reloadEmptyState(forTableView: self.tableView)
    }
 }
@@ -101,12 +106,12 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Roadmap
 - [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
-- Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
-- Add animation to view appearance
-- Add nicer animation to button taps, or view taps
-- Add tests
-- Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
-- If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+
+- [ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
+- [ ] Add animation to view appearance
+- [ ] Add nicer animation to button taps, or view taps
+- [ ] Add tests
+- [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
+- [ ] If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+
 
 
 ## License (MIT)

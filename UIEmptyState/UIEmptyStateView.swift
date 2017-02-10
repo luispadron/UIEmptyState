@@ -30,7 +30,7 @@ open class UIEmptyStateView: UIView {
         didSet {
             // If the image has been removed (by passing nil) then remove the image view as well
             guard let img = image else {
-                if let _ = oldValue {
+                if oldValue != nil {
                     self.imageView.removeFromSuperview()
                     self.setNeedsUpdateConstraints()
                 }
@@ -51,7 +51,7 @@ open class UIEmptyStateView: UIView {
         didSet {
             // If the button title has been removed (by passing nil) then remove the button view if also has no button image
             guard let buttTitle = buttonTitle else {
-                if let _ = oldValue {
+                if oldValue != nil {
                     if buttonImage == nil {
                         self.button.removeFromSuperview()
                         self.setNeedsUpdateConstraints()
@@ -71,7 +71,7 @@ open class UIEmptyStateView: UIView {
         didSet {
             // If the button image has been removed (by passing nil) then remove the button view if also has no button title
             guard let buttImage = buttonImage else {
-                if let _ = oldValue {
+                if oldValue != nil {
                     if buttonTitle == nil {
                         self.button.removeFromSuperview()
                         self.setNeedsUpdateConstraints()
@@ -89,7 +89,7 @@ open class UIEmptyStateView: UIView {
     /// The size of the button
     open var buttonSize: CGSize? {
         didSet {
-            guard let size = buttonSize else { return }
+            guard buttonSize != nil else { return }
             self.setNeedsUpdateConstraints()
         }
     }
@@ -99,7 +99,7 @@ open class UIEmptyStateView: UIView {
         didSet {
             // If the detail message has been removed (by passing nil) remove the detail view
             guard let message = detailMessage else {
-                if let _ = oldValue {
+                if oldValue != nil {
                     self.detailView.removeFromSuperview()
                     self.setNeedsUpdateConstraints()
                 }

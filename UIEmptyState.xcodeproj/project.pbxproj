@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A021D3831E4D5584003ABE2F /* UIViewController+UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021D3821E4D5584003ABE2F /* UIViewController+UIEmptyState.swift */; };
 		A0AABE561E3FED14006CD69C /* UIEmptyState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AABE4C1E3FED14006CD69C /* UIEmptyState.framework */; };
 		A0AABE5B1E3FED14006CD69C /* UIEmptyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */; };
 		A0AABE5D1E3FED14006CD69C /* UIEmptyState.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0B4EAB51E411C73006D888D /* UIEmptyStateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */; };
-		A0B4EAB71E416B74006D888D /* UITableViewController+UIEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */; };
 		A0B4EAB91E416CEA006D888D /* UIEmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EAB81E416CEA006D888D /* UIEmptyStateDelegate.swift */; };
 		A0B4EABB1E416D03006D888D /* UIEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4EABA1E416D03006D888D /* UIEmptyStateView.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A021D3821E4D5584003ABE2F /* UIViewController+UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIEmptyState.swift"; sourceTree = "<group>"; };
 		A0AABE4C1E3FED14006CD69C /* UIEmptyState.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIEmptyState.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AABE4F1E3FED14006CD69C /* UIEmptyState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEmptyState.h; sourceTree = "<group>"; };
 		A0AABE501E3FED14006CD69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		A0AABE5A1E3FED14006CD69C /* UIEmptyStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmptyStateTests.swift; sourceTree = "<group>"; };
 		A0AABE5C1E3FED14006CD69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyStateDataSource.swift; sourceTree = "<group>"; };
-		A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+UIEmptyState.swift"; sourceTree = "<group>"; };
 		A0B4EAB81E416CEA006D888D /* UIEmptyStateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyStateDelegate.swift; sourceTree = "<group>"; };
 		A0B4EABA1E416D03006D888D /* UIEmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,9 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				A0B4EAB41E411C73006D888D /* UIEmptyStateDataSource.swift */,
-				A0B4EAB61E416B74006D888D /* UITableViewController+UIEmptyState.swift */,
 				A0B4EAB81E416CEA006D888D /* UIEmptyStateDelegate.swift */,
 				A0B4EABA1E416D03006D888D /* UIEmptyStateView.swift */,
+				A021D3821E4D5584003ABE2F /* UIViewController+UIEmptyState.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -219,10 +219,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A021D3831E4D5584003ABE2F /* UIViewController+UIEmptyState.swift in Sources */,
 				A0B4EAB51E411C73006D888D /* UIEmptyStateDataSource.swift in Sources */,
 				A0B4EAB91E416CEA006D888D /* UIEmptyStateDelegate.swift in Sources */,
 				A0B4EABB1E416D03006D888D /* UIEmptyStateView.swift in Sources */,
-				A0B4EAB71E416B74006D888D /* UITableViewController+UIEmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

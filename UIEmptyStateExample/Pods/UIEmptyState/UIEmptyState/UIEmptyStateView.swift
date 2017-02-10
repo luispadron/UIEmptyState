@@ -20,28 +20,48 @@ open class UIEmptyStateView: UIView {
     /// The title for the titleView
     open var title: NSAttributedString {
         didSet {
-            // Need to remove the constraints and then add them back in after calling size to fit
-            titleView.removeConstraints(titleView.constraints)
             self.titleView.attributedText = self.title
-            titleView.sizeToFit()
-            titleView.widthAnchor.constraint(equalToConstant: titleView.frame.width).isActive = true
-            titleView.heightAnchor.constraint(equalToConstant: titleView.frame.height).isActive = true
+            self.setNeedsUpdateConstraints()
         }
     }
+    
     /// The image for the imageView
     open var image: UIImage? {
         didSet {
-            guard let img = image else { return }
+            // If the image has been removed (by passing nil) then remove the image view as well
+            guard let img = image else {
+                if oldValue != nil {
+                    self.imageView.removeFromSuperview()
+                    self.setNeedsUpdateConstraints()
+                }
+                return
+            }
+            
             imageView.image = img
+            self.setNeedsUpdateConstraints()
             handleAdding(view: imageView)
         }
     }
     
+    /// The size for image view
+    open var imageSize: CGSize? { didSet { self.setNeedsUpdateConstraints() } }
+    
     /// The button title for the button
     open var buttonTitle: NSAttributedString? {
         didSet {
-            guard let buttTitle = buttonTitle else { return }
+            // If the button title has been removed (by passing nil) then remove the button view if also has no button image
+            guard let buttTitle = buttonTitle else {
+                if oldValue != nil {
+                    if buttonImage == nil {
+                        self.button.removeFromSuperview()
+                        self.setNeedsUpdateConstraints()
+                    }
+                }
+                return
+            }
+            
             button.setAttributedTitle(buttTitle, for: .normal)
+            self.setNeedsUpdateConstraints()
             handleAdding(view: button)
         }
     }
@@ -49,8 +69,19 @@ open class UIEmptyStateView: UIView {
     /// The image for the button
     open var buttonImage: UIImage? {
         didSet {
-            guard let buttImage = buttonImage else { return }
+            // If the button image has been removed (by passing nil) then remove the button view if also has no button title
+            guard let buttImage = buttonImage else {
+                if oldValue != nil {
+                    if buttonTitle == nil {
+                        self.button.removeFromSuperview()
+                        self.setNeedsUpdateConstraints()
+                    }
+                }
+                return
+            }
+            
             button.setBackgroundImage(buttImage, for: .normal)
+            self.setNeedsUpdateConstraints()
             handleAdding(view: button)
         }
     }
@@ -58,34 +89,31 @@ open class UIEmptyStateView: UIView {
     /// The size of the button
     open var buttonSize: CGSize? {
         didSet {
-            guard let size = buttonSize else { return }
-            // Remove old constraints
-            button.removeConstraints(button.constraints)
-            button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
-            button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-            button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+            guard buttonSize != nil else { return }
+            self.setNeedsUpdateConstraints()
         }
     }
     
     /// The detail message for the detail label
     open var detailMessage: NSAttributedString? {
         didSet {
-            guard let message = detailMessage else { return }
-            // Need to remove the constraints and then add them back in after calling size to fit
-            detailView.removeConstraints(detailView.constraints)
+            // If the detail message has been removed (by passing nil) remove the detail view
+            guard let message = detailMessage else {
+                if oldValue != nil {
+                    self.detailView.removeFromSuperview()
+                    self.setNeedsUpdateConstraints()
+                }
+                return
+            }
+        
             detailView.attributedText = message
-            detailView.sizeToFit()
-            detailView.widthAnchor.constraint(equalToConstant: detailView.frame.width).isActive = true
-            detailView.heightAnchor.constraint(equalToConstant: detailView.frame.height).isActive = true
+            self.setNeedsUpdateConstraints()
             handleAdding(view: detailView)
         }
     }
+    
     /// The spacing in between each of the views
-    open var spacing: CGFloat? {
-        didSet {
-            self.contentView.spacing = spacing ?? 0
-        }
-    }
+    open var spacing: CGFloat? { didSet { self.contentView.spacing = spacing ?? 0 } }
     
     // MARK: - Initializers
     
@@ -99,6 +127,34 @@ open class UIEmptyStateView: UIView {
     /// Unused initializer currently
     public required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Overrides
+    
+    /// Override for update constraints, adds the auto layout constraints for the stackviews subviews.
+    ///
+    /// ** IMPORTANT: ** This method will remove all constraints that a part of the `contentView` so do not add constraints to these views.
+    open override func updateConstraints() {
+        super.updateConstraints()
+        
+        // Loop through the stack views constraints and add the appropriate constraints
+        for subview in contentView.subviews {
+            subview.removeConstraints(subview.constraints)
+            if let label = subview as? UILabel {
+                label.sizeToFit()
+                label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
+                label.heightAnchor.constraint(equalToConstant: label.frame.height).isActive = true
+            } else if let imageView = subview as? UIImageView {
+                let size = imageSize ?? CGSize(width: 100, height: 100)
+                imageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+                imageView.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+            } else if let button = subview as? UIButton {
+                let size = buttonSize ?? self.buttonTitle?.size() ?? self.buttonImage?.size ?? CGSize(width: 0, height: 0)
+                button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+                button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+            }
+            
+        }
     }
     
     // MARK: - Helper methods
@@ -118,7 +174,6 @@ open class UIEmptyStateView: UIView {
         
         self.addSubview(contentView)
         // Add center constraints
-        // Add center constraints
         contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
@@ -127,7 +182,7 @@ open class UIEmptyStateView: UIView {
     private func handleAdding(view: UIView) {
         // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
         // If already added we can return
-        if self.subviews.index(of: view) != nil { return }
+        if contentView.subviews.index(of: view) != nil { return }
         
         // Tags correspond to the views AND the order we want them in
         switch view.tag {
@@ -177,8 +232,6 @@ open class UIEmptyStateView: UIView {
     /// The image view which displays the value of `image`, placed above the title label
     open lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         view.contentMode = .scaleAspectFit
         view.tag = 1
         return view
@@ -190,10 +243,6 @@ open class UIEmptyStateView: UIView {
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
         button.tag = 4
-        // Constrain button to size of text plus 20 points of padding
-        let textSize = self.buttonTitle?.size()
-        button.heightAnchor.constraint(equalToConstant: (textSize?.height ?? 30) + 20).isActive = true
-        button.widthAnchor.constraint(equalToConstant: (textSize?.width ?? 200) + 20).isActive = true
         // Add target to button tap
         button.addTarget(self, action: #selector(self.buttonTouched), for: .touchUpInside)
         return button

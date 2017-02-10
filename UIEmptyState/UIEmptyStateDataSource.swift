@@ -45,6 +45,11 @@ public protocol UIEmptyStateDataSource: class {
     ///     UImage? optional image, if nil, image view will not be displayed
     func imageForEmptyStateView() -> UIImage?
     
+    /// Determines the size of the image view, by default this will return nil which means that the imageview size will just be 100x100
+    /// - returns: 
+    ///     CGSize? optional size for image view
+    func imageSizeForEmptyStateView() -> CGSize?
+    
     /// Determines the title for the button of the Empty State View, by default this is nil
     /// - returns:
     ///     NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed
@@ -112,6 +117,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         // Call and assign the data source methods
         emptyStateView.backgroundColor = backgroundColorForEmptyStateView()
         emptyStateView.image = imageForEmptyStateView()
+        emptyStateView.imageSize = imageSizeForEmptyStateView()
         emptyStateView.detailMessage = detailMessageForEmptyStateView()
         emptyStateView.buttonTitle = buttonTitleForEmptyStateView()
         emptyStateView.buttonImage = buttonImageForEmptyStateView()
@@ -129,6 +135,11 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     
     /// Default implementation of `imageForEmptyStateView`, returns nil
     public func imageForEmptyStateView() -> UIImage? {
+        return nil
+    }
+    
+    /// Default implementation of `imageSizeForEmptyStateView`, returns nil
+    public func imageSizeForEmptyStateView() -> CGSize? {
         return nil
     }
     

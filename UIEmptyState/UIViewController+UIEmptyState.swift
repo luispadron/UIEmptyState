@@ -95,7 +95,6 @@ extension UIViewController {
                 view.buttonImage = source.buttonImageForEmptyStateView()
                 view.buttonSize = source.buttonSizeForEmptyStateView()
                 view.spacing = source.spacingForViewsInEmptyStateView()
-                view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             }
         } else {
             // We can create the view now

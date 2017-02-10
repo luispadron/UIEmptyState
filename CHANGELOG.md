@@ -1,5 +1,21 @@
 # UIEmptyState Changelog
 
+## Version 0.3.0
+
+- Add fixes for views not being updated
+- Add fix to constraints becoming wonky after readding views
+- Add convenience extenions to `UITableViewController` and `UICollectionViewController`
+	
+	You can now do this:
+	
+	```swift 
+	// If a tableview or collectionview controller subclass
+	// This will default the tableView/collectionView to self.tableView/collectionView
+	self.reloadEmptyState()
+	```
+- Refactoring of UIEmptyStateView
+- Rerun Jazzy for documentation
+
 ## Version 0.2.1
 
 - Add fix for updating view, titles can now be changed on the fly using data source methods

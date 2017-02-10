@@ -50,6 +50,20 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UICollectionViewController.html">UICollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UITableViewController.html">UITableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -165,6 +179,33 @@ This view is used as the default view for the <code>emptyStateView</code> in the
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12UIEmptyState16UIEmptyStateView9imageSizeGSqVSC6CGSize_"></a>
+                    <a name="//apple_ref/swift/Property/imageSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12UIEmptyState16UIEmptyStateView9imageSizeGSqVSC6CGSize_">imageSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The size for image view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">imageSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -375,6 +416,46 @@ This view is used as the default view for the <code>emptyStateView</code> in the
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Overrides"></a>
+                <a name="//apple_ref/swift/Section/Overrides" class="dashAnchor"></a>
+                <a href="#/Overrides">
+                  <h3 class="section-name">Overrides</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12UIEmptyState16UIEmptyStateView17updateConstraintsFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/updateConstraints()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12UIEmptyState16UIEmptyStateView17updateConstraintsFT_T_">updateConstraints()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Override for update constraints, adds the auto layout constraints for the stackviews subviews.</p>
+
+<p>** IMPORTANT: ** This method will remove all constraints that a part of the <code><a href="../Classes/UIEmptyStateView.html#/s:vC12UIEmptyState16UIEmptyStateView11contentViewCSo11UIStackView">contentView</a></code> so do not add constraints to these views.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">updateConstraints</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Subviews"></a>
                 <a name="//apple_ref/swift/Section/Subviews" class="dashAnchor"></a>
                 <a href="#/Subviews">
@@ -525,7 +606,7 @@ This view is used as the default view for the <code>emptyStateView</code> in the
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-05)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-09)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -111,14 +111,15 @@ extension UIViewController {
 
 /// A convenience extension for UITableViewController which defaults the tableView
 extension UITableViewController {
+    /// Reloads the empty state, defaults the tableView to `self.tableView`
     public func reloadEmptyState() {
         self.reloadEmptyState(forTableView: self.tableView)
     }
 }
 
 /// A convenience extension for UICollectionViewController which defaults the collectionView
-
 extension UICollectionViewController {
+    /// Reloads the empty state, defaults the collectionView to `self.collectionView`
     public func reloadEmptyState() {
         guard let collectionView = self.collectionView else {
             print("UIEmptyState ====  WARNING: Tried to reload collectionView's empty state but the collectionView for\n\(self) was nil.")

@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UIEmptyState"
-  s.version      = "0.2.1"
+  s.version      = "0.3.0"
   s.summary      = "An empty state control to give visually appealing context when building iOS applications."
   s.description  = <<-DESC
   Empty state control which gives context with either a message, image, and buttons to the user when ever there is a reason the state is empty.

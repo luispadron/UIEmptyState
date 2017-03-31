@@ -16,13 +16,14 @@
 1. Install [CocoaPods](http://cocoapods.org)
 2. Add this repo to your `Podfile`
 
-	```ruby
-	target 'Example' do
-	    use_frameworks!
+```ruby
+target 'Example' do
+  use_frameworks!
 	
-	    pod 'UIEmptyState'
-	end
+  pod 'UIEmptyState'
+end
 ```
+
 3. Run `pod install`
 4. Open up the new `.xcworkspace` that CocoaPods generated
 5. Whenever you want to use the library: `import UIEmptyState`

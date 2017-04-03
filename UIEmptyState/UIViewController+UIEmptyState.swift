@@ -63,7 +63,7 @@ extension UIViewController {
         }
         
         // Check whether scrolling for tableview is allowed or not
-        tableView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        tableView.isScrollEnabled = source.emptyStateViewCanScroll
         showView(forSource: source)
     }
     
@@ -79,7 +79,7 @@ extension UIViewController {
         }
         
         // Check to see if scrolling is enabled
-        collectionView.isScrollEnabled = source.emptyStateViewAllowsScrolling()
+        collectionView.isScrollEnabled = source.emptyStateViewCanScroll
         showView(forSource: source)
     }
     
@@ -89,18 +89,18 @@ extension UIViewController {
             // View has been created, update it and then reshow
             createdView.isHidden = false
             if let view = createdView as? UIEmptyStateView {
-                view.backgroundColor = source.backgroundColorForEmptyStateView()
-                view.title = source.titleForEmptyStateView()
-                view.image = source.imageForEmptyStateView()
-                view.detailMessage = source.detailMessageForEmptyStateView()
-                view.buttonTitle = source.buttonTitleForEmptyStateView()
-                view.buttonImage = source.buttonImageForEmptyStateView()
-                view.buttonSize = source.buttonSizeForEmptyStateView()
-                view.spacing = source.spacingForViewsInEmptyStateView()
+                view.backgroundColor = source.emptyStateBackgroundColor
+                view.image = source.emptyStateImage
+                view.imageSize = source.emptyStateImageSize
+                view.detailMessage = source.emptyStateDetailMessage
+                view.buttonTitle = source.emptyStateButtonTitle
+                view.buttonImage = source.emptyStateButtonImage
+                view.buttonSize = source.emptyStateButtonSize
+                view.spacing = source.emptyStateViewSpacing
                 // Animate now
-                if source.emptyStateViewCanAnimate() && source.emptyStateViewPerformsAnimationEveryTime() {
+                if source.emptyStateViewCanAnimate && source.emptyStateViewAnimatesEverytime {
                     DispatchQueue.main.async {
-                        source.emptyStateViewAnimation(forView: view, animationDuration: source.emptyStateViewAnimationDuration(), completion: { finished in
+                        source.emptyStateViewAnimation(forView: view, animationDuration: source.emptyStateViewAnimationDuration, completion: { finished in
                             self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: view, didFinish: finished)
                         })
                     }
@@ -108,16 +108,16 @@ extension UIViewController {
             }
         } else {
             // We can create the view now
-            let newView = source.viewForEmptyState()
+            let newView = source.emptyStateView
             // Add to emptyStateView property
             emptyStateView = newView
             // Add as a subView, bring it infront of the tableView
             self.view.addSubview(newView)
             self.view.bringSubview(toFront: newView)
             // Animate now
-            if source.emptyStateViewCanAnimate() {
+            if source.emptyStateViewCanAnimate {
                 DispatchQueue.main.async {
-                    source.emptyStateViewAnimation(forView: self.emptyStateView!, animationDuration: source.emptyStateViewAnimationDuration(), completion: { finished in
+                    source.emptyStateViewAnimation(forView: self.emptyStateView!, animationDuration: source.emptyStateViewAnimationDuration, completion: { finished in
                         self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: self.emptyStateView!, didFinish: finished)
                     })
                 }

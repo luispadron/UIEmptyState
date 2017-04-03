@@ -98,7 +98,7 @@ extension UIViewController {
                 view.buttonSize = source.buttonSizeForEmptyStateView()
                 view.spacing = source.spacingForViewsInEmptyStateView()
                 // Animate now
-                if source.emptyStateViewCanAnimate() {
+                if source.emptyStateViewCanAnimate() && source.emptyStateViewPerformsAnimationEveryTime() {
                     DispatchQueue.main.async {
                         source.emptyStateViewAnimation(forView: view, animationDuration: source.emptyStateViewAnimationDuration(), completion: { finished in
                             self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: view, didFinish: finished)

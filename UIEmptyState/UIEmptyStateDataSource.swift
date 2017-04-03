@@ -95,6 +95,14 @@ public protocol UIEmptyStateDataSource: class {
     ///     Bool a boolean value which determines if the view should or shouldn't animate
     func emptyStateViewCanAnimate() -> Bool
     
+    /// Whether the empty state view animates every time it is shown
+    ///
+    /// **Note:** This is called whenever the empty state view will show, returning true means that an animation from `emptyStateViewAnimation` will be performed everytime the view is shown
+    ///           returning false means that only the inital animation is shown. To turn off animation in general use `emptyStateViewCanAnimate`
+    /// - returns:
+    ///     Bool a boolean value which determines if the view should animate only initially
+    func emptyStateViewPerformsAnimationEveryTime() -> Bool
+    
     /// The amount of time the empty state view should animate for
     ///
     /// **Note:** This is called whenever the empty state view will show, Default = 0.5
@@ -206,6 +214,11 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         return true
     }
     
+    /// Default implementation of `emptyStateViewPerformsAnimationEveryTime`, returns `true`
+    public func emptyStateViewPerformsAnimationEveryTime() -> Bool {
+        return true
+    }
+    
     /// Default implementation of `emptyStateViewAnimationDuration`, returns `0.5`
     public func emptyStateViewAnimationDuration() -> TimeInterval {
         return 0.5
@@ -214,16 +227,20 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation of `emptyStateViewAnimation`, implements a simple animation
     public func emptyStateViewAnimation(forView view: UIView, animationDuration: TimeInterval, completion: ((Bool) -> Void)?) -> Void {
         guard let v = view as? UIEmptyStateView else { return }
+        // Set initial alpha
+        v.imageView.alpha = 0.0
+        v.titleView.alpha = 0.0
+        v.detailView.alpha = 0.0
+        v.button.alpha = 0.0
         // Set initial scale to 0
         v.imageView.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
         v.button.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
-        // Set initial alpha
-        v.titleView.alpha = 0.0
-        v.detailView.alpha = 0.0
+
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: [], animations: { 
             
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3, animations: {
-                v.imageView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+                v.imageView.alpha = 1.0
+                v.imageView.transform = CGAffineTransform.identity
             })
             
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
@@ -231,8 +248,9 @@ extension UIEmptyStateDataSource where Self: UIViewController {
                 v.detailView.alpha = 1.0
             })
             
-            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: { 
-                v.button.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
+                v.button.alpha = 1.0
+                v.button.transform = CGAffineTransform.identity
             })
             
         }, completion: completion)

@@ -154,7 +154,6 @@ var emptyStateViewAnimationDuration: TimeInterval
 - [ ] Add nicer animation to button taps, or view taps
 - [ ] Add tests
 - [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
-- [ ] If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+
 
 
 ## License (MIT)

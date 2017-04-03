@@ -106,7 +106,7 @@ func shouldShowEmptyStateView(forTableView:) -> Bool
 // If empty view should show, implemented by default
 func shouldShowEmptyStateView(forCollectionView:) -> Bool
 // The block for the animation code, basic animation by default
-func emptyStateViewAnimation(forView:animationDuration:completion:) -> Bool
+func emptyStateViewAnimation(forView,animationDuration:completion) -> Bool
 
 ///////////// COMPUTED PROPERTIES /////////////
 // The view to show, implemented by default

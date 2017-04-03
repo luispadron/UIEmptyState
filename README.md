@@ -106,7 +106,7 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 ## Roadmap
 - [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
 - [ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
-- [ ] Add animation to view appearance
+- [x] Add animation to view appearance
 - [ ] Add nicer animation to button taps, or view taps
 - [ ] Add tests
 - [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options

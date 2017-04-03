@@ -1,5 +1,17 @@
 # UIEmptyState Changelog
 
+## Version 0.5.0
+
+- Refactored API methods for `UIEmptyStateDataSource` into computed properties to be more "swift-like"
+- Add new delegate method to get notified when the view has been shown, here you can bring subviews to front that may have been covered by the UIEmptyState
+- Add new property to determine whether the viewcontroller using UIEmptyState should adjust it's frame to take into account navigation bars/tab bars
+- Refactored a lot of code and comments
+
+#### Breaking API Changes in 0.5.0
+
+Basically, everything... Sorry!
+Due to the change from methods to properties, the way you interact with the data source has changed. [Please read the documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UIEmptyState/master/docs/Protocols/UIEmptyStateDataSource.html). Most methods have been convereted into computed properties. This will be the design going forward unless it's not possible, i.e requires parameters or would be better in a method.
+
 ## Version 0.4.0
 
 - Add ability to animate the empty state view

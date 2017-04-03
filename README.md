@@ -111,6 +111,8 @@ func emptyStateViewAnimation(forView:animationDuration:completion:) -> Bool
 ///////////// COMPUTED PROPERTIES /////////////
 // The view to show, implemented by default
 var emptyStateView: UIView
+// Whether the view adjusts and resizes to fit and be centered when inside a nav controller 
+var emptyStateViewAdjustsToFitBars: Bool
 // The text for the title view, implemented by default
 var emptyStateTitle: NSAttributedString
 // The image for the image view, nil by default

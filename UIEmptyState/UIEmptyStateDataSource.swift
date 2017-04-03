@@ -35,6 +35,10 @@ public protocol UIEmptyStateDataSource: class {
     /// cause the delegation of button and view touches to no longer work, unless you implement those yourself as well.
     var emptyStateView: UIView { get }
     
+    /// Determines whether the `emptyStateView` should adjust to be shown properly inside by not extending the view
+    /// past the navigation bar and tab bar of a navigation controller. 
+    var emptyStateViewAdjustsToFitBars: Bool { get }
+    
     /// Determines the title for the Empty View, by default this just returns an intro message, override for custom title
     var emptyStateTitle: NSAttributedString { get }
     
@@ -136,6 +140,9 @@ extension UIEmptyStateDataSource where Self: UIViewController {
             return emptyStateView
         }
     }
+    
+    /// Default implementation of `emptyStateViewAdjustsToFitBars` returns `true`
+    public var emptyStateViewAdjustsToFitBars: Bool { get { return true } }
     
     /// Default implementation of `emptyStateTitle`, returns an intro title
     public var emptyStateTitle: NSAttributedString { get { return NSAttributedString(string: "UIEmptyState") } }

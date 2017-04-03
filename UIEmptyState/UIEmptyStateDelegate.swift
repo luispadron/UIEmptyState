@@ -11,6 +11,12 @@
 /// **Important:** this delegate and its functions are only used when using `UIEmptyStateView`.
 /// If you will provide a custom view in the `UIEmptyStateDataSource` `viewForEmptyState` you must handle how this delegate operates
 public protocol UIEmptyStateDelegate: class {
+    /// The call back for when the `emptyStateView` is now shown on screen
+    ///
+    /// - parameters:
+    ///     - view: The view that is now shown
+    func emptyStateViewDidShow(view: UIView)
+    
     /// The call back for when the button inside the emptyStateView is tapped
     ///
     /// - parameters:
@@ -32,6 +38,8 @@ public protocol UIEmptyStateDelegate: class {
 
 /// Extension to add default conformance to UIViewController, by default the method bodies are empty
 extension UIEmptyStateDelegate where Self: UIViewController {
+    /// Default empty implementation of `emptyStateViewDidShow`
+    public func emptyStateViewDidShow(view: UIView) { }
     /// Default empty implementation of `emptyStateButtonWasTapped`
     public func emptyStatebuttonWasTapped(button: UIButton) { }
     /// Default empty implementation of `emptyStateViewWasTapped`

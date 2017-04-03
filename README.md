@@ -99,7 +99,7 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 Quick overview of available `UIEmptyStateDataSource` properties
 
-![QuickDocs](https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/QuickDocs.png)
+![QuickDocs](https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/quick-docs.jpg)
 
 #### [Read the full documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 

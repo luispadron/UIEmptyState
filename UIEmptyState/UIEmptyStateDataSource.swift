@@ -87,6 +87,29 @@ public protocol UIEmptyStateDataSource: class {
     /// - returns:
     ///     Bool a boolean value which will determine if the empty state view allows scrolling
     func emptyStateViewAllowsScrolling() -> Bool
+    
+    /// Whether the empty state view should animate or not
+    ///
+    /// **Note:** This is called whenever the empty state view will show, if false; no animation will occur. Default = true
+    /// - returns:
+    ///     Bool a boolean value which determines if the view should or shouldn't animate
+    func emptyStateViewCanAnimate() -> Bool
+    
+    /// The amount of time the empty state view should animate for
+    ///
+    /// **Note:** This is called whenever the empty state view will show, Default = 0.5
+    /// - returns:
+    ///     TimeInterval the time for the animation to last
+    func emptyStateViewAnimationDuration() -> TimeInterval
+    
+    /// The animation function for the views in the empty state view
+    ///
+    /// ***Note:*** This is called whenever the empty state view will show, Default = pop in and fade in of views
+    /// - paramters:
+    ///     - view: The view which will be animated, can be used to control its properties inside a `UIView.animate` block
+    ///     - animationDuration: The duration which we should animate for, value is grabbed from `emptyStateViewAnimationDuration`
+    ///     - completion: The completion block for the emptyStateView, if implementing this pass this to the `UIView.animate` completion block in order for the delegate to work properly
+    func emptyStateViewAnimation(forView view: UIView, animationDuration: TimeInterval, completion: ((Bool) -> Void)?) -> Void
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UIViewController Subclass
@@ -158,11 +181,9 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         return nil
     }
     
-    /// Default implementation of `detailMessageForEmptyStateView`, returns an intro message
+    /// Default implementation of `detailMessageForEmptyStateView`, returns nil
     public func detailMessageForEmptyStateView() -> NSAttributedString? {
-        return NSAttributedString(string: "Implement the UIEmptyStateDataSource methods to change me." +
-                                        "\nThanks for using this library, star me on GitHub!",
-                                  attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
+        return nil
     }
     
     /// Default implementation of `spacingForViewsInEmptyStateView`, returns 12
@@ -178,5 +199,43 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation of `emptyStateViewAllowsScrolling`, returns `false`
     public func emptyStateViewAllowsScrolling() -> Bool {
         return false
+    }
+    
+    /// Default implementation of `emptyStateViewCanAnimate`, returns `true`
+    public func emptyStateViewCanAnimate() -> Bool {
+        return true
+    }
+    
+    /// Default implementation of `emptyStateViewAnimationDuration`, returns `0.5`
+    public func emptyStateViewAnimationDuration() -> TimeInterval {
+        return 0.5
+    }
+    
+    /// Default implementation of `emptyStateViewAnimation`, implements a simple animation
+    public func emptyStateViewAnimation(forView view: UIView, animationDuration: TimeInterval, completion: ((Bool) -> Void)?) -> Void {
+        guard let v = view as? UIEmptyStateView else { return }
+        // Set initial scale to 0
+        v.imageView.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
+        v.button.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
+        // Set initial alpha
+        v.titleView.alpha = 0.0
+        v.detailView.alpha = 0.0
+        UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: [], animations: { 
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3, animations: {
+                v.imageView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
+                v.titleView.alpha = 1.0
+                v.detailView.alpha = 1.0
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: { 
+                v.button.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+            })
+            
+        }, completion: completion)
+        
     }
 }

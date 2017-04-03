@@ -52,6 +52,8 @@ extension UIViewController {
     /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
     /// 
     /// **Important:** This should be called whenever changes are made to the tableView data source or after reloading the tableview
+    ///                 
+    /// DO NOT override this method/implement it unless you need custom behavior. 
     public func reloadEmptyState(forTableView tableView: UITableView) {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: tableView) else {
             // If shouldnt show view remove from superview, enable scrolling again
@@ -95,6 +97,14 @@ extension UIViewController {
                 view.buttonImage = source.buttonImageForEmptyStateView()
                 view.buttonSize = source.buttonSizeForEmptyStateView()
                 view.spacing = source.spacingForViewsInEmptyStateView()
+                // Animate now
+                if source.emptyStateViewCanAnimate() {
+                    DispatchQueue.main.async {
+                        source.emptyStateViewAnimation(forView: view, animationDuration: source.emptyStateViewAnimationDuration(), completion: { finished in
+                            self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: view, didFinish: finished)
+                        })
+                    }
+                }
             }
         } else {
             // We can create the view now
@@ -104,6 +114,14 @@ extension UIViewController {
             // Add as a subView, bring it infront of the tableView
             self.view.addSubview(newView)
             self.view.bringSubview(toFront: newView)
+            // Animate now
+            if source.emptyStateViewCanAnimate() {
+                DispatchQueue.main.async {
+                    source.emptyStateViewAnimation(forView: self.emptyStateView!, animationDuration: source.emptyStateViewAnimationDuration(), completion: { finished in
+                        self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: self.emptyStateView!, didFinish: finished)
+                    })
+                }
+            }
         }
     }
     

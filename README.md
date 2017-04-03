@@ -97,7 +97,11 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Documentation
 
-#### [Read the documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
+Quick overview of available `UIEmptyStateDataSource` properties
+
+![QuickDocs](https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/QuickDocs.png)
+
+#### [Read the full documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 
 ## Example Project
 

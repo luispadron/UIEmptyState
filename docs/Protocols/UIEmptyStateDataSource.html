@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           UIEmptyState Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -198,9 +207,9 @@ however feel free to implement these methods to customize your view.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource17viewForEmptyStateFT_CSo6UIView"></a>
-                    <a name="//apple_ref/swift/Method/viewForEmptyState()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource17viewForEmptyStateFT_CSo6UIView">viewForEmptyState()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource14emptyStateViewCSo6UIView"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource14emptyStateViewCSo6UIView">emptyStateView</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -219,14 +228,14 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>viewForEmptyState</code>, returns a UIEmptyStateView</p>
+                        <p>Default implementation of <code>emptystateView</code> returns a <code>UIEmptyStateView</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">viewForEmptyState</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIView</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
 
                         </div>
                       </div>
@@ -236,9 +245,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource22titleForEmptyStateViewFT_CSo18NSAttributedString"></a>
-                    <a name="//apple_ref/swift/Method/titleForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource22titleForEmptyStateViewFT_CSo18NSAttributedString">titleForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource15emptyStateTitleCSo18NSAttributedString"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateTitle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource15emptyStateTitleCSo18NSAttributedString">emptyStateTitle</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -254,21 +263,16 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>titleForEmptyStateView</code>, returns an intro title</p>
+                        <p>Default implementation of <code>emptyStateTitle</code>, returns an intro title</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">titleForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateTitle</span><span class="p">:</span> <span class="kt">NSAttributedString</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>NSAttributedString which will be set to the titles label</p>
-
                       </div>
                     </section>
                   </div>
@@ -276,9 +280,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource22imageForEmptyStateViewFT_GSqCSo7UIImage_"></a>
-                    <a name="//apple_ref/swift/Method/imageForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource22imageForEmptyStateViewFT_GSqCSo7UIImage_">imageForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource15emptyStateImageGSqCSo7UIImage_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource15emptyStateImageGSqCSo7UIImage_">emptyStateImage</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -294,21 +298,16 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>imageForEmptyStateView</code>, returns nil</p>
+                        <p>Default implementation of <code>emptyStateImage</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">imageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateImage</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>UImage? optional image, if nil, image view will not be displayed</p>
-
                       </div>
                     </section>
                   </div>
@@ -316,9 +315,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource26imageSizeForEmptyStateViewFT_GSqVSC6CGSize_"></a>
-                    <a name="//apple_ref/swift/Method/imageSizeForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource26imageSizeForEmptyStateViewFT_GSqVSC6CGSize_">imageSizeForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource19emptyStateImageSizeGSqVSC6CGSize_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateImageSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource19emptyStateImageSizeGSqVSC6CGSize_">emptyStateImageSize</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -334,21 +333,16 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>imageSizeForEmptyStateView</code>, returns nil</p>
+                        <p>Default implementation of <code>emptyStateImageSize</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">imageSizeForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateImageSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>CGSize? optional size for image view</p>
-
                       </div>
                     </section>
                   </div>
@@ -356,9 +350,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonTitleForEmptyStateViewFT_GSqCSo18NSAttributedString_"></a>
-                    <a name="//apple_ref/swift/Method/buttonTitleForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonTitleForEmptyStateViewFT_GSqCSo18NSAttributedString_">buttonTitleForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateButtonTitleGSqCSo18NSAttributedString_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateButtonTitle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateButtonTitleGSqCSo18NSAttributedString_">emptyStateButtonTitle</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -374,21 +368,16 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>buttonTitleForEmptyStateView</code>, returns nil</p>
+                        <p>Default implementation of <code>emptyStateButtonTitle</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonTitleForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateButtonTitle</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed</p>
-
                       </div>
                     </section>
                   </div>
@@ -396,9 +385,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonImageForEmptyStateViewFT_GSqCSo7UIImage_"></a>
-                    <a name="//apple_ref/swift/Method/buttonImageForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource28buttonImageForEmptyStateViewFT_GSqCSo7UIImage_">buttonImageForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateButtonImageGSqCSo7UIImage_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateButtonImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateButtonImageGSqCSo7UIImage_">emptyStateButtonImage</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -414,21 +403,16 @@ cause the delegation of button and view touches to no longer work, unless you im
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>buttonImageForEmptyStateView</code>, returns nil</p>
+                        <p>Default implementation of <code>emptyStateButtonImage</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonImageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateButtonImage</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>UIImage? optional image for the buttons .backgroundImage</p>
-
                       </div>
                     </section>
                   </div>
@@ -436,9 +420,9 @@ cause the delegation of button and view touches to no longer work, unless you im
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource27buttonSizeForEmptyStateViewFT_GSqVSC6CGSize_"></a>
-                    <a name="//apple_ref/swift/Method/buttonSizeForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource27buttonSizeForEmptyStateViewFT_GSqVSC6CGSize_">buttonSizeForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource20emptyStateButtonSizeGSqVSC6CGSize_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateButtonSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource20emptyStateButtonSizeGSqVSC6CGSize_">emptyStateButtonSize</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -455,21 +439,16 @@ Implement this method to send a custom size for the button, useful when adding a
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>buttonSizeForEmptyStateView</code>, returns nil, thus size will be calculated using size of <code>buttonTitle</code></p>
+                        <p>Default implementation of <code>emptyStateButtonSize</code>, returns nil, thus size will be calculated using size of <code>buttonTitle</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">buttonSizeForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateButtonSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>CGSize? optional size for the button</p>
-
                       </div>
                     </section>
                   </div>
@@ -477,9 +456,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource30detailMessageForEmptyStateViewFT_GSqCSo18NSAttributedString_"></a>
-                    <a name="//apple_ref/swift/Method/detailMessageForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource30detailMessageForEmptyStateViewFT_GSqCSo18NSAttributedString_">detailMessageForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource23emptyStateDetailMessageGSqCSo18NSAttributedString_"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateDetailMessage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource23emptyStateDetailMessageGSqCSo18NSAttributedString_">emptyStateDetailMessage</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -495,21 +474,16 @@ Implement this method to send a custom size for the button, useful when adding a
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>detailMessageForEmptyStateView</code>, returns nil</p>
+                        <p>Default implementation of <code>emptyStateDetailMessage</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">detailMessageForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateDetailMessage</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>NSAttributedString? optional attributed message to be displayed in a label under the title view</p>
-
                       </div>
                     </section>
                   </div>
@@ -517,9 +491,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource31spacingForViewsInEmptyStateViewFT_V12CoreGraphics7CGFloat"></a>
-                    <a name="//apple_ref/swift/Method/spacingForViewsInEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource31spacingForViewsInEmptyStateViewFT_V12CoreGraphics7CGFloat">spacingForViewsInEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateViewSpacingV12CoreGraphics7CGFloat"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateViewSpacing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource21emptyStateViewSpacingV12CoreGraphics7CGFloat">emptyStateViewSpacing</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -535,21 +509,16 @@ Implement this method to send a custom size for the button, useful when adding a
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>spacingForViewsInEmptyStateView</code>, returns 12</p>
+                        <p>Default implementation of <code>emptyStateViewSpacing</code>, returns 12</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">spacingForViewsInEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateViewSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>CGFloat the spacing amount between each view in the empty state view’s stack view</p>
-
                       </div>
                     </section>
                   </div>
@@ -557,9 +526,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource32backgroundColorForEmptyStateViewFT_CSo7UIColor"></a>
-                    <a name="//apple_ref/swift/Method/backgroundColorForEmptyStateView()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource32backgroundColorForEmptyStateViewFT_CSo7UIColor">backgroundColorForEmptyStateView()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource25emptyStateBackgroundColorCSo7UIColor"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateBackgroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource25emptyStateBackgroundColorCSo7UIColor">emptyStateBackgroundColor</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -575,21 +544,16 @@ Implement this method to send a custom size for the button, useful when adding a
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>backgroundColorForEmptyStateView</code>, returns <code>UIColor.clear</code></p>
+                        <p>Default implementation of <code>emptyStateBackgroundColor</code>, returns <code>UIColor.clear</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">backgroundColorForEmptyStateView</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateBackgroundColor</span><span class="p">:</span> <span class="kt">UIColor</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>UIColor the color for the empty state views background color</p>
-
                       </div>
                     </section>
                   </div>
@@ -597,9 +561,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource29emptyStateViewAllowsScrollingFT_Sb"></a>
-                    <a name="//apple_ref/swift/Method/emptyStateViewAllowsScrolling()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource29emptyStateViewAllowsScrollingFT_Sb">emptyStateViewAllowsScrolling()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource23emptyStateViewCanScrollSb"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateViewCanScroll" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource23emptyStateViewCanScrollSb">emptyStateViewCanScroll</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -617,21 +581,16 @@ Implement this method to send a custom size for the button, useful when adding a
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>emptyStateViewAllowsScrolling</code>, returns <code>false</code></p>
+                        <p>Default implementation of <code>emptyStateViewCanScroll</code>, returns <code>false</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAllowsScrolling</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateViewCanScroll</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Bool a boolean value which will determine if the empty state view allows scrolling</p>
-
                       </div>
                     </section>
                   </div>
@@ -639,9 +598,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateFT_Sb"></a>
-                    <a name="//apple_ref/swift/Method/emptyStateViewCanAnimate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateFT_Sb">emptyStateViewCanAnimate()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateSb"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateViewCanAnimate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateSb">emptyStateViewCanAnimate</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -666,14 +625,9 @@ Implement this method to send a custom size for the button, useful when adding a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewCanAnimate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateViewCanAnimate</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Bool a boolean value which determines if the view should or shouldn’t animate</p>
-
                       </div>
                     </section>
                   </div>
@@ -681,9 +635,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource40emptyStateViewPerformsAnimationEveryTimeFT_Sb"></a>
-                    <a name="//apple_ref/swift/Method/emptyStateViewPerformsAnimationEveryTime()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource40emptyStateViewPerformsAnimationEveryTimeFT_Sb">emptyStateViewPerformsAnimationEveryTime()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimatesEverytimeSb"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateViewAnimatesEverytime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimatesEverytimeSb">emptyStateViewAnimatesEverytime</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -697,26 +651,21 @@ Implement this method to send a custom size for the button, useful when adding a
                         <p>Whether the empty state view animates every time it is shown</p>
 
 <p><strong>Note:</strong> This is called whenever the empty state view will show, returning true means that an animation from <code>emptyStateViewAnimation</code> will be performed everytime the view is shown
-          returning false means that only the inital animation is shown. To turn off animation in general use <code>emptyStateViewCanAnimate</code></p>
+          returning false means that only the inital animation is shown. To turn off animation in general use <code><a href="../Protocols/UIEmptyStateDataSource.html#/s:vP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateSb">emptyStateViewCanAnimate</a></code></p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>emptyStateViewPerformsAnimationEveryTime</code>, returns <code>true</code></p>
+                        <p>Default implementation of <code>emptyStateViewAnimatesEverytime</code>, returns <code>true</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewPerformsAnimationEveryTime</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateViewAnimatesEverytime</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Bool a boolean value which determines if the view should animate only initially</p>
-
                       </div>
                     </section>
                   </div>
@@ -724,9 +673,9 @@ Implement this method to send a custom size for the button, useful when adding a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationFT_Sd"></a>
-                    <a name="//apple_ref/swift/Method/emptyStateViewAnimationDuration()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationFT_Sd">emptyStateViewAnimationDuration()</a>
+                    <a name="/s:vP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationSd"></a>
+                    <a name="//apple_ref/swift/Property/emptyStateViewAnimationDuration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationSd">emptyStateViewAnimationDuration</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -751,14 +700,9 @@ Implement this method to send a custom size for the button, useful when adding a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAnimationDuration</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">TimeInterval</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">emptyStateViewAnimationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>TimeInterval the time for the animation to last</p>
-
                       </div>
                     </section>
                   </div>
@@ -788,7 +732,7 @@ Implement this method to send a custom size for the button, useful when adding a
 
 <ul>
 <li>view: The view which will be animated, can be used to control its properties inside a <code>UIView.animate</code> block</li>
-<li>animationDuration: The duration which we should animate for, value is grabbed from <code>emptyStateViewAnimationDuration</code></li>
+<li>animationDuration: The duration which we should animate for, value is grabbed from <code><a href="../Protocols/UIEmptyStateDataSource.html#/s:vP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationSd">emptyStateViewAnimationDuration</a></code></li>
 <li>completion: The completion block for the emptyStateView, if implementing this pass this to the <code>UIView.animate</code> completion block in order for the delegate to work properly</li>
 </ul></li>
 </ul>
@@ -818,8 +762,8 @@ Implement this method to send a custom size for the button, useful when adding a
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-04-02)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-04-03)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

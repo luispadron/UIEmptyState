@@ -36,47 +36,56 @@ public protocol UIEmptyStateDataSource: class {
     func viewForEmptyState() -> UIView
     
     /// Determines the title for the Empty View, by default this just returns an intro message, override for custom title
+    ///
     /// - returns:
     ///     NSAttributedString which will be set to the titles label
     func titleForEmptyStateView() -> NSAttributedString
     
     /// Determines the image which will be used inside the Empty State View's image view, default value is nil
+    ///
     /// - returns:
     ///     UImage? optional image, if nil, image view will not be displayed
     func imageForEmptyStateView() -> UIImage?
     
     /// Determines the size of the image view, by default this will return nil which means that the imageview size will just be 100x100
+    ///
     /// - returns: 
     ///     CGSize? optional size for image view
     func imageSizeForEmptyStateView() -> CGSize?
     
     /// Determines the title for the button of the Empty State View, by default this is nil
+    ///
     /// - returns:
     ///     NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed
     func buttonTitleForEmptyStateView() -> NSAttributedString?
     
     /// Determines the image for the button, by default this will return nil
+    ///
     /// - returns:
     ///     UIImage? optional image for the buttons .backgroundImage
     func buttonImageForEmptyStateView() -> UIImage?
     
     /// Determines the size of the button, by default it will constrain the view to the size of the title plus some padding.
     /// Implement this method to send a custom size for the button, useful when adding a buttonImage to the button
+    ///
     /// - returns:
     ///     CGSize? optional size for the button
     func buttonSizeForEmptyStateView() -> CGSize?
     
     /// Determines the message which will be displayed in the detail view of the empty state view, by default this will return an intro message
+    ///
     /// - returns:
     ///     NSAttributedString? optional attributed message to be displayed in a label under the title view
     func detailMessageForEmptyStateView() -> NSAttributedString?
     
     /// Determines the amount of spacing between the views, by default this is 12
+    ///
     /// - returns: 
     ///     CGFloat the spacing amount between each view in the empty state view's stack view
     func spacingForViewsInEmptyStateView() -> CGFloat
     
     /// Determines the background color for the emptyStateView, by default this value is UIColor.clear
+    ///
     /// - returns: 
     ///     UIColor the color for the empty state views background color
     func backgroundColorForEmptyStateView() -> UIColor
@@ -84,6 +93,7 @@ public protocol UIEmptyStateDataSource: class {
     /// Whether the empty state view allows scrolling or not, by default this is false
     ///
     /// **Note:** This is only called when view is displayed, if not displayed scrolling will be enabled for the table view
+    ///
     /// - returns:
     ///     Bool a boolean value which will determine if the empty state view allows scrolling
     func emptyStateViewAllowsScrolling() -> Bool
@@ -91,6 +101,7 @@ public protocol UIEmptyStateDataSource: class {
     /// Whether the empty state view should animate or not
     ///
     /// **Note:** This is called whenever the empty state view will show, if false; no animation will occur. Default = true
+    ///
     /// - returns:
     ///     Bool a boolean value which determines if the view should or shouldn't animate
     func emptyStateViewCanAnimate() -> Bool
@@ -99,6 +110,7 @@ public protocol UIEmptyStateDataSource: class {
     ///
     /// **Note:** This is called whenever the empty state view will show, returning true means that an animation from `emptyStateViewAnimation` will be performed everytime the view is shown
     ///           returning false means that only the inital animation is shown. To turn off animation in general use `emptyStateViewCanAnimate`
+    ///
     /// - returns:
     ///     Bool a boolean value which determines if the view should animate only initially
     func emptyStateViewPerformsAnimationEveryTime() -> Bool
@@ -106,6 +118,7 @@ public protocol UIEmptyStateDataSource: class {
     /// The amount of time the empty state view should animate for
     ///
     /// **Note:** This is called whenever the empty state view will show, Default = 0.5
+    ///
     /// - returns:
     ///     TimeInterval the time for the animation to last
     func emptyStateViewAnimationDuration() -> TimeInterval
@@ -113,6 +126,7 @@ public protocol UIEmptyStateDataSource: class {
     /// The animation function for the views in the empty state view
     ///
     /// ***Note:*** This is called whenever the empty state view will show, Default = pop in and fade in of views
+    ///
     /// - paramters:
     ///     - view: The view which will be animated, can be used to control its properties inside a `UIView.animate` block
     ///     - animationDuration: The duration which we should animate for, value is grabbed from `emptyStateViewAnimationDuration`

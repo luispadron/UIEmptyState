@@ -1,5 +1,10 @@
 # UIEmptyState Changelog
 
+## Version 0.4.0
+
+- Add ability to animate the empty state view
+- Removed returning a detail message in the default implementation as this caused an annoying problem in that you would need to implement that method and return nil if you didn't want to use a detail message
+
 ## Version 0.3.0
 
 - Add fixes for views not being updated

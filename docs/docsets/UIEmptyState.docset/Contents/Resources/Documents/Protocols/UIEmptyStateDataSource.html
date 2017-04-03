@@ -249,9 +249,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the title for the Empty View, by default this just returns an intro message, override for custom title
-- returns:
-    NSAttributedString which will be set to the titles label</p>
+                        <p>Determines the title for the Empty View, by default this just returns an intro message, override for custom title</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -291,9 +289,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the image which will be used inside the Empty State View&rsquo;s image view, default value is nil
-- returns:
-    UImage? optional image, if nil, image view will not be displayed</p>
+                        <p>Determines the image which will be used inside the Empty State View&rsquo;s image view, default value is nil</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -333,9 +329,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the size of the image view, by default this will return nil which means that the imageview size will just be 100x100
-- returns: 
-    CGSize? optional size for image view</p>
+                        <p>Determines the size of the image view, by default this will return nil which means that the imageview size will just be 100x100</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -375,9 +369,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the title for the button of the Empty State View, by default this is nil
-- returns:
-    NSAttributedString? optinal attributed string which will be set to the buttons title for the normal state, if nil, no button will be displayed</p>
+                        <p>Determines the title for the button of the Empty State View, by default this is nil</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -417,9 +409,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the image for the button, by default this will return nil
-- returns:
-    UIImage? optional image for the buttons .backgroundImage</p>
+                        <p>Determines the image for the button, by default this will return nil</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -460,9 +450,7 @@ cause the delegation of button and view touches to no longer work, unless you im
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Determines the size of the button, by default it will constrain the view to the size of the title plus some padding.
-Implement this method to send a custom size for the button, useful when adding a buttonImage to the button
-- returns:
-    CGSize? optional size for the button</p>
+Implement this method to send a custom size for the button, useful when adding a buttonImage to the button</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -502,14 +490,12 @@ Implement this method to send a custom size for the button, useful when adding a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the message which will be displayed in the detail view of the empty state view, by default this will return an intro message
-- returns:
-    NSAttributedString? optional attributed message to be displayed in a label under the title view</p>
+                        <p>Determines the message which will be displayed in the detail view of the empty state view, by default this will return an intro message</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>detailMessageForEmptyStateView</code>, returns an intro message</p>
+                        <p>Default implementation of <code>detailMessageForEmptyStateView</code>, returns nil</p>
 
                       </div>
                       <div class="declaration">
@@ -544,9 +530,7 @@ Implement this method to send a custom size for the button, useful when adding a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the amount of spacing between the views, by default this is 12
-- returns: 
-    CGFloat the spacing amount between each view in the empty state view&rsquo;s stack view</p>
+                        <p>Determines the amount of spacing between the views, by default this is 12</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -586,9 +570,7 @@ Implement this method to send a custom size for the button, useful when adding a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the background color for the emptyStateView, by default this value is UIColor.clear
-- returns: 
-    UIColor the color for the empty state views background color</p>
+                        <p>Determines the background color for the emptyStateView, by default this value is UIColor.clear</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -630,9 +612,7 @@ Implement this method to send a custom size for the button, useful when adding a
                       <div class="abstract">
                         <p>Whether the empty state view allows scrolling or not, by default this is false</p>
 
-<p><strong>Note:</strong> This is only called when view is displayed, if not displayed scrolling will be enabled for the table view
-- returns:
-    Bool a boolean value which will determine if the empty state view allows scrolling</p>
+<p><strong>Note:</strong> This is only called when view is displayed, if not displayed scrolling will be enabled for the table view</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -656,6 +636,180 @@ Implement this method to send a custom size for the button, useful when adding a
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewCanAnimate()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource24emptyStateViewCanAnimateFT_Sb">emptyStateViewCanAnimate()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the empty state view should animate or not</p>
+
+<p><strong>Note:</strong> This is called whenever the empty state view will show, if false; no animation will occur. Default = true</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>emptyStateViewCanAnimate</code>, returns <code>true</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewCanAnimate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Bool a boolean value which determines if the view should or shouldn’t animate</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource40emptyStateViewPerformsAnimationEveryTimeFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewPerformsAnimationEveryTime()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource40emptyStateViewPerformsAnimationEveryTimeFT_Sb">emptyStateViewPerformsAnimationEveryTime()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the empty state view animates every time it is shown</p>
+
+<p><strong>Note:</strong> This is called whenever the empty state view will show, returning true means that an animation from <code>emptyStateViewAnimation</code> will be performed everytime the view is shown
+          returning false means that only the inital animation is shown. To turn off animation in general use <code>emptyStateViewCanAnimate</code></p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>emptyStateViewPerformsAnimationEveryTime</code>, returns <code>true</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewPerformsAnimationEveryTime</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Bool a boolean value which determines if the view should animate only initially</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationFT_Sd"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewAnimationDuration()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource31emptyStateViewAnimationDurationFT_Sd">emptyStateViewAnimationDuration()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The amount of time the empty state view should animate for</p>
+
+<p><strong>Note:</strong> This is called whenever the empty state view will show, Default = 0.5</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>emptyStateViewAnimationDuration</code>, returns <code>0.5</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAnimationDuration</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">TimeInterval</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TimeInterval the time for the animation to last</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12UIEmptyState22UIEmptyStateDataSource23emptyStateViewAnimationFT7forViewCSo6UIView17animationDurationSd10completionGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewAnimation(forView:animationDuration:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12UIEmptyState22UIEmptyStateDataSource23emptyStateViewAnimationFT7forViewCSo6UIView17animationDurationSd10completionGSqFSbT___T_">emptyStateViewAnimation(forView:animationDuration:completion:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The animation function for the views in the empty state view</p>
+
+<p><strong><em>Note:</em></strong> This is called whenever the empty state view will show, Default = pop in and fade in of views</p>
+
+<ul>
+<li>paramters:
+
+<ul>
+<li>view: The view which will be animated, can be used to control its properties inside a <code>UIView.animate</code> block</li>
+<li>animationDuration: The duration which we should animate for, value is grabbed from <code>emptyStateViewAnimationDuration</code></li>
+<li>completion: The completion block for the emptyStateView, if implementing this pass this to the <code>UIView.animate</code> completion block in order for the delegate to work properly</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation of <code>emptyStateViewAnimation</code>, implements a simple animation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAnimation</span><span class="p">(</span><span class="n">forView</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -664,7 +818,7 @@ Implement this method to send a custom size for the button, useful when adding a
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-02-09)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-04-02)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

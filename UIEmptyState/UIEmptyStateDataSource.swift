@@ -127,14 +127,14 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         get {
             let emptyStateView = UIEmptyStateView(frame: self.view.frame, title: emptyStateTitle)
             // Call and assign the data source methods
-            emptyStateView.backgroundColor = emptyStateBackgroundColor
             emptyStateView.image = emptyStateImage
             emptyStateView.imageSize = emptyStateImageSize
-            emptyStateView.detailMessage = emptyStateDetailMessage
             emptyStateView.buttonTitle = emptyStateButtonTitle
             emptyStateView.buttonImage = emptyStateButtonImage
             emptyStateView.buttonSize = emptyStateButtonSize
+            emptyStateView.detailMessage = emptyStateDetailMessage
             emptyStateView.spacing = emptyStateViewSpacing
+            emptyStateView.backgroundColor = emptyStateBackgroundColor
             // Some auto resize constraints
             emptyStateView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             return emptyStateView

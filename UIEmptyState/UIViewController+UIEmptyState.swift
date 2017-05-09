@@ -101,13 +101,16 @@ extension UIViewController {
             guard let view = createdView as? UIEmptyStateView else { return createdView}
             
             view.backgroundColor = source.emptyStateBackgroundColor
+            view.title = source.emptyStateTitle
             view.image = source.emptyStateImage
             view.imageSize = source.emptyStateImageSize
-            view.detailMessage = source.emptyStateDetailMessage
             view.buttonTitle = source.emptyStateButtonTitle
             view.buttonImage = source.emptyStateButtonImage
             view.buttonSize = source.emptyStateButtonSize
+            view.detailMessage = source.emptyStateDetailMessage
             view.spacing = source.emptyStateViewSpacing
+            view.backgroundColor = source.emptyStateBackgroundColor
+
             // Animate now
             if source.emptyStateViewCanAnimate && source.emptyStateViewAnimatesEverytime {
                 DispatchQueue.main.async {

@@ -1,5 +1,11 @@
 # UIEmptyState Changelog
 
+## Version 0.6.0
+
+- Fix bug where title for UIEmptyState was not being updated when reloading
+- Made sure to assign all datasource properties when creating, and updating the view
+
+
 ## Version 0.5.0
 
 - Refactored API methods for `UIEmptyStateDataSource` into computed properties to be more "swift-like"

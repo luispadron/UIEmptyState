@@ -1,5 +1,10 @@
 # UIEmptyState Changelog
 
+## Version 0.7.0
+
+- Update constraints for labels so that they do not extend past the edges of the view
+- Add private extension to help calculate the the height of labels
+
 ## Version 0.6.0
 
 - Fix bug where title for UIEmptyState was not being updated when reloading

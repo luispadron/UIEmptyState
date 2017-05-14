@@ -8,6 +8,24 @@
 
 import UIKit
 
+private extension UILabel {
+    /// Returns the height that would be expected for the string, with a max width
+    func expectedHeight(forWidth width: CGFloat) -> CGFloat {
+        guard let txt = self.text else {
+            return 0.0
+        }
+        
+        let maxSize = CGSize(width: width, height: .greatestFiniteMagnitude)
+        
+        let attrString = NSAttributedString(string: txt, attributes: [NSFontAttributeName : self.font])
+        let expectedRect = attrString.boundingRect(with: maxSize,
+                                                   options: .usesLineFragmentOrigin,
+                                                   context: nil)
+        return ceil(expectedRect.size.height)
+        
+    }
+}
+
 /// A UIView which has a stack view and inside the stackview are 1-4 other views
 /// This view is used as the default view for the `emptyStateView` in the `UIEmptyStateDataSource`
 open class UIEmptyStateView: UIView {
@@ -141,9 +159,17 @@ open class UIEmptyStateView: UIView {
         for subview in contentView.subviews {
             subview.removeConstraints(subview.constraints)
             if let label = subview as? UILabel {
-                label.sizeToFit()
-                label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
-                label.heightAnchor.constraint(equalToConstant: label.frame.height).isActive = true
+                
+                if let maxWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
+                    label.widthAnchor.constraint(equalToConstant: maxWidth).isActive = true
+                    label.heightAnchor.constraint(equalToConstant:
+                            label.expectedHeight(forWidth: maxWidth)).isActive = true
+                } else {
+                    label.sizeToFit()
+                    label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
+                    label.heightAnchor.constraint(equalToConstant: label.frame.height).isActive = true
+                }
+                
             } else if let imageView = subview as? UIImageView {
                 let size = imageSize ?? CGSize(width: 100, height: 100)
                 imageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true

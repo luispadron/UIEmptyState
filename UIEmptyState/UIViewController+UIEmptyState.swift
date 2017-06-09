@@ -75,12 +75,8 @@ extension UIViewController {
         
         // Check whether scrolling for tableview is allowed or not
         tableView.isScrollEnabled = source.emptyStateViewCanScroll
-        let emptyView = showView(forSource: source)
-        // Adjust if allowed
-        if source.emptyStateViewAdjustsToFitBars { self.edgesForExtendedLayout = [] }
-        else { self.edgesForExtendedLayout = .all }
-        // Call the did show view delegate
-        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+        
+        finishReload(for: source)
     }
     
     /**
@@ -101,16 +97,58 @@ extension UIViewController {
         
         // Check to see if scrolling is enabled
         collectionView.isScrollEnabled = source.emptyStateViewCanScroll
-        let emptyView = showView(forSource: source)
-        // Adjust if allowed
-        if source.emptyStateViewAdjustsToFitBars { self.edgesForExtendedLayout = [] }
-        else { self.edgesForExtendedLayout = .all }
-        // Call the did show view delegate
+        
+        finishReload(for: source)
+        
+    }
+    
+    /// Finishes the reload, i.e assigns the empty view, and adjusts any other UI
+    private func finishReload(for source: UIEmptyStateDataSource) {
+        
+        let emptyView = showView(for: source)
+        
+        // Set constraints
+        var centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        centerX.isActive = true
+        var centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        centerY.isActive = true
+        
+        // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
+        // and then return
+        guard #available(iOS 11.0, *) else {
+            // Adjust to fit bars if allowed
+            if source.emptyStateViewAdjustsToFitBars {
+                self.edgesForExtendedLayout = []
+            } else {
+                self.edgesForExtendedLayout = .all
+            }
+            // Call the did show view delegate
+            self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+            return
+        }
+        
+        
+        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only adjustingToFitBars
+        // The reason for this is safeAreaLayoutGuide will take into account any bar that may be used
+        // If for some reason user doesn't want to adjust to bars, then keep the old center constraints
+        if source.emptyStateViewAdjustsToFitBars {
+            // Adjust constraint to fit new big title bars, etc
+            centerX.isActive = false
+            centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX.isActive = true
+            
+            centerY.isActive = false
+            centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY.isActive = true
+            
+        }
+        
+        // Return & call the did show view delegate
         self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
     }
     
     /// Private helper method which will create the empty state view if not created, or show it if hidden
-    private func showView(forSource source: UIEmptyStateDataSource) -> UIView {
+    private func showView(for source: UIEmptyStateDataSource) -> UIView {
         if let createdView = emptyStateView {
             // View has been created, update it and then reshow
             createdView.isHidden = false

@@ -1,5 +1,11 @@
 # UIEmptyState Changelog
 
+## Version 0.8.0
+
+- Updated for Swift 4 and Xcode 9
+- Now uses `safeAreaLayoutGuide` to adjust centering of empty state view, if on iOS 11 when `shouldAdjustToFitBars` returns `true`.
+- Updated project to recommended settings in Xcode 9, set language to Swift 4 and `@objc inference` to `default`.
+
 ## Version 0.7.0
 
 - Update constraints for labels so that they do not extend past the edges of the view

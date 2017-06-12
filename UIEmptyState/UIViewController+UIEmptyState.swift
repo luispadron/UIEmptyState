@@ -17,29 +17,37 @@ extension UIViewController {
         static var emptyStateDelegate = "com.luispadron.emptyStateDelegate"
     }
     
-    /// The data source for the Empty View
-    ///
-    /// Default conformance for UIViewController is provided,
-    /// however feel free to implement these methods to customize your view.
+    /**
+     The data source for the Empty View
+ 
+     Default conformance for UIViewController is provided,
+     however feel free to implement these methods to customize your view.
+     */
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
         set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
-    /// The delegate for UIEmptyStateView
-    ///
-    /// **Important:** this delegate and its functions are only used when using UIEmptyStateView.
-    /// If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
+    /**
+     The delegate for UIEmptyStateView
+ 
+     **Important:** this delegate and its functions are only used when using UIEmptyStateView.
+     If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
+     */
     public weak var emptyStateDelegate: UIEmptyStateDelegate? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
         set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
-    /// The empty state view associated to the ViewController
-    ///
-    /// **Note:** this view corresponds and is created from the UIEmptyDataSource method: `func viewForEmptyState() -> UIView`
-    /// 
-    /// By default this view is of type `UIEmptyStateView`
+    /**
+     The empty state view associated to the ViewController
+ 
+     **Note:**
+     This view corresponds and is created from
+     the UIEmptyDataSource method: `func viewForEmptyState() -> UIView`
+ 
+     By default this view is of type `UIEmptyStateView`
+     */
     public var emptyStateView: UIView? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateView) as? UIView }
         set {
@@ -49,11 +57,14 @@ extension UIViewController {
         }
     }
     
-    /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
-    /// 
-    /// **Important:** This should be called whenever changes are made to the tableView data source or after reloading the tableview
-    ///                 
-    /// DO NOT override this method/implement it unless you need custom behavior. 
+    /**
+     The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
+ 
+     **Important:**
+     This should be called whenever changes are made to the tableView data source or after reloading the tableview
+ 
+     DO NOT override this method/implement it unless you need custom behavior.
+     */
     public func reloadEmptyState(forTableView tableView: UITableView) {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forTableView: tableView) else {
             // If shouldnt show view remove from superview, enable scrolling again
@@ -64,19 +75,20 @@ extension UIViewController {
         
         // Check whether scrolling for tableview is allowed or not
         tableView.isScrollEnabled = source.emptyStateViewCanScroll
-        let emptyView = showView(forSource: source)
-        // Adjust if allowed
-        if source.emptyStateViewAdjustsToFitBars { self.edgesForExtendedLayout = [] }
-        else { self.edgesForExtendedLayout = .all }
-        // Call the did show view delegate
-        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+        
+        finishReload(for: source)
     }
     
-    /// The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
-    ///
-    /// **Important:** This should be called whenever changes are made to the collectionView data source or after reloading the tableview
+    /**
+     The method responsible for show and hiding the `UIEmptyStateDataSource.viewForEmptyState` view
+ 
+     **Important:**
+     This should be called whenever changes are made to the collectionView data source
+     or after reloading the tableview
+     */
     public func reloadEmptyState(forCollectionView collectionView: UICollectionView) {
-        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(forCollectionView: collectionView) else {
+        guard let source = emptyStateDataSource,
+            source.shouldShowEmptyStateView(forCollectionView: collectionView) else {
             // If shouldnt show view remove from superview, enable scrolling again
             emptyStateView?.isHidden = true
             collectionView.isScrollEnabled = true
@@ -85,16 +97,58 @@ extension UIViewController {
         
         // Check to see if scrolling is enabled
         collectionView.isScrollEnabled = source.emptyStateViewCanScroll
-        let emptyView = showView(forSource: source)
-        // Adjust if allowed
-        if source.emptyStateViewAdjustsToFitBars { self.edgesForExtendedLayout = [] }
-        else { self.edgesForExtendedLayout = .all }
-        // Call the did show view delegate
+        
+        finishReload(for: source)
+        
+    }
+    
+    /// Finishes the reload, i.e assigns the empty view, and adjusts any other UI
+    private func finishReload(for source: UIEmptyStateDataSource) {
+        
+        let emptyView = showView(for: source)
+        
+        // Set constraints
+        var centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        centerX.isActive = true
+        var centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        centerY.isActive = true
+        
+        // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
+        // and then return
+        guard #available(iOS 11.0, *) else {
+            // Adjust to fit bars if allowed
+            if source.emptyStateViewAdjustsToFitBars {
+                self.edgesForExtendedLayout = []
+            } else {
+                self.edgesForExtendedLayout = .all
+            }
+            // Call the did show view delegate
+            self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+            return
+        }
+        
+        
+        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only adjustingToFitBars
+        // The reason for this is safeAreaLayoutGuide will take into account any bar that may be used
+        // If for some reason user doesn't want to adjust to bars, then keep the old center constraints
+        if source.emptyStateViewAdjustsToFitBars {
+            // Adjust constraint to fit new big title bars, etc
+            centerX.isActive = false
+            centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX.isActive = true
+            
+            centerY.isActive = false
+            centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY.isActive = true
+            
+        }
+        
+        // Return & call the did show view delegate
         self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
     }
     
     /// Private helper method which will create the empty state view if not created, or show it if hidden
-    private func showView(forSource source: UIEmptyStateDataSource) -> UIView {
+    private func showView(for source: UIEmptyStateDataSource) -> UIView {
         if let createdView = emptyStateView {
             // View has been created, update it and then reshow
             createdView.isHidden = false
@@ -114,9 +168,14 @@ extension UIViewController {
             // Animate now
             if source.emptyStateViewCanAnimate && source.emptyStateViewAnimatesEverytime {
                 DispatchQueue.main.async {
-                    source.emptyStateViewAnimation(forView: view, animationDuration: source.emptyStateViewAnimationDuration, completion: { finished in
-                        self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: view, didFinish: finished)
-                    })
+                    source.emptyStateViewAnimation(forView: view,
+                                                   animationDuration: source.emptyStateViewAnimationDuration,
+                                                   completion:
+                        { finished in
+                            
+                            self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: view,
+                                                                                      didFinish: finished)
+                        })
                 }
             }
             
@@ -133,9 +192,14 @@ extension UIViewController {
             // Animate now
             if source.emptyStateViewCanAnimate {
                 DispatchQueue.main.async {
-                    source.emptyStateViewAnimation(forView: newView, animationDuration: source.emptyStateViewAnimationDuration, completion: { finished in
-                        self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: newView, didFinish: finished)
-                    })
+                    source.emptyStateViewAnimation(forView: newView,
+                                                   animationDuration: source.emptyStateViewAnimationDuration,
+                                                   completion:
+                        { finished in
+                            
+                            self.emptyStateDelegate?.emptyStateViewAnimationCompleted(forEmptyStateView: newView,
+                                                                                      didFinish: finished)
+                        })
                 }
             }
             
@@ -158,7 +222,7 @@ extension UICollectionViewController {
     /// Reloads the empty state, defaults the collectionView to `self.collectionView`
     public func reloadEmptyState() {
         guard let collectionView = self.collectionView else {
-            print("UIEmptyState ====  WARNING: Tried to reload collectionView's empty state but the collectionView for\n\(self) was nil.")
+            print("UIEmptyState ==== WARNING: Tried to reload collectionView's empty state but the collectionView for\n\(self) was nil.")
             return
         }
         

@@ -17,7 +17,8 @@ private extension UILabel {
         
         let maxSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         
-        let attrString = NSAttributedString(string: txt, attributes: [NSFontAttributeName : self.font])
+        let attrString = NSAttributedString(string: txt,
+                                            attributes: [.font : self.font])
         let expectedRect = attrString.boundingRect(with: maxSize,
                                                    options: .usesLineFragmentOrigin,
                                                    context: nil)
@@ -67,7 +68,8 @@ open class UIEmptyStateView: UIView {
     /// The button title for the button
     open var buttonTitle: NSAttributedString? {
         didSet {
-            // If the button title has been removed (by passing nil) then remove the button view if also has no button image
+            // If the button title has been removed (by passing nil)
+            // then remove the button view if also has no button image
             guard let buttTitle = buttonTitle else {
                 if oldValue != nil {
                     if buttonImage == nil {
@@ -87,7 +89,8 @@ open class UIEmptyStateView: UIView {
     /// The image for the button
     open var buttonImage: UIImage? {
         didSet {
-            // If the button image has been removed (by passing nil) then remove the button view if also has no button title
+            // If the button image has been removed (by passing nil)
+            // then remove the button view if also has no button title
             guard let buttImage = buttonImage else {
                 if oldValue != nil {
                     if buttonTitle == nil {
@@ -135,7 +138,8 @@ open class UIEmptyStateView: UIView {
     
     // MARK: - Initializers
     
-    /// Initializer for `UIEmptyStateView`, requires a frame and an `NSAttributedString` which will be used as it's title
+    /// Initializer for `UIEmptyStateView`,
+    /// requires a frame and an `NSAttributedString` which will be used as it's title
     public required init(frame: CGRect, title: NSAttributedString) {
         self.title = title
         super.init(frame: frame)
@@ -151,7 +155,9 @@ open class UIEmptyStateView: UIView {
     
     /// Override for update constraints, adds the auto layout constraints for the stackviews subviews.
     ///
-    /// ** IMPORTANT: ** This method will remove all constraints that a part of the `contentView` so do not add constraints to these views.
+    /// ** IMPORTANT: **
+    /// This method will remove all constraints that a part of the `contentView` so do not add
+    /// constraints to these views.
     open override func updateConstraints() {
         super.updateConstraints()
         
@@ -175,7 +181,10 @@ open class UIEmptyStateView: UIView {
                 imageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 imageView.widthAnchor.constraint(equalToConstant: size.width).isActive = true
             } else if let button = subview as? UIButton {
-                let size = buttonSize ?? self.buttonTitle?.size() ?? self.buttonImage?.size ?? CGSize(width: 0, height: 0)
+                let size = buttonSize ?? self.buttonTitle?.size() ??
+                                        self.buttonImage?.size ??
+                                        CGSize(width: 0, height: 0)
+                
                 button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
             }
@@ -187,6 +196,7 @@ open class UIEmptyStateView: UIView {
     
     /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
         // Set up the stack view

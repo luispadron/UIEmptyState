@@ -196,6 +196,7 @@ open class UIEmptyStateView: UIView {
     
     /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
         // Set up the stack view

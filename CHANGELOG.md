@@ -1,5 +1,9 @@
 # UIEmptyState Changelog
 
+## Version 0.8.1
+
+- Make sure `.swift-version` is included in pod to fix warnings in Xcode 9
+
 ## Version 0.8.0
 
 - Updated for Swift 4 and Xcode 9

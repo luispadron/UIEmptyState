@@ -33,6 +33,12 @@ open class UIEmptyStateView: UIView {
     
     // MARK: - Properties
     
+    /// The width constraint for the view, changed whenever reloading the empty state
+    private var widthConstraint: NSLayoutConstraint?
+    
+    /// The height constraint for the view, changed whenever reloading the empty state
+    private var heightConstraint: NSLayoutConstraint?
+    
     /// The delegate for the view, gets called when user taps button or self
     open weak var delegate: UIEmptyStateDelegate?
     
@@ -126,7 +132,7 @@ open class UIEmptyStateView: UIView {
                 }
                 return
             }
-        
+            
             detailView.attributedText = message
             self.setNeedsUpdateConstraints()
             handleAdding(view: detailView)
@@ -165,11 +171,10 @@ open class UIEmptyStateView: UIView {
         for subview in contentView.subviews {
             subview.removeConstraints(subview.constraints)
             if let label = subview as? UILabel {
-                
-                if let maxWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
-                    label.widthAnchor.constraint(equalToConstant: maxWidth).isActive = true
-                    label.heightAnchor.constraint(equalToConstant:
-                            label.expectedHeight(forWidth: maxWidth)).isActive = true
+                if let labelWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
+                    label.widthAnchor.constraint(equalToConstant: labelWidth).isActive = true
+                    let labelHeight = label.expectedHeight(forWidth: labelWidth)
+                    label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
                 } else {
                     label.sizeToFit()
                     label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
@@ -180,16 +185,28 @@ open class UIEmptyStateView: UIView {
                 let size = imageSize ?? CGSize(width: 100, height: 100)
                 imageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 imageView.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+                
             } else if let button = subview as? UIButton {
                 let size = buttonSize ?? self.buttonTitle?.size() ??
-                                        self.buttonImage?.size ??
-                                        CGSize(width: 0, height: 0)
+                    self.buttonImage?.size ??
+                    CGSize(width: 0, height: 0)
                 
                 button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
             }
-            
         }
+        
+        // Layout content view to get height and width
+        contentView.layoutIfNeeded()
+        
+        // Set width and height constraints for enclosing view
+        widthConstraint?.isActive = false
+        widthConstraint = self.widthAnchor.constraint(equalToConstant: contentView.frame.width)
+        widthConstraint?.isActive = true
+        
+        heightConstraint?.isActive = false
+        heightConstraint = self.heightAnchor.constraint(equalToConstant: contentView.frame.height)
+        heightConstraint?.isActive = true
     }
     
     // MARK: - Helper methods
@@ -294,3 +311,4 @@ open class UIEmptyStateView: UIView {
         return view
     }()
 }
+

@@ -1,5 +1,9 @@
 # UIEmptyState Changelog
 
+## Version 0.8.2
+
+- Fix issue with constraints not being set properly for Empty state view
+
 ## Version 0.8.1
 
 - Make sure `.swift-version` is included in pod to fix warnings in Xcode 9

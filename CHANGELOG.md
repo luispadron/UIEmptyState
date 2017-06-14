@@ -1,5 +1,9 @@
 # UIEmptyState Changelog
 
+## Version 0.8.3
+
+- Fix bug where data source was not reverting `edgesForExtendedLayout` to default values after it was done presenting the view
+
 ## Version 0.8.2
 
 - Fix issue with constraints not being set properly for Empty state view

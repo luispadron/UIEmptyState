@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 1.0.1
+
+- Fix access modifier in default implementation of `emptyStateViewWillHide(view: UIView)`
+
 ## Version 1.0.0 - Stable Release
 
 - Add Swift version check to allow support for Swift 3 --> Swift 4.

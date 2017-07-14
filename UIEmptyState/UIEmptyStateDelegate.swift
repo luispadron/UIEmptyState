@@ -71,7 +71,7 @@ extension UIEmptyStateDelegate where Self: UIViewController {
     /// Default empty implementation of `emptyStateViewDidShow`
     public func emptyStateViewDidShow(view: UIView) { }
     /// Default empty implementation of `emptyStateViewWillHide`
-    func emptyStateViewWillHide(view: UIView) { }
+    public func emptyStateViewWillHide(view: UIView) { }
     /// Default empty implementation of `emptyStateButtonWasTapped`
     public func emptyStatebuttonWasTapped(button: UIButton) { }
     /// Default empty implementation of `emptyStateViewWasTapped`

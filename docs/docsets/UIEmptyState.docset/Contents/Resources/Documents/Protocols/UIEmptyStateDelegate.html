@@ -98,8 +98,10 @@
               </div>
             <p>The delegate for UIEmptyStateView</p>
 
-<p><strong>Important:</strong> this delegate and its functions are only used when using <code><a href="../Classes/UIEmptyStateView.html">UIEmptyStateView</a></code>.
-If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStateDataSource.html">UIEmptyStateDataSource</a></code> <code>viewForEmptyState</code> you must handle how this delegate operates</p>
+<p><strong>Important:</strong>
+This delegate and its functions are only used when using <code><a href="../Classes/UIEmptyStateView.html">UIEmptyStateView</a></code>.
+If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStateDataSource.html">UIEmptyStateDataSource</a></code> <code>viewForEmptyState</code>
+you must handle how this delegate operates</p>
 
           </div>
         </section>
@@ -111,9 +113,48 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState20UIEmptyStateDelegate21emptyStateViewDidShowFT4viewCSo6UIView_T_"></a>
+                    <a name="/s:12UIEmptyState0aB8DelegateP05emptyB12ViewWillShowySo6UIViewC4view_tF"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewWillShow(view:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP05emptyB12ViewWillShowySo6UIViewC4view_tF">emptyStateViewWillShow(view:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The call back for when the <code>emptyStateView</code> will be shown on screen</p>
+
+<ul>
+<li>view: The view that is will show</li>
+</ul>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default empty implementation of <code>emptyStateViewWillShow</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewWillShow</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12UIEmptyState0aB8DelegateP05emptyB11ViewDidShowySo6UIViewC4view_tF"></a>
                     <a name="//apple_ref/swift/Method/emptyStateViewDidShow(view:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState20UIEmptyStateDelegate21emptyStateViewDidShowFT4viewCSo6UIView_T_">emptyStateViewDidShow(view:)</a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP05emptyB11ViewDidShowySo6UIViewC4view_tF">emptyStateViewDidShow(view:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -153,7 +194,6 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                               <td>
                                 <div>
                                   <p>The view that is now shown</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -166,9 +206,40 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState20UIEmptyStateDelegate25emptyStatebuttonWasTappedFT6buttonCSo8UIButton_T_"></a>
+                    <a name="/s:12UIEmptyState0aB8DelegateP05emptyB12ViewWillHideySo6UIViewC4view_tF"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewWillHide(view:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP05emptyB12ViewWillHideySo6UIViewC4view_tF">emptyStateViewWillHide(view:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The call back for when the <code>emptyStateView</code> will be hidden</p>
+
+<ul>
+<li>view: The view that will be hidden</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewWillHide</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12UIEmptyState0aB8DelegateP25emptyStatebuttonWasTappedySo8UIButtonC6button_tF"></a>
                     <a name="//apple_ref/swift/Method/emptyStatebuttonWasTapped(button:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState20UIEmptyStateDelegate25emptyStatebuttonWasTappedFT6buttonCSo8UIButton_T_">emptyStatebuttonWasTapped(button:)</a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP25emptyStatebuttonWasTappedySo8UIButtonC6button_tF">emptyStatebuttonWasTapped(button:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -208,7 +279,6 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                               <td>
                                 <div>
                                   <p>The button that was tapped</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -221,9 +291,9 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState20UIEmptyStateDelegate23emptyStateViewWasTappedFT4viewCSo6UIView_T_"></a>
+                    <a name="/s:12UIEmptyState0aB8DelegateP05emptyB13ViewWasTappedySo6UIViewC4view_tF"></a>
                     <a name="//apple_ref/swift/Method/emptyStateViewWasTapped(view:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState20UIEmptyStateDelegate23emptyStateViewWasTappedFT4viewCSo6UIView_T_">emptyStateViewWasTapped(view:)</a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP05emptyB13ViewWasTappedySo6UIViewC4view_tF">emptyStateViewWasTapped(view:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -263,7 +333,6 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                               <td>
                                 <div>
                                   <p>The view that was tapped</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -276,9 +345,9 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12UIEmptyState20UIEmptyStateDelegate32emptyStateViewAnimationCompletedFT17forEmptyStateViewCSo6UIView9didFinishSb_T_"></a>
-                    <a name="//apple_ref/swift/Method/emptyStateViewAnimationCompleted(forEmptyStateView:didFinish:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12UIEmptyState20UIEmptyStateDelegate32emptyStateViewAnimationCompletedFT17forEmptyStateViewCSo6UIView9didFinishSb_T_">emptyStateViewAnimationCompleted(forEmptyStateView:didFinish:)</a>
+                    <a name="/s:12UIEmptyState0aB8DelegateP05emptyB22ViewAnimationCompletedySo6UIViewC3for_Sb9didFinishtF"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewAnimationCompleted(for:didFinish:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12UIEmptyState0aB8DelegateP05emptyB22ViewAnimationCompletedySo6UIViewC3for_Sb9didFinishtF">emptyStateViewAnimationCompleted(for:didFinish:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -289,10 +358,16 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The call back for when the animation of the emptyStateView is done
-- paramaters:
-    - view: The view which finished animating
-    - didFinish: Whether the animation finished completely, i.e not interrupted</p>
+                        <p>The call back for when the animation of the emptyStateView is done</p>
+
+<ul>
+<li>paramaters:
+
+<ul>
+<li>view: The view which finished animating</li>
+<li>didFinish: Whether the animation finished completely, i.e not interrupted</li>
+</ul></li>
+</ul>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -304,7 +379,7 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAnimationCompleted</span><span class="p">(</span><span class="n">forEmptyStateView</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">didFinish</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewAnimationCompleted</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">didFinish</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -319,8 +394,8 @@ If you will provide a custom view in the <code><a href="../Protocols/UIEmptyStat
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-04-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-07-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

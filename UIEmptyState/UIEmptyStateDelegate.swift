@@ -16,12 +16,28 @@
 */
 public protocol UIEmptyStateDelegate: class {
     /**
+     The call back for when the `emptyStateView` will be shown on screen
+     
+     - parameters:
+     - view: The view that is will show
+     */
+    func emptyStateViewWillShow(view: UIView)
+    
+    /**
      The call back for when the `emptyStateView` is now shown on screen
  
      - parameters:
          - view: The view that is now shown
      */
     func emptyStateViewDidShow(view: UIView)
+    
+    /**
+     The call back for when the `emptyStateView` will be hidden
+     
+     - parameters:
+     - view: The view that will be hidden
+     */
+    func emptyStateViewWillHide(view: UIView)
     
     /**
      The call back for when the button inside the emptyStateView is tapped
@@ -45,17 +61,21 @@ public protocol UIEmptyStateDelegate: class {
          - view: The view which finished animating
          - didFinish: Whether the animation finished completely, i.e not interrupted
      */
-    func emptyStateViewAnimationCompleted(forEmptyStateView view: UIView, didFinish: Bool)
+    func emptyStateViewAnimationCompleted(for view: UIView, didFinish: Bool)
 }
 
 /// Extension to add default conformance to UIViewController, by default the method bodies are empty
 extension UIEmptyStateDelegate where Self: UIViewController {
+    /// Default empty implementation of `emptyStateViewWillShow`
+    public func emptyStateViewWillShow(view: UIView) { }
     /// Default empty implementation of `emptyStateViewDidShow`
     public func emptyStateViewDidShow(view: UIView) { }
+    /// Default empty implementation of `emptyStateViewWillHide`
+    func emptyStateViewWillHide(view: UIView) { }
     /// Default empty implementation of `emptyStateButtonWasTapped`
     public func emptyStatebuttonWasTapped(button: UIButton) { }
     /// Default empty implementation of `emptyStateViewWasTapped`
     public func emptyStateViewWasTapped(view: UIView) { }
     /// Default empty implementation of `emptyStateViewAnimationCompleted`
-    public func emptyStateViewAnimationCompleted(forEmptyStateView view: UIView, didFinish: Bool) { }
+    public func emptyStateViewAnimationCompleted(for view: UIView, didFinish: Bool) { }
 }

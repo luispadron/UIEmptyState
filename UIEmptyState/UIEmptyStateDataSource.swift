@@ -22,7 +22,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool
+    func shouldShowEmptyStateView(for tableView: UITableView) -> Bool
     
     /**
      Determines whether should or should not show the empty view for a specific collectionView,
@@ -33,7 +33,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(forCollectionView collectionView: UICollectionView) -> Bool
+    func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool
     
     /**
      Determines the view to use for the empty state, by default this is a nice stack view
@@ -147,7 +147,7 @@ public protocol UIEmptyStateDataSource: class {
                        if implementing this pass this to the `UIView.animate` completion block
                        in order for the delegate to work properly
      */
-    func emptyStateViewAnimation(forView view: UIView, animationDuration: TimeInterval,
+    func emptyStateViewAnimation(for view: UIView, animationDuration: TimeInterval,
                                  completion: ((Bool) -> Void)?) -> Void
 }
 
@@ -158,7 +158,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController tableView determining if should show the emptystate view,
      counts number of rows in the tableView
      */
-    public func shouldShowEmptyStateView(forTableView tableView: UITableView) -> Bool {
+    public func shouldShowEmptyStateView(for tableView: UITableView) -> Bool {
         let sections = tableView.numberOfSections
         var rows = 0
         for section in 0..<sections {
@@ -171,7 +171,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController collectionView determining if should show the emptystate view,
      counts number of items in the collectionView
      */
-    public func shouldShowEmptyStateView(forCollectionView collectionView: UICollectionView) -> Bool {
+    public func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool {
         let sections = collectionView.numberOfSections
         var items = 0
         for section in 0..<sections {
@@ -243,7 +243,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     public var emptyStateViewAnimationDuration: TimeInterval { get { return 0.5 } }
     
     /// Default implementation of `emptyStateViewAnimation`, implements a simple animation
-    public func emptyStateViewAnimation(forView view: UIView, animationDuration: TimeInterval,
+    public func emptyStateViewAnimation(for view: UIView, animationDuration: TimeInterval,
                                         completion: ((Bool) -> Void)?) -> Void {
         guard let v = view as? UIEmptyStateView else { return }
         // Set initial alpha

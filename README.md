@@ -97,63 +97,12 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Documentation
 
-Quick overview of available `UIEmptyStateDataSource` properties
-
-```swift
-///////////// METHODS /////////////
-// If empty view should show, implemented by default
-func shouldShowEmptyStateView(forTableView:) -> Bool
-// If empty view should show, implemented by default
-func shouldShowEmptyStateView(forCollectionView:) -> Bool
-// The block for the animation code, basic animation by default
-func emptyStateViewAnimation(forView,animationDuration:completion) -> Bool
-
-///////////// COMPUTED PROPERTIES /////////////
-// The view to show, implemented by default
-var emptyStateView: UIView
-// Whether the view adjusts and resizes to fit and be centered when inside a nav controller 
-var emptyStateViewAdjustsToFitBars: Bool
-// The text for the title view, implemented by default
-var emptyStateTitle: NSAttributedString
-// The image for the image view, nil by default
-var emptyStateImage: UIImage?
-// The size of the image view, nil by default
-var emptyStateImageSize: CGSize?
-// The text for the button title, nil by default
-var emptyStateButtonTitle: NSAttributedString?
-// The image for the button, nil by default
-var emptyStateButtonImage: UIImage?
-// The size of the button, nil by default
-var emptyStateButtonSize: CGSize?
-// The detail message for the view, nil by default
-var emptyStateDetailMessage: NSAttributedString?
-// The spacing inbetween views, 12 by default
-var emptyStateViewSpacing: CGFloat
-// The background color for the view, UIColor.clear by default
-var emptyStateBackgroundColor: UIColor
-// Whether view can scroll when showing, false by default
-var emptyStateViewCanScroll: Bool
-// Whether view can animate, true by default
-var emptyStateViewCanAnimate: Bool
-// Whether view animates everytime it appears, true by default
-var emptyStateViewAnimatesEverytime: Bool
-// The animation duration for the view animation, 0.5 by default
-var emptyStateViewAnimationDuration: TimeInterval
-```
 
 #### [Read the full documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 
 ## Example Project
 
 #### Clone this repo and run the `UIEmptyStateExample` project
-
-## Roadmap
-- [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
-- [ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
-- [x] Add animation to view appearance
-- [ ] Add nicer animation to button taps, or view taps
-- [ ] Add tests
-- [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
 
 
 ## License (MIT)

@@ -17,11 +17,13 @@ private extension UILabel {
         
         let maxSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         
-        let attrString = NSAttributedString(string: txt,
-                                            attributes: [.font : self.font])
-        let expectedRect = attrString.boundingRect(with: maxSize,
-                                                   options: .usesLineFragmentOrigin,
-                                                   context: nil)
+        #if swift(>=4.0)
+            let attrString = NSAttributedString(string: txt, attributes: [.font: self.font])
+        #else
+            let attrString = NSAttributedString(string: txt, attributes: [NSFontAttributeName: self.font])
+        #endif
+        
+        let expectedRect = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil)
         return ceil(expectedRect.size.height)
         
     }

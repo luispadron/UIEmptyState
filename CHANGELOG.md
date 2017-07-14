@@ -1,4 +1,21 @@
-# UIEmptyState Changelog
+# UIEmptyState CHANGELOG
+
+## Version 1.0.0 - Stable Release
+
+- Add Swift version check to allow support for Swift 3 --> Swift 4.
+- Refactor public API to make it less verbose and more Swift-like.
+	* All methods which had the format `methodName(forSomething:)` have been refactored to simply `methodName(for:)`. 
+	* Due to this renaming, if using Swift 3.2 or lower, you may get an error 
+about a `@objc` method having already been declared, this is due to Swift 3 inferring an `@objc` attribute when it is not in fact `@objc`. If using Xcode 9 +, you will need to set `Swift 3 @objc Inference` in the `Optimization Level` of this projects `Build Settings` to `Off`. I know this is a hassle, but I want to keep the API clean and stable, no point in changing it at a later date when Swift 4 is fully released and breaking more code.
+- Add two new delegate methods to the `UIEmptyStateDelegate`
+	* `emptyStateViewWillShow(view: UIView)` which is called before the view is shown, given you time to do any additional work.
+	* `emptyStateViewWillHide(view: UIView)` which is called right before the view will be hidden from the screen.
+- Fix some broken documentation/updated docs
+
+After this release the API should not change that often, thus I wont be breaking your code as much 😅
+
+Thanks for using `UIEmptyState`
+
 
 ## Version 0.8.3
 

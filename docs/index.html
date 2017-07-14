@@ -92,13 +92,13 @@
             <p><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/banner.jpg" alt="banner"></p>
 
 <p><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen1.jpg" width="280"><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen2.jpg" width="280"><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen3.jpg" width="280"></p>
-<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+<h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
 <li>iOS 9.0 or greater</li>
 </ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <ol>
 <li>Install <a href="http://cocoapods.org">CocoaPods</a></li>
@@ -116,7 +116,7 @@
 <li>Open up the new <code>.xcworkspace</code> that CocoaPods generated</li>
 <li>Whenever you want to use the library: <code>import UIEmptyState</code></li>
 </ol>
-<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+<h3 id='carthage' class='heading'>Carthage</h3>
 
 <ol>
 <li><p>Make sure Carthage is install</p>
@@ -126,12 +126,12 @@
 
 <p><code>github &quot;luispadron/UIEmptyState&quot;</code></p></li>
 </ol>
-<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
+<h3 id='manually' class='heading'>Manually</h3>
 
 <ol>
 <li>Simply download the <code>UIEmptyState</code> source files and import them into your project.</li>
 </ol>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<h2 id='usage' class='heading'>Usage</h2>
 
 <p>As long as you are using a <code>UIViewController</code> subclass you will get default conformance as well as the <code>reloadEmptyState</code> method.</p>
 <pre class="highlight swift"><code><span class="c1">// No subclassing required, simply conform to the two protocols</span>
@@ -178,64 +178,11 @@
 </code></pre>
 
 <p>If you need more help take a look at the example project here (Pokemon nerds, will like it): <a href="https://github.com/luispadron/UIEmptyState/tree/master/UIEmptyStateExample">Example</a></p>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
-
-<p>Quick overview of available <code>UIEmptyStateDataSource</code> properties</p>
-<pre class="highlight swift"><code><span class="c1">///////////// METHODS /////////////</span>
-<span class="c1">// If empty view should show, implemented by default</span>
-<span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
-<span class="c1">// If empty view should show, implemented by default</span>
-<span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="nv">forCollectionView</span><span class="p">:)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
-<span class="c1">// The block for the animation code, basic animation by default</span>
-<span class="kd">func</span> <span class="nf">emptyStateViewAnimation</span><span class="p">(</span><span class="n">forView</span><span class="p">,</span><span class="nv">animationDuration</span><span class="p">:</span><span class="n">completion</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
-
-<span class="c1">///////////// COMPUTED PROPERTIES /////////////</span>
-<span class="c1">// The view to show, implemented by default</span>
-<span class="k">var</span> <span class="nv">emptyStateView</span><span class="p">:</span> <span class="kt">UIView</span>
-<span class="c1">// Whether the view adjusts and resizes to fit and be centered when inside a nav controller </span>
-<span class="k">var</span> <span class="nv">emptyStateViewAdjustsToFitBars</span><span class="p">:</span> <span class="kt">Bool</span>
-<span class="c1">// The text for the title view, implemented by default</span>
-<span class="k">var</span> <span class="nv">emptyStateTitle</span><span class="p">:</span> <span class="kt">NSAttributedString</span>
-<span class="c1">// The image for the image view, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateImage</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span>
-<span class="c1">// The size of the image view, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateImageSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">?</span>
-<span class="c1">// The text for the button title, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateButtonTitle</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">?</span>
-<span class="c1">// The image for the button, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateButtonImage</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span>
-<span class="c1">// The size of the button, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateButtonSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">?</span>
-<span class="c1">// The detail message for the view, nil by default</span>
-<span class="k">var</span> <span class="nv">emptyStateDetailMessage</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">?</span>
-<span class="c1">// The spacing inbetween views, 12 by default</span>
-<span class="k">var</span> <span class="nv">emptyStateViewSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span>
-<span class="c1">// The background color for the view, UIColor.clear by default</span>
-<span class="k">var</span> <span class="nv">emptyStateBackgroundColor</span><span class="p">:</span> <span class="kt">UIColor</span>
-<span class="c1">// Whether view can scroll when showing, false by default</span>
-<span class="k">var</span> <span class="nv">emptyStateViewCanScroll</span><span class="p">:</span> <span class="kt">Bool</span>
-<span class="c1">// Whether view can animate, true by default</span>
-<span class="k">var</span> <span class="nv">emptyStateViewCanAnimate</span><span class="p">:</span> <span class="kt">Bool</span>
-<span class="c1">// Whether view animates everytime it appears, true by default</span>
-<span class="k">var</span> <span class="nv">emptyStateViewAnimatesEverytime</span><span class="p">:</span> <span class="kt">Bool</span>
-<span class="c1">// The animation duration for the view animation, 0.5 by default</span>
-<span class="k">var</span> <span class="nv">emptyStateViewAnimationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span>
-</code></pre>
-<a href='#a-href-http-htmlpreview-github-io-https-github-com-luispadron-uiemptystate-blob-master-docs-index-html-read-the-full-documentation-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='a-href-http-htmlpreview-github-io-https-github-com-luispadron-uiemptystate-blob-master-docs-index-html-read-the-full-documentation-here-a'><a href="http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html">Read the full documentation here</a></h4>
-<a href='#example-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example-project'>Example Project</h2>
-<a href='#clone-this-repo-and-run-the-code-uiemptystateexample-code-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='clone-this-repo-and-run-the-code-uiemptystateexample-code-project'>Clone this repo and run the <code>UIEmptyStateExample</code> project</h4>
-<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
-
-<ul>
-<li>[x] Add support for any <code>UIViewController</code> subclass, i.e <code>UICollectionView</code> etc.</li>
-<li>[ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling</li>
-<li>[x] Add animation to view appearance</li>
-<li>[ ] Add nicer animation to button taps, or view taps</li>
-<li>[ ] Add tests</li>
-<li>[ ] Clean up and continue to work on <code>UIEmptyStateView</code>, i.e add better constraints and more customization options</li>
-<li>[ ] If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+</li>
-</ul>
-<a href='#license-mit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license-mit'>License (MIT)</h2>
+<h2 id='documentation' class='heading'>Documentation</h2>
+<h4 id='a-href-http-htmlpreview-github-io-https-github-com-luispadron-uiemptystate-blob-master-docs-index-html-read-the-full-documentation-here-a' class='heading'><a href="http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html">Read the full documentation here</a></h4>
+<h2 id='example-project' class='heading'>Example Project</h2>
+<h4 id='clone-this-repo-and-run-the-code-uiemptystateexample-code-project' class='heading'>Clone this repo and run the <code>UIEmptyStateExample</code> project</h4>
+<h2 id='license-mit' class='heading'>License (MIT)</h2>
 <pre class="highlight plaintext"><code>Copyright (c) 2017 Luis Padron
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -252,8 +199,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-04-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-07-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

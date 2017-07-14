@@ -8,11 +8,38 @@
 
 import UIKit
 
+private extension UILabel {
+    /// Returns the height that would be expected for the string, with a max width
+    func expectedHeight(forWidth width: CGFloat) -> CGFloat {
+        guard let txt = self.text else {
+            return 0.0
+        }
+        
+        let maxSize = CGSize(width: width, height: .greatestFiniteMagnitude)
+        
+        #if swift(>=4.0)
+            let attrString = NSAttributedString(string: txt, attributes: [.font: self.font])
+        #else
+            let attrString = NSAttributedString(string: txt, attributes: [NSFontAttributeName: self.font])
+        #endif
+        
+        let expectedRect = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil)
+        return ceil(expectedRect.size.height)
+        
+    }
+}
+
 /// A UIView which has a stack view and inside the stackview are 1-4 other views
 /// This view is used as the default view for the `emptyStateView` in the `UIEmptyStateDataSource`
 open class UIEmptyStateView: UIView {
     
     // MARK: - Properties
+    
+    /// The width constraint for the view, changed whenever reloading the empty state
+    private var widthConstraint: NSLayoutConstraint?
+    
+    /// The height constraint for the view, changed whenever reloading the empty state
+    private var heightConstraint: NSLayoutConstraint?
     
     /// The delegate for the view, gets called when user taps button or self
     open weak var delegate: UIEmptyStateDelegate?
@@ -49,7 +76,8 @@ open class UIEmptyStateView: UIView {
     /// The button title for the button
     open var buttonTitle: NSAttributedString? {
         didSet {
-            // If the button title has been removed (by passing nil) then remove the button view if also has no button image
+            // If the button title has been removed (by passing nil)
+            // then remove the button view if also has no button image
             guard let buttTitle = buttonTitle else {
                 if oldValue != nil {
                     if buttonImage == nil {
@@ -69,7 +97,8 @@ open class UIEmptyStateView: UIView {
     /// The image for the button
     open var buttonImage: UIImage? {
         didSet {
-            // If the button image has been removed (by passing nil) then remove the button view if also has no button title
+            // If the button image has been removed (by passing nil)
+            // then remove the button view if also has no button title
             guard let buttImage = buttonImage else {
                 if oldValue != nil {
                     if buttonTitle == nil {
@@ -105,7 +134,7 @@ open class UIEmptyStateView: UIView {
                 }
                 return
             }
-        
+            
             detailView.attributedText = message
             self.setNeedsUpdateConstraints()
             handleAdding(view: detailView)
@@ -117,7 +146,8 @@ open class UIEmptyStateView: UIView {
     
     // MARK: - Initializers
     
-    /// Initializer for `UIEmptyStateView`, requires a frame and an `NSAttributedString` which will be used as it's title
+    /// Initializer for `UIEmptyStateView`,
+    /// requires a frame and an `NSAttributedString` which will be used as it's title
     public required init(frame: CGRect, title: NSAttributedString) {
         self.title = title
         super.init(frame: frame)
@@ -133,7 +163,9 @@ open class UIEmptyStateView: UIView {
     
     /// Override for update constraints, adds the auto layout constraints for the stackviews subviews.
     ///
-    /// ** IMPORTANT: ** This method will remove all constraints that a part of the `contentView` so do not add constraints to these views.
+    /// ** IMPORTANT: **
+    /// This method will remove all constraints that a part of the `contentView` so do not add
+    /// constraints to these views.
     open override func updateConstraints() {
         super.updateConstraints()
         
@@ -141,26 +173,49 @@ open class UIEmptyStateView: UIView {
         for subview in contentView.subviews {
             subview.removeConstraints(subview.constraints)
             if let label = subview as? UILabel {
-                label.sizeToFit()
-                label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
-                label.heightAnchor.constraint(equalToConstant: label.frame.height).isActive = true
+                if let labelWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
+                    label.widthAnchor.constraint(equalToConstant: labelWidth).isActive = true
+                    let labelHeight = label.expectedHeight(forWidth: labelWidth)
+                    label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
+                } else {
+                    label.sizeToFit()
+                    label.widthAnchor.constraint(equalToConstant: label.frame.width).isActive = true
+                    label.heightAnchor.constraint(equalToConstant: label.frame.height).isActive = true
+                }
+                
             } else if let imageView = subview as? UIImageView {
                 let size = imageSize ?? CGSize(width: 100, height: 100)
                 imageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 imageView.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+                
             } else if let button = subview as? UIButton {
-                let size = buttonSize ?? self.buttonTitle?.size() ?? self.buttonImage?.size ?? CGSize(width: 0, height: 0)
+                let size = buttonSize ?? self.buttonTitle?.size() ??
+                    self.buttonImage?.size ??
+                    CGSize(width: 0, height: 0)
+                
                 button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
             }
-            
         }
+        
+        // Layout content view to get height and width
+        contentView.layoutIfNeeded()
+        
+        // Set width and height constraints for enclosing view
+        widthConstraint?.isActive = false
+        widthConstraint = self.widthAnchor.constraint(equalToConstant: contentView.frame.width)
+        widthConstraint?.isActive = true
+        
+        heightConstraint?.isActive = false
+        heightConstraint = self.heightAnchor.constraint(equalToConstant: contentView.frame.height)
+        heightConstraint?.isActive = true
     }
     
     // MARK: - Helper methods
     
     /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
         // Set up the stack view
@@ -258,3 +313,4 @@ open class UIEmptyStateView: UIView {
         return view
     }()
 }
+

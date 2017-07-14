@@ -1,8 +1,6 @@
 ![banner](https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/banner.jpg)
 
-<img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen1.jpg" width="280">
-<img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen2.jpg" width="280">
-<img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen3.jpg" width="280">
+<img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen1.jpg" width="280"><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen2.jpg" width="280"><img src="https://raw.githubusercontent.com/luispadron/UIEmptyState/master/GitHubAssets/screen3.jpg" width="280">
 
 
 
@@ -18,13 +16,14 @@
 1. Install [CocoaPods](http://cocoapods.org)
 2. Add this repo to your `Podfile`
 
-	```ruby
-	target 'Example' do
-	    use_frameworks!
+```ruby
+target 'Example' do
+  use_frameworks!
 	
-	    pod 'UIEmptyState'
-	end
+  pod 'UIEmptyState'
+end
 ```
+
 3. Run `pod install`
 4. Open up the new `.xcworkspace` that CocoaPods generated
 5. Whenever you want to use the library: `import UIEmptyState`
@@ -98,20 +97,12 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Documentation
 
-#### [Read the documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
+
+#### [Read the full documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 
 ## Example Project
 
 #### Clone this repo and run the `UIEmptyStateExample` project
-
-## Roadmap
-- [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
-- [ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
-- [ ] Add animation to view appearance
-- [ ] Add nicer animation to button taps, or view taps
-- [ ] Add tests
-- [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
-- [ ] If requested, remove stack view and figure out clean solution to allow for easy view stacking without requiring iOS 9+
 
 
 ## License (MIT)

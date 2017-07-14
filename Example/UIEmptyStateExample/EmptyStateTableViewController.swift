@@ -22,7 +22,8 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         // Remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         // Initially call the reloadTableViewState to get the initial state
-        self.reloadEmptyState(forTableView: self.tableView)
+        self.reloadEmptyState(for: self.tableView)
+        self.view.backgroundColor = UIColor(red: 0.518, green: 0.576, blue: 0.604, alpha: 1.00)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,30 +38,22 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
     
     // MARK: - Empty State Data Source
     
-    func imageForEmptyStateView() -> UIImage? {
+    var emptyStateImage: UIImage? {
         return #imageLiteral(resourceName: "emptyPokemon")
     }
-    
-    func titleForEmptyStateView() -> NSAttributedString {
-        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 22)]
+
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSAttributedStringKey.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22)]
         return NSAttributedString(string: "No Pokemon caught!", attributes: attrs)
     }
     
-    func detailMessageForEmptyStateView() -> NSAttributedString? {
-        return nil
-    }
-    
-    func buttonTitleForEmptyStateView() -> NSAttributedString? {
-        // String
-        let attrs = [NSForegroundColorAttributeName: UIColor.white,
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 16)]
+    var emptyStateButtonTitle: NSAttributedString? {
+        let attrs = [NSAttributedStringKey.foregroundColor: UIColor.white,
+                     NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
         return NSAttributedString(string: "Catch'em All", attributes: attrs)
     }
-    
-    func backgroundColorForEmptyStateView() -> UIColor {
-        return UIColor(red: 0.518, green: 0.576, blue: 0.604, alpha: 1.00)
-    }
+
     
     // MARK: - Empty State Delegate
     
@@ -95,8 +88,8 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
             caughtPokemon.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
-            // Call reload of empty state 
-            self.reloadEmptyState(forTableView: self.tableView)
+            // Call reload of empty state
+            self.reloadEmptyState(for: self.tableView)
         }
     }
     
@@ -121,7 +114,7 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         tableView.beginUpdates()
         tableView.insertRows(at: [path], with: .automatic)
         tableView.endUpdates()
-        self.reloadEmptyState(forTableView: self.tableView) // Make sure to call this to update the state of the tableview
+        self.reloadEmptyState(for: self.tableView) // Make sure to call this to update the state of the tableview
     }
 }
 

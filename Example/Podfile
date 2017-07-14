@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'UIEmptyStateExample' do
+  use_frameworks!
+
+  # Pods for UIEmptyStateExample
+  pod 'UIEmptyState'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    
+    puts target.name
+
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = ‘4.0’
+
+    end
+  end
+end

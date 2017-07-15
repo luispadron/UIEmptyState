@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Versin 1.0.2
+
+- Fix issue with `UIEmptyStateView` and it's subviews not being accessible.
+
 ## Version 1.0.1
 
 - Fix access modifier in default implementation of `emptyStateViewWillHide(view: UIView)`

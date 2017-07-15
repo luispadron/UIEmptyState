@@ -215,6 +215,9 @@ open class UIEmptyStateView: UIView {
     
     /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
+        // Since self is just a container view, to make the subviews accessible remove accessibilty from self
+        self.isAccessibilityElement = false
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))

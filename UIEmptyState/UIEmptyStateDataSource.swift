@@ -236,8 +236,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation of `emptyStateViewCanAnimate`, returns `true`
     public var emptyStateViewCanAnimate: Bool { get { return true } }
     
-    /// Default implementation of `emptyStateViewAnimatesEverytime`, returns `true`
-    public var emptyStateViewAnimatesEverytime: Bool { get { return true } }
+    /// Default implementation of `emptyStateViewAnimatesEverytime`, returns `false`
+    public var emptyStateViewAnimatesEverytime: Bool { get { return false } }
     
     /// Default implementation of `emptyStateViewAnimationDuration`, returns `0.5`
     public var emptyStateViewAnimationDuration: TimeInterval { get { return 0.5 } }

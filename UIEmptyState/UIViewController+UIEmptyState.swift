@@ -122,13 +122,24 @@ extension UIViewController {
     /// Finishes the reload, i.e assigns the empty view, and adjusts any other UI
     private func finishReload(for source: UIEmptyStateDataSource) {
         let emptyView = showView(for: source)
-        
+
+        // Only add constraints if they haven't already been added
+        if emptyView.constraints.count <= 2 { // 2, because theres already 2 constraints added to it's subviews
+            self.createViewConstraints(for: emptyView, in: source)
+        }
+
+        // Return & call the did show view delegate
+        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+    }
+
+    //// Private helper which creates view contraints for the UIEmptyStateView.
+    private func createViewConstraints(for view: UIView, in source: UIEmptyStateDataSource) {
         // Set constraints
-        var centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        var centerX = view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         centerX.isActive = true
-        var centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        var centerY = view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         centerY.isActive = true
-        
+
         // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
         // and then return
         guard #available(iOS 11.0, *) else {
@@ -138,31 +149,25 @@ extension UIViewController {
             } else {
                 self.edgesForExtendedLayout = .all
             }
-            // Call the did show view delegate
-            self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
             return
         }
-        
-        
-        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only adjustingToFitBars
+
+        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only if adjustesToFitBars is true.
         // The reason for this is safeAreaLayoutGuide will take into account any bar that may be used
         // If for some reason user doesn't want to adjust to bars, then keep the old center constraints
         if source.emptyStateViewAdjustsToFitBars {
             // Adjust constraint to fit new big title bars, etc
             centerX.isActive = false
-            centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX = view.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
             centerX.isActive = true
-            
+
             centerY.isActive = false
-            centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY = view.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
             centerY.isActive = true
-            
+
         }
-        
-        // Return & call the did show view delegate
-        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
     }
-    
+
     /// Private helper method which will create the empty state view if not created, or show it if hidden
     private func showView(for source: UIEmptyStateDataSource) -> UIView {
     

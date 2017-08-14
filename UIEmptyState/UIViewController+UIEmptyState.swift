@@ -66,7 +66,7 @@ extension UIViewController {
      Do NOT override this method/implement it unless you need custom behavior and know what you are doing.
      */
     public func reloadEmptyStateForTableView(_ tableView: UITableView) {
-        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(for: tableView) else {
+        guard let source = emptyStateDataSource, source.emptyStateViewShouldShow(for: tableView) else {
             // Call the will hide delegate
             if let view = emptyStateView {
                 self.emptyStateDelegate?.emptyStateViewWillHide(view: view)
@@ -97,7 +97,7 @@ extension UIViewController {
      */
     public func reloadEmptyStateForCollectionView(_ collectionView: UICollectionView) {
         guard let source = emptyStateDataSource,
-            source.shouldShowEmptyStateView(for: collectionView) else {
+            source.emptyStateViewShouldShow(for: collectionView) else {
                 // Call the will hide delegate
                 if let view = emptyStateView {
                     self.emptyStateDelegate?.emptyStateViewWillHide(view: view)

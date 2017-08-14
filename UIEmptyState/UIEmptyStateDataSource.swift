@@ -22,7 +22,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(for tableView: UITableView) -> Bool
+    func emptyStateViewShouldShow(for tableView: UITableView) -> Bool
     
     /**
      Determines whether should or should not show the empty view for a specific collectionView,
@@ -33,7 +33,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool
+    func emptyStateViewShouldShow(for collectionView: UICollectionView) -> Bool
     
     /**
      Determines the view to use for the empty state, by default this is a nice stack view
@@ -158,7 +158,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController tableView determining if should show the emptystate view,
      counts number of rows in the tableView
      */
-    public func shouldShowEmptyStateView(for tableView: UITableView) -> Bool {
+    public func emptyStateViewShouldShow(for tableView: UITableView) -> Bool {
         let sections = tableView.numberOfSections
         var rows = 0
         for section in 0..<sections {
@@ -171,7 +171,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController collectionView determining if should show the emptystate view,
      counts number of items in the collectionView
      */
-    public func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool {
+    public func emptyStateViewShouldShow(for collectionView: UICollectionView) -> Bool {
         let sections = collectionView.numberOfSections
         var items = 0
         for section in 0..<sections {

@@ -65,7 +65,7 @@ extension UIViewController {
      
      Do NOT override this method/implement it unless you need custom behavior and know what you are doing.
      */
-    public func reloadEmptyState(for tableView: UITableView) {
+    public func reloadEmptyStateForTableView(_ tableView: UITableView) {
         guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(for: tableView) else {
             // Call the will hide delegate
             if let view = emptyStateView {
@@ -95,7 +95,7 @@ extension UIViewController {
      
      Do NOT override this method/implement it unless you need custom behavior and know what you are doing.
      */
-    public func reloadEmptyState(for collectionView: UICollectionView) {
+    public func reloadEmptyStateForCollectionView(_ collectionView: UICollectionView) {
         guard let source = emptyStateDataSource,
             source.shouldShowEmptyStateView(for: collectionView) else {
                 // Call the will hide delegate
@@ -232,7 +232,7 @@ extension UIViewController {
 extension UITableViewController {
     /// Reloads the empty state, defaults the tableView to `self.tableView`
     public func reloadEmptyState() {
-        self.reloadEmptyState(for: self.tableView)
+        self.reloadEmptyStateForTableView(self.tableView)
     }
 }
 
@@ -245,7 +245,7 @@ extension UICollectionViewController {
             return
         }
         
-        self.reloadEmptyState(for: collectionView)
+        self.reloadEmptyStateForCollectionView(collectionView)
     }
 }
 

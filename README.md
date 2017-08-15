@@ -61,10 +61,10 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
    }
    
    override func viewDidAppear(_ animated: Bool) {
-   		super.viewDidAppear(animated)
-	 	// Set the initial state of the tableview, called here because cells should be done loading by now
-	 	// Number of cells are used to determine if the view should be shown or not
-		self.reloadEmptyState()
+   	super.viewDidAppear(animated)
+	// Set the initial state of the tableview, called here because cells should be done loading by now
+	// Number of cells are used to determine if the view should be shown or not
+	self.reloadEmptyState()
    }
 }
 ```

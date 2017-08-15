@@ -1,5 +1,25 @@
 # UIEmptyState CHANGELOG
 
+## Version 2.0.0
+
+#### Breaking API Changes:
+
+- Renamed `reloadEmptyState(for: tableView)` to `reloadEmptyStateForTableView(_:)` __and__ `reloadEmptyState(for: collectionView)` to `reloadEmptyStateForCollectionView(_:)`. This fixes an issue where error is thrown for duplicate function declaration with Objective-C selector on Swift versions lower than 4.0.
+
+
+- Renamed the `shouldShowEmptyStateView(for:)` datasource method to `emptyStateViewShouldShow(for:)`. This was done to be more consistent with the rest of the API.
+
+
+- Renamed `titleView` to `titleLabel` __and__ `detailView` to `detailLabel`. This makes it more clear exactly what these views actually are.
+
+#### Improvements and Fixes
+
+- Fix a bug where constraints for the `UIEmptyStateView` would be added whenever the view appeared thus causing a warning to be thrown by Xcode for duplicate and breaking constraints. Constraints for the view are now only added on initial showing of view.
+
+- Fix bug where `UIEmptyStateView.detailLabel` would not resize and fit the screen correctly on iOS versions lower than 11.0. `detailLabel` now calculates it's width properly and constraints are added accordingly.
+
+- Change `emptyStateViewAnimatesEverytime` from `true` to `false`. This seems like a more reasonable default value as it animations can get annoying when repeated multiple times without change.
+
 ## Versin 1.0.2
 
 - Fix issue with `UIEmptyStateView` and it's subviews not being accessible.

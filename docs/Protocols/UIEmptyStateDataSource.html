@@ -111,9 +111,9 @@ however feel free to implement these methods to customize your view.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12UIEmptyState0aB10DataSourceP015shouldShowEmptyB4ViewSbSo07UITableH0C3for_tF"></a>
-                    <a name="//apple_ref/swift/Method/shouldShowEmptyStateView(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12UIEmptyState0aB10DataSourceP015shouldShowEmptyB4ViewSbSo07UITableH0C3for_tF">shouldShowEmptyStateView(for:)</a>
+                    <a name="/s:12UIEmptyState0aB10DataSourceP05emptyB14ViewShouldShowSbSo07UITableF0C3for_tF"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewShouldShow(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12UIEmptyState0aB10DataSourceP05emptyB14ViewShouldShowSbSo07UITableF0C3for_tF">emptyStateViewShouldShow(for:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -148,7 +148,7 @@ counts number of items in the collectionView</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="k">for</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewShouldShow</span><span class="p">(</span><span class="k">for</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -162,9 +162,9 @@ counts number of items in the collectionView</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12UIEmptyState0aB10DataSourceP015shouldShowEmptyB4ViewSbSo012UICollectionH0C3for_tF"></a>
-                    <a name="//apple_ref/swift/Method/shouldShowEmptyStateView(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12UIEmptyState0aB10DataSourceP015shouldShowEmptyB4ViewSbSo012UICollectionH0C3for_tF">shouldShowEmptyStateView(for:)</a>
+                    <a name="/s:12UIEmptyState0aB10DataSourceP05emptyB14ViewShouldShowSbSo012UICollectionF0C3for_tF"></a>
+                    <a name="//apple_ref/swift/Method/emptyStateViewShouldShow(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12UIEmptyState0aB10DataSourceP05emptyB14ViewShouldShowSbSo012UICollectionF0C3for_tF">emptyStateViewShouldShow(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -188,7 +188,7 @@ by default it will count collectionView items to determine</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">shouldShowEmptyStateView</span><span class="p">(</span><span class="k">for</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">emptyStateViewShouldShow</span><span class="p">(</span><span class="k">for</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -699,7 +699,7 @@ To turn off animation in general use <code><a href="../Protocols/UIEmptyStateDat
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Default implementation of <code>emptyStateViewAnimatesEverytime</code>, returns <code>true</code></p>
+                        <p>Default implementation of <code>emptyStateViewAnimatesEverytime</code>, returns <code>false</code></p>
 
                       </div>
                       <div class="declaration">
@@ -842,7 +842,7 @@ This is called whenever the empty state view will show, Default = 0.5</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-07-14)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-08-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

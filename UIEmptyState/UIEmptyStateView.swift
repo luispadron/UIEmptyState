@@ -171,9 +171,13 @@ open class UIEmptyStateView: UIView {
         
         // Loop through the stack views constraints and add the appropriate constraints
         for subview in contentView.subviews {
+            // Remove constraint before adding it again
             subview.removeConstraints(subview.constraints)
+            
             if let label = subview as? UILabel {
-                if let labelWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
+                // Try to get readable width of the main view that the empty state view is inside of
+                // This will allow for better sizing of label
+                if let labelWidth = contentView.superview?.superview?.readableContentGuide.layoutFrame.width {
                     label.widthAnchor.constraint(equalToConstant: labelWidth).isActive = true
                     let labelHeight = label.expectedHeight(forWidth: labelWidth)
                     label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true

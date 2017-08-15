@@ -248,8 +248,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         guard let v = view as? UIEmptyStateView else { return }
         // Set initial alpha
         v.imageView.alpha = 0.0
-        v.titleView.alpha = 0.0
-        v.detailView.alpha = 0.0
+        v.titleLabel.alpha = 0.0
+        v.detailLabel.alpha = 0.0
         v.button.alpha = 0.0
         // Set initial scale to 0
         v.imageView.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
@@ -263,8 +263,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
             })
             
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
-                v.titleView.alpha = 1.0
-                v.detailView.alpha = 1.0
+                v.titleLabel.alpha = 1.0
+                v.detailLabel.alpha = 1.0
             })
             
             UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {

@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 2.0.1
+
+Add shared scheme, fixed thanks to @[piotrzuzel](https://github.com/piotrzuzel).
+
 ## Version 2.0.0
 
 #### Breaking API Changes:

@@ -17,6 +17,11 @@ extension UIViewController {
         static var emptyStateDelegate = "com.luispadron.emptyStateDelegate"
     }
     
+    /// Container for safely storing weak references
+    private struct WeakObjectContainer {
+        private(set) weak var object: AnyObject?
+    }
+    
     /**
      The data source for the Empty View
      
@@ -24,19 +29,31 @@ extension UIViewController {
      however feel free to implement these methods to customize your view.
      */
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
-        get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
-        set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get {
+            let container = objc_getAssociatedObject(self, &Keys.emptyStateDataSource) as? WeakObjectContainer
+            return container?.object as? UIEmptyStateDataSource
+        }
+        set {
+            let container = WeakObjectContainer(object: newValue)
+            objc_setAssociatedObject(self, &Keys.emptyStateDataSource, container, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
-    
+
     /**
      The delegate for UIEmptyStateView
-     
+
      **Important:** this delegate and its functions are only used when using UIEmptyStateView.
      If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
      */
     public weak var emptyStateDelegate: UIEmptyStateDelegate? {
-        get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
-        set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get {
+            let container = objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? WeakObjectContainer
+            return container?.object as? UIEmptyStateDelegate
+        }
+        set {
+            let container = WeakObjectContainer(object: newValue)
+            objc_setAssociatedObject(self, &Keys.emptyStateDelegate, container, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
     
     /**

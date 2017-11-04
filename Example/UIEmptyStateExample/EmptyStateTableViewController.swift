@@ -22,7 +22,7 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         // Remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         // Initially call the reloadTableViewState to get the initial state
-        self.reloadEmptyState(for: self.tableView)
+        self.reloadEmptyState()
         self.view.backgroundColor = UIColor(red: 0.518, green: 0.576, blue: 0.604, alpha: 1.00)
     }
     
@@ -89,7 +89,7 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
             // Call reload of empty state
-            self.reloadEmptyState(for: self.tableView)
+            self.reloadEmptyState()
         }
     }
     
@@ -114,7 +114,7 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         tableView.beginUpdates()
         tableView.insertRows(at: [path], with: .automatic)
         tableView.endUpdates()
-        self.reloadEmptyState(for: self.tableView) // Make sure to call this to update the state of the tableview
+        self.reloadEmptyState()
     }
 }
 

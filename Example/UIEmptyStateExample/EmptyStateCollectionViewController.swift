@@ -23,7 +23,7 @@ class EmptyStateCollectionViewController: UICollectionViewController, UIEmptySta
         self.emptyStateDelegate = self
         self.emptyStateDataSource = self
         // Set the inital state of the collectionview
-        self.reloadEmptyState(for: self.collectionView!)
+        self.reloadEmptyState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +72,8 @@ class EmptyStateCollectionViewController: UICollectionViewController, UIEmptySta
         let newPokemon = randomPokemon()
         caughtPokemon.append(newPokemon)
         self.collectionView?.reloadData()
-        self.reloadEmptyState(for: self.collectionView!) // Remember to call this to reload the empty state view after every data change
+        // Remember to call this to reload the empty state view after every data change
+        self.reloadEmptyState()
     }
 
 }

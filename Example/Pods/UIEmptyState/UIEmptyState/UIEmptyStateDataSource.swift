@@ -22,7 +22,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(for tableView: UITableView) -> Bool
+    func emptyStateViewShouldShow(for tableView: UITableView) -> Bool
     
     /**
      Determines whether should or should not show the empty view for a specific collectionView,
@@ -33,7 +33,7 @@ public protocol UIEmptyStateDataSource: class {
      - returns:
          Boolean value of whether view should or should not be displayed
      */
-    func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool
+    func emptyStateViewShouldShow(for collectionView: UICollectionView) -> Bool
     
     /**
      Determines the view to use for the empty state, by default this is a nice stack view
@@ -158,7 +158,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController tableView determining if should show the emptystate view,
      counts number of rows in the tableView
      */
-    public func shouldShowEmptyStateView(for tableView: UITableView) -> Bool {
+    public func emptyStateViewShouldShow(for tableView: UITableView) -> Bool {
         let sections = tableView.numberOfSections
         var rows = 0
         for section in 0..<sections {
@@ -171,7 +171,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
      Default implementation for UIViewController collectionView determining if should show the emptystate view,
      counts number of items in the collectionView
      */
-    public func shouldShowEmptyStateView(for collectionView: UICollectionView) -> Bool {
+    public func emptyStateViewShouldShow(for collectionView: UICollectionView) -> Bool {
         let sections = collectionView.numberOfSections
         var items = 0
         for section in 0..<sections {
@@ -236,8 +236,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     /// Default implementation of `emptyStateViewCanAnimate`, returns `true`
     public var emptyStateViewCanAnimate: Bool { get { return true } }
     
-    /// Default implementation of `emptyStateViewAnimatesEverytime`, returns `true`
-    public var emptyStateViewAnimatesEverytime: Bool { get { return true } }
+    /// Default implementation of `emptyStateViewAnimatesEverytime`, returns `false`
+    public var emptyStateViewAnimatesEverytime: Bool { get { return false } }
     
     /// Default implementation of `emptyStateViewAnimationDuration`, returns `0.5`
     public var emptyStateViewAnimationDuration: TimeInterval { get { return 0.5 } }
@@ -248,8 +248,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
         guard let v = view as? UIEmptyStateView else { return }
         // Set initial alpha
         v.imageView.alpha = 0.0
-        v.titleView.alpha = 0.0
-        v.detailView.alpha = 0.0
+        v.titleLabel.alpha = 0.0
+        v.detailLabel.alpha = 0.0
         v.button.alpha = 0.0
         // Set initial scale to 0
         v.imageView.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
@@ -263,8 +263,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
             })
             
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
-                v.titleView.alpha = 1.0
-                v.detailView.alpha = 1.0
+                v.titleLabel.alpha = 1.0
+                v.detailLabel.alpha = 1.0
             })
             
             UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {

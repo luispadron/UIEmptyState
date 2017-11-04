@@ -47,7 +47,7 @@ open class UIEmptyStateView: UIView {
     /// The title for the titleView
     open var title: NSAttributedString {
         didSet {
-            self.titleView.attributedText = self.title
+            self.titleLabel.attributedText = self.title
             self.setNeedsUpdateConstraints()
         }
     }
@@ -129,15 +129,15 @@ open class UIEmptyStateView: UIView {
             // If the detail message has been removed (by passing nil) remove the detail view
             guard let message = detailMessage else {
                 if oldValue != nil {
-                    self.detailView.removeFromSuperview()
+                    self.detailLabel.removeFromSuperview()
                     self.setNeedsUpdateConstraints()
                 }
                 return
             }
             
-            detailView.attributedText = message
+            detailLabel.attributedText = message
             self.setNeedsUpdateConstraints()
-            handleAdding(view: detailView)
+            handleAdding(view: detailLabel)
         }
     }
     
@@ -171,9 +171,13 @@ open class UIEmptyStateView: UIView {
         
         // Loop through the stack views constraints and add the appropriate constraints
         for subview in contentView.subviews {
+            // Remove constraint before adding it again
             subview.removeConstraints(subview.constraints)
+            
             if let label = subview as? UILabel {
-                if let labelWidth = contentView.superview?.readableContentGuide.layoutFrame.width {
+                // Try to get readable width of the main view that the empty state view is inside of
+                // This will allow for better sizing of label
+                if let labelWidth = contentView.superview?.superview?.readableContentGuide.layoutFrame.width {
                     label.widthAnchor.constraint(equalToConstant: labelWidth).isActive = true
                     let labelHeight = label.expectedHeight(forWidth: labelWidth)
                     label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
@@ -215,6 +219,9 @@ open class UIEmptyStateView: UIView {
     
     /// Private method to initialize the views and add gesture recognizer
     private func initializeViews() {
+        // Since self is just a container view, to make the subviews accessible remove accessibilty from self
+        self.isAccessibilityElement = false
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         // Add gesture recognizer to view
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.viewWasTouched)))
@@ -225,7 +232,7 @@ open class UIEmptyStateView: UIView {
         contentView.backgroundColor = UIColor.red
         contentView.spacing = spacing ?? 0
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addArrangedSubview(titleView)
+        contentView.addArrangedSubview(titleLabel)
         
         self.addSubview(contentView)
         // Add center constraints
@@ -274,7 +281,7 @@ open class UIEmptyStateView: UIView {
     open lazy var contentView = UIStackView()
     
     /// The title view which displays the value of `title`, place below the image view
-    open lazy var titleView: UILabel = {
+    open lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.attributedText = self.title
         view.textAlignment = .center
@@ -304,7 +311,7 @@ open class UIEmptyStateView: UIView {
     }()
     
     /// The optional detail view, placed under title view, only displayed if detailMessage has a value
-    open lazy var detailView: UILabel = {
+    open lazy var detailLabel: UILabel = {
         let view = UILabel()
         view.textAlignment = .center
         view.numberOfLines = 0

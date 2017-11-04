@@ -61,25 +61,27 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
    }
    
    override func viewDidAppear(_ animated: Bool) {
-   		super.viewDidAppear(animated)
-	 	// Set the initial state of the tableview, called here because cells should be done loading by now
-	 	// Number of cells are used to determine if the view should be shown or not
-		self.reloadEmptyState(forTableView: self.tableView)
+   	super.viewDidAppear(animated)
+	// Set the initial state of the tableview, called here because cells should be done loading by now
+	// Number of cells are used to determine if the view should be shown or not
+	self.reloadEmptyState()
    }
 }
 ```
 
-Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState(for:)`
+Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState()` if inside a `UITableViewController` or `UICollectionViewController`. If inside a regular `UIViewController` make sure to call the appropriate `reloadEmptyStateForTableView(_:)` or `reloadEmptyStateForCollectionView(_:)` methods.
 
 Example: 
 
 ```swift
+// Inside a UITableViewController subclass
+
 func foo() {
 	// My data has changed here, I want to my tableview, 
 	// and in case I no longer have data (user deleted, etc) also reload empty view
 	self.tableView.reloadData()
 	// Reload empty view as well
-	self.reloadEmptyState(forTableView: self.tableView)
+	self.reloadEmptyState()
 }
 
 func deleteFoo() {
@@ -89,7 +91,7 @@ func deleteFoo() {
 	tableView.deleteRows(at: [indexPath], with: .automatic)
 	tableView.endUpdates()
 	// Call reload of empty state 
-	self.reloadEmptyState(forTableView: self.tableView)
+	self.reloadEmptyState()
 }
 ```
 

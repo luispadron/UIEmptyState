@@ -17,11 +17,6 @@ extension UIViewController {
         static var emptyStateDelegate = "com.luispadron.emptyStateDelegate"
     }
     
-    /// Container for safely storing weak references
-    private struct WeakObjectContainer {
-        private(set) weak var object: AnyObject?
-    }
-    
     /**
      The data source for the Empty View
      
@@ -29,31 +24,19 @@ extension UIViewController {
      however feel free to implement these methods to customize your view.
      */
     public weak var emptyStateDataSource: UIEmptyStateDataSource? {
-        get {
-            let container = objc_getAssociatedObject(self, &Keys.emptyStateDataSource) as? WeakObjectContainer
-            return container?.object as? UIEmptyStateDataSource
-        }
-        set {
-            let container = WeakObjectContainer(object: newValue)
-            objc_setAssociatedObject(self, &Keys.emptyStateDataSource, container, .OBJC_ASSOCIATION_RETAIN)
-        }
+        get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
-
+    
     /**
      The delegate for UIEmptyStateView
-
+     
      **Important:** this delegate and its functions are only used when using UIEmptyStateView.
      If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
      */
     public weak var emptyStateDelegate: UIEmptyStateDelegate? {
-        get {
-            let container = objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? WeakObjectContainer
-            return container?.object as? UIEmptyStateDelegate
-        }
-        set {
-            let container = WeakObjectContainer(object: newValue)
-            objc_setAssociatedObject(self, &Keys.emptyStateDelegate, container, .OBJC_ASSOCIATION_RETAIN)
-        }
+        get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     /**
@@ -82,8 +65,8 @@ extension UIViewController {
      
      Do NOT override this method/implement it unless you need custom behavior and know what you are doing.
      */
-    public func reloadEmptyState(for tableView: UITableView) {
-        guard let source = emptyStateDataSource, source.shouldShowEmptyStateView(for: tableView) else {
+    public func reloadEmptyStateForTableView(_ tableView: UITableView) {
+        guard let source = emptyStateDataSource, source.emptyStateViewShouldShow(for: tableView) else {
             // Call the will hide delegate
             if let view = emptyStateView {
                 self.emptyStateDelegate?.emptyStateViewWillHide(view: view)
@@ -112,9 +95,9 @@ extension UIViewController {
      
      Do NOT override this method/implement it unless you need custom behavior and know what you are doing.
      */
-    public func reloadEmptyState(for collectionView: UICollectionView) {
+    public func reloadEmptyStateForCollectionView(_ collectionView: UICollectionView) {
         guard let source = emptyStateDataSource,
-            source.shouldShowEmptyStateView(for: collectionView) else {
+            source.emptyStateViewShouldShow(for: collectionView) else {
                 // Call the will hide delegate
                 if let view = emptyStateView {
                     self.emptyStateDelegate?.emptyStateViewWillHide(view: view)
@@ -139,13 +122,24 @@ extension UIViewController {
     /// Finishes the reload, i.e assigns the empty view, and adjusts any other UI
     private func finishReload(for source: UIEmptyStateDataSource) {
         let emptyView = showView(for: source)
-        
+
+        // Only add constraints if they haven't already been added
+        if emptyView.constraints.count <= 2 { // 2, because theres already 2 constraints added to it's subviews
+            self.createViewConstraints(for: emptyView, in: source)
+        }
+
+        // Return & call the did show view delegate
+        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
+    }
+
+    //// Private helper which creates view contraints for the UIEmptyStateView.
+    private func createViewConstraints(for view: UIView, in source: UIEmptyStateDataSource) {
         // Set constraints
-        var centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        var centerX = view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         centerX.isActive = true
-        var centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        var centerY = view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         centerY.isActive = true
-        
+
         // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
         // and then return
         guard #available(iOS 11.0, *) else {
@@ -155,31 +149,25 @@ extension UIViewController {
             } else {
                 self.edgesForExtendedLayout = .all
             }
-            // Call the did show view delegate
-            self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
             return
         }
-        
-        
-        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only adjustingToFitBars
+
+        // iOS 11.0+ is available, thus use new safeAreaLayoutGuide, but only if adjustesToFitBars is true.
         // The reason for this is safeAreaLayoutGuide will take into account any bar that may be used
         // If for some reason user doesn't want to adjust to bars, then keep the old center constraints
         if source.emptyStateViewAdjustsToFitBars {
             // Adjust constraint to fit new big title bars, etc
             centerX.isActive = false
-            centerX = emptyView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX = view.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
             centerX.isActive = true
-            
+
             centerY.isActive = false
-            centerY = emptyView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY = view.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
             centerY.isActive = true
-            
+
         }
-        
-        // Return & call the did show view delegate
-        self.emptyStateDelegate?.emptyStateViewDidShow(view: emptyView)
     }
-    
+
     /// Private helper method which will create the empty state view if not created, or show it if hidden
     private func showView(for source: UIEmptyStateDataSource) -> UIView {
     
@@ -249,7 +237,7 @@ extension UIViewController {
 extension UITableViewController {
     /// Reloads the empty state, defaults the tableView to `self.tableView`
     public func reloadEmptyState() {
-        self.reloadEmptyState(for: self.tableView)
+        self.reloadEmptyStateForTableView(self.tableView)
     }
 }
 
@@ -262,7 +250,7 @@ extension UICollectionViewController {
             return
         }
         
-        self.reloadEmptyState(for: collectionView)
+        self.reloadEmptyStateForCollectionView(collectionView)
     }
 }
 

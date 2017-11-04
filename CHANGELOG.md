@@ -1,8 +1,13 @@
 # UIEmptyState CHANGELOG
 
+## Version 2.0.2
+
+Bug fix for retain cycle between delegate, datasource, and the view controller. 
+Thanks to [@piotrzuzel](https://github.com/piotrzuzel) for the fix.
+
 ## Version 2.0.1
 
-Add shared scheme, fixed thanks to @[piotrzuzel](https://github.com/piotrzuzel).
+Add shared scheme, fixed thanks to [@piotrzuzel](https://github.com/piotrzuzel).
 
 ## Version 2.0.0
 

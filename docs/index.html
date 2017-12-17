@@ -95,6 +95,7 @@
 <h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
+<li>Xcode 9.0 +</li>
 <li>iOS 9.0 or greater</li>
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
@@ -147,23 +148,25 @@
    <span class="p">}</span>
 
    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
-        <span class="c1">// Set the initial state of the tableview, called here because cells should be done loading by now</span>
-        <span class="c1">// Number of cells are used to determine if the view should be shown or not</span>
-        <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+    <span class="c1">// Set the initial state of the tableview, called here because cells should be done loading by now</span>
+    <span class="c1">// Number of cells are used to determine if the view should be shown or not</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">()</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call <code>self.reloadEmptyState(for:)</code></p>
+<p>Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call <code>self.reloadEmptyState()</code> if inside a <code>UITableViewController</code> or <code>UICollectionViewController</code>. If inside a regular <code>UIViewController</code> make sure to call the appropriate <code>reloadEmptyStateForTableView(_:)</code> or <code>reloadEmptyStateForCollectionView(_:)</code> methods.</p>
 
 <p>Example: </p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="c1">// Inside a UITableViewController subclass</span>
+
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// My data has changed here, I want to my tableview, </span>
     <span class="c1">// and in case I no longer have data (user deleted, etc) also reload empty view</span>
     <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">reloadData</span><span class="p">()</span>
     <span class="c1">// Reload empty view as well</span>
-    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">deleteFoo</span><span class="p">()</span> <span class="p">{</span>
@@ -173,7 +176,7 @@
     <span class="n">tableView</span><span class="o">.</span><span class="nf">deleteRows</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="p">[</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">with</span><span class="p">:</span> <span class="o">.</span><span class="n">automatic</span><span class="p">)</span>
     <span class="n">tableView</span><span class="o">.</span><span class="nf">endUpdates</span><span class="p">()</span>
     <span class="c1">// Call reload of empty state </span>
-    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">(</span><span class="nv">forTableView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">reloadEmptyState</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -199,8 +202,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-08-14)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-12-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

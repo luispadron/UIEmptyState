@@ -1,5 +1,14 @@
 # UIEmptyState CHANGELOG
 
+## Version 3.0.0
+
+- Fixed bug where `UIEmptyStateDataSource.emptyStateView` computed property and the the `UIViewController+UIEmptyState.emptyStateView` properties conflicted thus not allowing creation of custom view. 
+- Custom views now work as intended, you can return a `UIView` subclass in the `UIEmptyStateDataSource.emptyStateView` computed property. Make sure to set any needed constraints, etc.
+
+**Breaking API changes:**
+
+Remove `emptyStateView` from view controller extension. This was never intended to be accessible outside of the extension. Use the `emptyStateView` computed property in `UIEmptyStateDataSource` to create a custom view instead.
+
 ## Version 2.0.2
 
 Bug fix for retain cycle between delegate, datasource, and the view controller. 

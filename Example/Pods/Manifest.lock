@@ -1,11 +1,11 @@
 PODS:
-  - UIEmptyState (2.0.1)
+  - UIEmptyState (3.0.0)
 
 DEPENDENCIES:
   - UIEmptyState
 
 SPEC CHECKSUMS:
-  UIEmptyState: c81a01c7db028bfe2baa770a5930203d38afc802
+  UIEmptyState: 0830a6775c6f0753a9eabeb5fc9054fc30d2e9ed
 
 PODFILE CHECKSUM: 41209d24f94a88b89b0ddc86d5d6de5b213f7d09
 

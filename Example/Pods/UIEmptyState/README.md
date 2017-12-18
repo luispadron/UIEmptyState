@@ -6,6 +6,7 @@
 
 ## Requirements
 
+- Xcode 9.0 +
 - iOS 9.0 or greater
 
 

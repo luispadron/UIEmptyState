@@ -184,11 +184,13 @@ extension UIViewController {
             view.title = source.emptyStateTitle
             view.image = source.emptyStateImage
             view.imageSize = source.emptyStateImageSize
+            view.imageViewTintColor = source.emptyStateImageViewTintColor
             view.buttonTitle = source.emptyStateButtonTitle
             view.buttonImage = source.emptyStateButtonImage
             view.buttonSize = source.emptyStateButtonSize
             view.detailMessage = source.emptyStateDetailMessage
             view.spacing = source.emptyStateViewSpacing
+            view.centerYOffset = source.emptyStateCenterYOffset
             view.backgroundColor = source.emptyStateBackgroundColor
             
             // Animate now

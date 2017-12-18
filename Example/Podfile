@@ -5,7 +5,7 @@ target 'UIEmptyStateExample' do
   use_frameworks!
 
   # Pods for UIEmptyStateExample
-  pod 'UIEmptyState'
+  pod 'UIEmptyState', :path => '../'
 end
 
 post_install do |installer|

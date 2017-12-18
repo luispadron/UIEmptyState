@@ -41,6 +41,9 @@ open class UIEmptyStateView: UIView {
     /// The height constraint for the view, changed whenever reloading the empty state
     private var heightConstraint: NSLayoutConstraint?
     
+    /// The centerY constraint for the view
+    private var centerYConstraint: NSLayoutConstraint?
+    
     /// The delegate for the view, gets called when user taps button or self
     open weak var delegate: UIEmptyStateDelegate?
     
@@ -72,6 +75,27 @@ open class UIEmptyStateView: UIView {
     
     /// The size for image view
     open var imageSize: CGSize? { didSet { self.setNeedsUpdateConstraints() } }
+    
+    /// The tintColor for image view
+    open var imageViewTintColor: UIColor? {
+        didSet {
+            guard let tintColor = imageViewTintColor else {
+                return
+            }
+            imageView.tintColor = tintColor
+        }
+    }
+    
+    /// The offset of the vertical axis
+    open var centerYOffset: CGFloat? {
+        didSet {
+            guard let offset = centerYOffset else {
+                return
+            }
+            centerYConstraint?.constant = offset
+        }
+    }
+
     
     /// The button title for the button
     open var buttonTitle: NSAttributedString? {
@@ -237,7 +261,9 @@ open class UIEmptyStateView: UIView {
         self.addSubview(contentView)
         // Add center constraints
         contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
+        centerYConstraint = contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        centerYConstraint?.isActive = true
     }
     
     /// Handles adding the views to the stack view

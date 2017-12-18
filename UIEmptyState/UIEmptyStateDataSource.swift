@@ -68,6 +68,11 @@ public protocol UIEmptyStateDataSource: class {
     var emptyStateImageSize: CGSize? { get }
     
     /**
+     Determines the tintColor to apply to the Empty State View's image view
+     */
+    var emptyStateImageViewTintColor: UIColor? { get }
+
+    /**
      Determines the title for the button of the Empty State View, by default this is nil
      */
     var emptyStateButtonTitle: NSAttributedString? { get }
@@ -94,6 +99,11 @@ public protocol UIEmptyStateDataSource: class {
     
     /// Determines the amount of spacing between the views, by default this is 12
     var emptyStateViewSpacing: CGFloat { get }
+    
+    /**
+     Determines the vertical offset space, by default Empty State View is centered in the vertical axis
+     */
+    var emptyStateViewCenterYOffset: CGFloat? { get }
     
     /// Determines the background color for the emptyStateView, by default this value is UIColor.clear
     var emptyStateBackgroundColor: UIColor { get }
@@ -187,11 +197,13 @@ extension UIEmptyStateDataSource where Self: UIViewController {
             // Call and assign the data source methods
             emptyStateView.image = emptyStateImage
             emptyStateView.imageSize = emptyStateImageSize
+            emptyStateView.imageViewTintColor = emptyStateImageViewTintColor
             emptyStateView.buttonTitle = emptyStateButtonTitle
             emptyStateView.buttonImage = emptyStateButtonImage
             emptyStateView.buttonSize = emptyStateButtonSize
             emptyStateView.detailMessage = emptyStateDetailMessage
             emptyStateView.spacing = emptyStateViewSpacing
+            emptyStateView.centerYOffset = emptyStateViewCenterYOffset
             emptyStateView.backgroundColor = emptyStateBackgroundColor
             // Some auto resize constraints
             emptyStateView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -210,6 +222,12 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     
     /// Default implementation of `emptyStateImageSize`, returns nil
     public var emptyStateImageSize: CGSize? { get { return nil } }
+    
+    /// Default implementation of `emptyStateImageViewTintColor, returns nil
+    public var emptyStateImageViewTintColor: UIColor? { get { return nil }}
+
+    /// Default implementation of `emptyStateCenterYOffset`, returns nil
+    public var emptyStateViewCenterYOffset: CGFloat? { get { return nil }}
     
     /// Default implementation of `emptyStateButtonTitle`, returns nil
     public var emptyStateButtonTitle: NSAttributedString? { get { return nil } }

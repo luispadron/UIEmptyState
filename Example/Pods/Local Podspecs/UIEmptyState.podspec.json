@@ -1,6 +1,6 @@
 {
   "name": "UIEmptyState",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "summary": "An empty state control to give visually appealing context when building iOS applications.",
   "description": "Empty state control which gives context with either a message, image, and buttons to the user when ever there is a reason the state is empty.\nEasily conform to the protocol to provide a visually appealing view to an empty table view controller.",
   "homepage": "https://github.com/luispadron/UIEmptyState",
@@ -22,7 +22,7 @@
   },
   "source": {
     "git": "https://github.com/luispadron/UIEmptyState.git",
-    "tag": "v2.0.1"
+    "tag": "v3.0.0"
   },
   "source_files": [
     "UIEmptyState",

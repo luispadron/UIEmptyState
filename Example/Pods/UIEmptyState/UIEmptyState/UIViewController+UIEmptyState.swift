@@ -45,15 +45,17 @@ extension UIViewController {
      **Note:**
      This view corresponds and is created from
      the UIEmptyDataSource method: `func viewForEmptyState() -> UIView`
+
+     To set this view, use `UIEmptyStateDataSource.emptyStateView`.
      
      By default this view is of type `UIEmptyStateView`
      */
-    public var emptyStateView: UIView? {
+    private var emptyView: UIView? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateView) as? UIView }
         set {
             objc_setAssociatedObject(self, &Keys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN)
             // Set the views delegate
-            if let view = emptyStateView as? UIEmptyStateView { view.delegate = emptyStateDelegate }
+            if let view = emptyView as? UIEmptyStateView { view.delegate = emptyStateDelegate }
         }
     }
     
@@ -68,11 +70,11 @@ extension UIViewController {
     public func reloadEmptyStateForTableView(_ tableView: UITableView) {
         guard let source = emptyStateDataSource, source.emptyStateViewShouldShow(for: tableView) else {
             // Call the will hide delegate
-            if let view = emptyStateView {
+            if let view = emptyView {
                 self.emptyStateDelegate?.emptyStateViewWillHide(view: view)
             }
             // If shouldnt show view remove from superview, enable scrolling again
-            emptyStateView?.isHidden = true
+            emptyView?.isHidden = true
             tableView.isScrollEnabled = true
             // Also return edges for extended layout to the default values, if adjusted
             if emptyStateDataSource?.emptyStateViewAdjustsToFitBars ?? false {
@@ -99,11 +101,11 @@ extension UIViewController {
         guard let source = emptyStateDataSource,
             source.emptyStateViewShouldShow(for: collectionView) else {
                 // Call the will hide delegate
-                if let view = emptyStateView {
+                if let view = emptyView {
                     self.emptyStateDelegate?.emptyStateViewWillHide(view: view)
                 }
                 // If shouldnt show view remove from superview, enable scrolling again
-                emptyStateView?.isHidden = true
+                emptyView?.isHidden = true
                 collectionView.isScrollEnabled = true
                 // Also return edges for extended layout to the default values, if adjusted
                 if emptyStateDataSource?.emptyStateViewAdjustsToFitBars ?? false {
@@ -171,7 +173,7 @@ extension UIViewController {
     /// Private helper method which will create the empty state view if not created, or show it if hidden
     private func showView(for source: UIEmptyStateDataSource) -> UIView {
     
-        if let createdView = emptyStateView {
+        if let createdView = emptyView {
             // Call the will show delegate
             self.emptyStateDelegate?.emptyStateViewWillShow(view: createdView)
             // View has been created, update it and then reshow
@@ -182,11 +184,13 @@ extension UIViewController {
             view.title = source.emptyStateTitle
             view.image = source.emptyStateImage
             view.imageSize = source.emptyStateImageSize
+            view.imageViewTintColor = source.emptyStateImageViewTintColor
             view.buttonTitle = source.emptyStateButtonTitle
             view.buttonImage = source.emptyStateButtonImage
             view.buttonSize = source.emptyStateButtonSize
             view.detailMessage = source.emptyStateDetailMessage
             view.spacing = source.emptyStateViewSpacing
+            view.centerYOffset = source.emptyStateCenterYOffset
             view.backgroundColor = source.emptyStateBackgroundColor
             
             // Animate now
@@ -210,7 +214,7 @@ extension UIViewController {
             // Call the will show delegate
             self.emptyStateDelegate?.emptyStateViewWillShow(view: newView)
             // Add to emptyStateView property
-            emptyStateView = newView
+            emptyView = newView
             // Add as a subView, bring it infront of the tableView
             self.view.addSubview(newView)
             self.view.bringSubview(toFront: newView)

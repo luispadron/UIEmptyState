@@ -68,7 +68,7 @@ public protocol UIEmptyStateDataSource: class {
     var emptyStateImageSize: CGSize? { get }
     
     /**
-     Determines the tintColor to apply to the imageView
+     Determines the tintColor to apply to the Empty State View's image view
      */
     var emptyStateImageViewTintColor: UIColor? { get }
 
@@ -101,9 +101,9 @@ public protocol UIEmptyStateDataSource: class {
     var emptyStateViewSpacing: CGFloat { get }
     
     /**
-     Determines the vertical offset space. By default emptyView is centered in the vertical axis
+     Determines the vertical offset space, by default Empty State View is centered in the vertical axis
      */
-    var emptyStateCenterYOffset: CGFloat? { get }
+    var emptyStateViewCenterYOffset: CGFloat? { get }
     
     /// Determines the background color for the emptyStateView, by default this value is UIColor.clear
     var emptyStateBackgroundColor: UIColor { get }
@@ -203,7 +203,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
             emptyStateView.buttonSize = emptyStateButtonSize
             emptyStateView.detailMessage = emptyStateDetailMessage
             emptyStateView.spacing = emptyStateViewSpacing
-            emptyStateView.centerYOffset = emptyStateCenterYOffset
+            emptyStateView.centerYOffset = emptyStateViewCenterYOffset
             emptyStateView.backgroundColor = emptyStateBackgroundColor
             // Some auto resize constraints
             emptyStateView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -227,7 +227,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     public var emptyStateImageViewTintColor: UIColor? { get { return nil }}
 
     /// Default implementation of `emptyStateCenterYOffset`, returns nil
-    public var emptyStateCenterYOffset: CGFloat? { get { return nil }}
+    public var emptyStateViewCenterYOffset: CGFloat? { get { return nil }}
     
     /// Default implementation of `emptyStateButtonTitle`, returns nil
     public var emptyStateButtonTitle: NSAttributedString? { get { return nil } }

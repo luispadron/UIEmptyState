@@ -41,7 +41,7 @@ open class UIEmptyStateView: UIView {
     /// The height constraint for the view, changed whenever reloading the empty state
     private var heightConstraint: NSLayoutConstraint?
     
-    /// The centerY constraint for the view,
+    /// The centerY constraint for the view
     private var centerYConstraint: NSLayoutConstraint?
     
     /// The delegate for the view, gets called when user taps button or self
@@ -92,7 +92,7 @@ open class UIEmptyStateView: UIView {
             guard let offset = centerYOffset else {
                 return
             }
-            centerYConstraint?.constant = offset - (spacing ?? 0.0)
+            centerYConstraint?.constant = offset
         }
     }
 

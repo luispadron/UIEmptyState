@@ -190,7 +190,7 @@ extension UIViewController {
             view.buttonSize = source.emptyStateButtonSize
             view.detailMessage = source.emptyStateDetailMessage
             view.spacing = source.emptyStateViewSpacing
-            view.centerYOffset = source.emptyStateCenterYOffset
+            view.centerYOffset = source.emptyStateViewCenterYOffset
             view.backgroundColor = source.emptyStateBackgroundColor
             
             // Animate now

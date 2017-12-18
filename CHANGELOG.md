@@ -1,5 +1,13 @@
 # UIEmptyState CHANGELOG
 
+## Version 3.1.0
+
+- Added new `emptyStateImageViewTintColor`, which allows applying a tint color to the default `UIEmptyStateView`'s image view.
+- Added new `emptyStateViewCenterYOffset`, which allows offsetting the vertical center position for the empty state view.
+- Example project now uses local `UIEmptyState` pod, to allow for local development and easier testing.
+
+Changes made by: [gabmarfer](https://github.com/gabmarfer), thanks!
+
 ## Version 3.0.0
 
 - Fixed bug where `UIEmptyStateDataSource.emptyStateView` computed property and the the `UIViewController+UIEmptyState.emptyStateView` properties conflicted thus not allowing creation of custom view. 

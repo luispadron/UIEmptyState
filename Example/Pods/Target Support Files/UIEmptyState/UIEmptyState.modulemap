@@ -1,6 +1,0 @@
-framework module UIEmptyState {
-  umbrella header "UIEmptyState-umbrella.h"
-
-  export *
-  module * { export * }
-}

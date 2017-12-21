@@ -32,3 +32,5 @@ xcuserdata
 # Carthage
 Carthage/Build
 
+# Ignore pods
+Example/Pods/

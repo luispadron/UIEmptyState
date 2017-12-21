@@ -105,7 +105,9 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Example Project
 
-#### Clone this repo and run the `UIEmptyStateExample` project
+1. Clone this repo
+2. Change directory into `Example`
+3. Run `pod install`
 
 
 ## License (MIT)

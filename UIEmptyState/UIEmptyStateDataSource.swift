@@ -159,6 +159,8 @@ public protocol UIEmptyStateDataSource: class {
      */
     func emptyStateViewAnimation(for view: UIView, animationDuration: TimeInterval,
                                  completion: ((Bool) -> Void)?) -> Void
+    
+    var emptyStateContainerView: UIView { get }
 }
 
 /// Extension for the UIEmptyDataSource which adds a default implementation for any UIViewController Subclass
@@ -259,6 +261,8 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     
     /// Default implementation of `emptyStateViewAnimationDuration`, returns `0.5`
     public var emptyStateViewAnimationDuration: TimeInterval { get { return 0.5 } }
+    
+    public var emptyStateContainerView: UIView { return self.view }
     
     /// Default implementation of `emptyStateViewAnimation`, implements a simple animation
     public func emptyStateViewAnimation(for view: UIView, animationDuration: TimeInterval,

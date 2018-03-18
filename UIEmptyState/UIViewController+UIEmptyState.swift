@@ -137,9 +137,9 @@ extension UIViewController {
     //// Private helper which creates view contraints for the UIEmptyStateView.
     private func createViewConstraints(for view: UIView, in source: UIEmptyStateDataSource) {
         // Set constraints
-        var centerX = view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        var centerX = view.centerXAnchor.constraint(equalTo: source.emptyStateContainerView.centerXAnchor)
         centerX.isActive = true
-        var centerY = view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        var centerY = view.centerYAnchor.constraint(equalTo: source.emptyStateContainerView.centerYAnchor)
         centerY.isActive = true
 
         // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
@@ -160,11 +160,11 @@ extension UIViewController {
         if source.emptyStateViewAdjustsToFitBars {
             // Adjust constraint to fit new big title bars, etc
             centerX.isActive = false
-            centerX = view.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX = view.centerXAnchor.constraint(equalTo: source.emptyStateContainerView.safeAreaLayoutGuide.centerXAnchor)
             centerX.isActive = true
 
             centerY.isActive = false
-            centerY = view.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY = view.centerYAnchor.constraint(equalTo: source.emptyStateContainerView.safeAreaLayoutGuide.centerYAnchor)
             centerY.isActive = true
 
         }
@@ -216,8 +216,10 @@ extension UIViewController {
             // Add to emptyStateView property
             emptyView = newView
             // Add as a subView, bring it infront of the tableView
-            self.view.addSubview(newView)
-            self.view.bringSubview(toFront: newView)
+            
+            self.emptyStateDataSource?.emptyStateContainerView.addSubview(newView)
+            self.emptyStateDataSource?.emptyStateContainerView.sendSubview(toBack: newView)
+            
             // Animate now
             if source.emptyStateViewCanAnimate {
                 DispatchQueue.main.async {

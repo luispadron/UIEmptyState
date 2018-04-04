@@ -26,16 +26,6 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         self.view.backgroundColor = UIColor(red: 0.518, green: 0.576, blue: 0.604, alpha: 1.00)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Some custom button stuff
-        let button = (self.emptyStateView as? UIEmptyStateView)?.button
-        button?.layer.cornerRadius = 5
-        button?.layer.borderWidth = 1
-        button?.layer.borderColor = UIColor.red.cgColor
-        button?.layer.backgroundColor = UIColor.red.cgColor
-    }
-    
     // MARK: - Empty State Data Source
     
     var emptyStateImage: UIImage? {
@@ -53,16 +43,28 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
                      NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
         return NSAttributedString(string: "Catch'em All", attributes: attrs)
     }
+    
+    var emptyStateButtonSize: CGSize? {
+        return CGSize(width: 100, height: 40)
+    }
 
     
     // MARK: - Empty State Delegate
+    
+    func emptyStateViewWillShow(view: UIView) {
+        guard let emptyView = view as? UIEmptyStateView else { return }
+        // Some custom button stuff
+        emptyView.button.layer.cornerRadius = 5
+        emptyView.button.layer.borderWidth = 1
+        emptyView.button.layer.borderColor = UIColor.red.cgColor
+        emptyView.button.layer.backgroundColor = UIColor.red.cgColor
+    }
     
     func emptyStatebuttonWasTapped(button: UIButton) {
         // Add a pokemon
         let row = caughtPokemon.count == 0 ? 0 : caughtPokemon.count - 1
         addPokemon(at: IndexPath(row: row, section: 0))
     }
-    
     
     // MARK: - TableView Delegation
     

@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 3.1.1
+
+- Buid with Swift 4.1
+
 ## Version 3.1.0
 
 - Added new `emptyStateImageViewTintColor`, which allows applying a tint color to the default `UIEmptyStateView`'s image view.
@@ -10,7 +14,7 @@ Changes made by: [gabmarfer](https://github.com/gabmarfer), thanks!
 
 ## Version 3.0.0
 
-- Fixed bug where `UIEmptyStateDataSource.emptyStateView` computed property and the the `UIViewController+UIEmptyState.emptyStateView` properties conflicted thus not allowing creation of custom view. 
+- Fixed bug where `UIEmptyStateDataSource.emptyStateView` computed property and the the `UIViewController+UIEmptyState.emptyStateView` properties conflicted thus not allowing creation of custom view.
 - Custom views now work as intended, you can return a `UIView` subclass in the `UIEmptyStateDataSource.emptyStateView` computed property. Make sure to set any needed constraints, etc.
 
 **Breaking API changes:**
@@ -19,7 +23,7 @@ Remove `emptyStateView` from view controller extension. This was never intended 
 
 ## Version 2.0.2
 
-Bug fix for retain cycle between delegate, datasource, and the view controller. 
+Bug fix for retain cycle between delegate, datasource, and the view controller.
 Thanks to [@piotrzuzel](https://github.com/piotrzuzel) for the fix.
 
 ## Version 2.0.1
@@ -58,8 +62,8 @@ Add shared scheme, fixed thanks to [@piotrzuzel](https://github.com/piotrzuzel).
 
 - Add Swift version check to allow support for Swift 3 --> Swift 4.
 - Refactor public API to make it less verbose and more Swift-like.
-	* All methods which had the format `methodName(forSomething:)` have been refactored to simply `methodName(for:)`. 
-	* Due to this renaming, if using Swift 3.2 or lower, you may get an error 
+	* All methods which had the format `methodName(forSomething:)` have been refactored to simply `methodName(for:)`.
+	* Due to this renaming, if using Swift 3.2 or lower, you may get an error
 about a `@objc` method having already been declared, this is due to Swift 3 inferring an `@objc` attribute when it is not in fact `@objc`. If using Xcode 9 +, you will need to set `Swift 3 @objc Inference` in the `Optimization Level` of this projects `Build Settings` to `Off`. I know this is a hassle, but I want to keep the API clean and stable, no point in changing it at a later date when Swift 4 is fully released and breaking more code.
 - Add two new delegate methods to the `UIEmptyStateDelegate`
 	* `emptyStateViewWillShow(view: UIView)` which is called before the view is shown, given you time to do any additional work.
@@ -122,10 +126,10 @@ Due to the change from methods to properties, the way you interact with the data
 - Add fixes for views not being updated
 - Add fix to constraints becoming wonky after readding views
 - Add convenience extenions to `UITableViewController` and `UICollectionViewController`
-	
+
 	You can now do this:
-	
-	```swift 
+
+	```swift
 	// If a tableview or collectionview controller subclass
 	// This will default the tableView/collectionView to self.tableView/collectionView
 	self.reloadEmptyState()
@@ -150,18 +154,18 @@ Due to the change from methods to properties, the way you interact with the data
 - Call for reloading of empty state view has changed
 
 	_Before_
-	
+
 	```swift
 	// Called whenever data has changed, only worked for table views
-	self.reloadTableViewEmptyState() 
+	self.reloadTableViewEmptyState()
 	```
-	
+
 	_Now_
-	
+
 	```swift
 	// Called whenever data has changed, now works with collectionview or tableview
 	// If tableView controller, or controller with tableView property
-	self.reloadEmptyState(forTableView: self.tableView) 
+	self.reloadEmptyState(forTableView: self.tableView)
 	// OR if collectionview controller, or controller with collectionView property
 	self.reloadEmptyState(forCollectionView: self.collectionView)
 	```

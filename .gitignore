@@ -34,3 +34,4 @@ Carthage/Build
 
 # Ignore pods
 Example/Pods/
+UIEmptyState.framework.zip

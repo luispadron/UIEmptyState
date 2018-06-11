@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UIEmptyState"
-  s.version      = "3.1.1"
+  s.version      = "3.1.2"
   s.summary      = "An empty state control to give visually appealing context when building iOS applications."
   s.description  = <<-DESC
   Empty state control which gives context with either a message, image, and buttons to the user when ever there is a reason the state is empty.
@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://luispadron.com"
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/luispadron/UIEmptyState.git", :tag => "v#{s.version}" }
-  s.source_files  = "UIEmptyState", "UIEmptyState/**/*.{h,m}"
+  s.source_files  = "src/UIEmptyState", "src/UIEmptyState/**/*.{h,m}"
 end
 

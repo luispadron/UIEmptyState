@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 3.1.2
+
+- Build with Swift 4.1.2
+
 ## Version 3.1.1
 
 - Buid with Swift 4.1

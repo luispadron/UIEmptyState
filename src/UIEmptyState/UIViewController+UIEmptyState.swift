@@ -86,7 +86,7 @@ extension UIViewController {
         // Check whether scrolling for tableview is allowed or not
         tableView.isScrollEnabled = source.emptyStateViewCanScroll
         
-        finishReload(for: source)
+        finishReload(for: source, in: tableView)
     }
     
     /**
@@ -117,17 +117,17 @@ extension UIViewController {
         // Check to see if scrolling is enabled
         collectionView.isScrollEnabled = source.emptyStateViewCanScroll
         
-        finishReload(for: source)
+        finishReload(for: source, in: collectionView)
         
     }
     
     /// Finishes the reload, i.e assigns the empty view, and adjusts any other UI
-    private func finishReload(for source: UIEmptyStateDataSource) {
-        let emptyView = showView(for: source)
+    private func finishReload(for source: UIEmptyStateDataSource, in superView: UIView) {
+        let emptyView = showView(for: source, in: superView)
 
         // Only add constraints if they haven't already been added
         if emptyView.constraints.count <= 2 { // 2, because theres already 2 constraints added to it's subviews
-            self.createViewConstraints(for: emptyView, in: source)
+            self.createViewConstraints(for: emptyView, in: superView, source: source)
         }
 
         // Return & call the did show view delegate
@@ -135,11 +135,18 @@ extension UIViewController {
     }
 
     //// Private helper which creates view contraints for the UIEmptyStateView.
-    private func createViewConstraints(for view: UIView, in source: UIEmptyStateDataSource) {
-        // Set constraints
-        var centerX = view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+    private func createViewConstraints(for view: UIView, in superView: UIView, source: UIEmptyStateDataSource) {
+
+        var centerYOffset: CGFloat?
+        // Takes into account any extra offset that the table's header view might need, this way
+        // we get a true center alignment with the table view.
+        if let tableHeader = (superView as? UITableView)?.tableHeaderView {
+            centerYOffset = tableHeader.frame.height / 2.0
+        }
+
+        var centerY = view.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
+        var centerX = view.centerXAnchor.constraint(equalTo: superView.centerXAnchor, constant: centerYOffset ?? 0)
         centerX.isActive = true
-        var centerY = view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         centerY.isActive = true
 
         // If iOS 11.0 is not available, then adjust the extended layout accordingly using older API
@@ -160,18 +167,19 @@ extension UIViewController {
         if source.emptyStateViewAdjustsToFitBars {
             // Adjust constraint to fit new big title bars, etc
             centerX.isActive = false
-            centerX = view.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            centerX = view.centerXAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.centerXAnchor)
             centerX.isActive = true
 
             centerY.isActive = false
-            centerY = view.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
+            centerY = view.centerYAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.centerYAnchor,
+                                                    constant: centerYOffset ?? 0)
             centerY.isActive = true
 
         }
     }
 
     /// Private helper method which will create the empty state view if not created, or show it if hidden
-    private func showView(for source: UIEmptyStateDataSource) -> UIView {
+    private func showView(for source: UIEmptyStateDataSource, in view: UIView) -> UIView {
     
         if let createdView = emptyView {
             // Call the will show delegate
@@ -216,8 +224,8 @@ extension UIViewController {
             // Add to emptyStateView property
             emptyView = newView
             // Add as a subView, bring it infront of the tableView
-            self.view.addSubview(newView)
-            self.view.bringSubview(toFront: newView)
+            view.addSubview(newView)
+            view.bringSubview(toFront: newView)
             // Animate now
             if source.emptyStateViewCanAnimate {
                 DispatchQueue.main.async {

@@ -1,5 +1,12 @@
 # UIEmptyState CHANGELOG
 
+## Version 3.2.0
+
+- Fix bug where the empty view was not centered properly on
+  non `UITableViewController` or `UICollectionViewController` types.
+- Fix bug where empty view did not account for table header view height
+  thus was not truly centered in the visible area of the table view
+
 ## Version 3.1.2
 
 - Build with Swift 4.1.2

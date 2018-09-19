@@ -33,14 +33,14 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
     }
 
     var emptyStateTitle: NSAttributedString {
-        let attrs = [NSAttributedStringKey.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22)]
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         return NSAttributedString(string: "No Pokemon caught!", attributes: attrs)
     }
     
     var emptyStateButtonTitle: NSAttributedString? {
-        let attrs = [NSAttributedStringKey.foregroundColor: UIColor.white,
-                     NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         return NSAttributedString(string: "Catch'em All", attributes: attrs)
     }
     
@@ -83,7 +83,7 @@ class EmptyStateTableViewController: UITableViewController, UIEmptyStateDelegate
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row
             tableView.beginUpdates()

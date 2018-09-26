@@ -122,7 +122,6 @@
 				A05AA1BB1E4560E800B851F7 /* Frameworks */,
 				A05AA1BC1E4560E800B851F7 /* Resources */,
 				0085D2E6DEBEFB5796183033 /* [CP] Embed Pods Frameworks */,
-				24B3590701ADC38465D2548E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,21 +198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIEmptyStateExample/Pods-UIEmptyStateExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		24B3590701ADC38465D2548E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIEmptyStateExample/Pods-UIEmptyStateExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7D72286EB8A21429E4DC3E74 /* [CP] Check Pods Manifest.lock */ = {
@@ -386,7 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispadron.UIEmptyStateExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -401,7 +385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispadron.UIEmptyStateExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

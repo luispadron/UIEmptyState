@@ -225,7 +225,7 @@ extension UIViewController {
             emptyView = newView
             // Add as a subView, bring it infront of the tableView
             view.addSubview(newView)
-            view.bringSubview(toFront: newView)
+            view.bringSubviewToFront(newView)
             // Animate now
             if source.emptyStateViewCanAnimate {
                 DispatchQueue.main.async {

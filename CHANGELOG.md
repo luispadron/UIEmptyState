@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 4.0.0
+
+- Swift 4.2 support
+
 ## Version 3.2.0
 
 - Fix bug where the empty view was not centered properly on

@@ -23,9 +23,9 @@ extension UIViewController {
      Default conformance for UIViewController is provided,
      however feel free to implement these methods to customize your view.
      */
-    public weak var emptyStateDataSource: UIEmptyStateDataSource? {
+    public var emptyStateDataSource: UIEmptyStateDataSource? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDataSource)  as? UIEmptyStateDataSource }
-        set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_ASSIGN) }
     }
     
     /**
@@ -34,9 +34,9 @@ extension UIViewController {
      **Important:** this delegate and its functions are only used when using UIEmptyStateView.
      If you will provide a custom view in the UIEmptyStateDataSource you must handle how this delegate operates
      */
-    public weak var emptyStateDelegate: UIEmptyStateDelegate? {
+    public var emptyStateDelegate: UIEmptyStateDelegate? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateDelegate) as? UIEmptyStateDelegate }
-        set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        set { objc_setAssociatedObject(self, &Keys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_ASSIGN) }
     }
     
     /**
@@ -53,7 +53,7 @@ extension UIViewController {
     private var emptyView: UIView? {
         get { return objc_getAssociatedObject(self, &Keys.emptyStateView) as? UIView }
         set {
-            objc_setAssociatedObject(self, &Keys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &Keys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             // Set the views delegate
             if let view = emptyView as? UIEmptyStateView { view.delegate = emptyStateDelegate }
         }

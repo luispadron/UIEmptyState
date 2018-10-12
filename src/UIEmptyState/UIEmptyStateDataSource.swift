@@ -215,7 +215,7 @@ extension UIEmptyStateDataSource where Self: UIViewController {
     public var emptyStateViewAdjustsToFitBars: Bool { get { return true } }
     
     /// Default implementation of `emptyStateTitle`, returns an intro title
-    public var emptyStateTitle: NSAttributedString { get { return NSAttributedString(string: "UIEmptyState") } }
+    public var emptyStateTitle: NSAttributedString { get { return NSAttributedString(string: "Empty") } }
     
     /// Default implementation of `emptyStateImage`, returns nil
     public var emptyStateImage: UIImage? { get { return nil } }

@@ -1,5 +1,9 @@
 # UIEmptyState CHANGELOG
 
+## Version 4.0.1
+
+- Fix memory leak due to retain cycle
+
 ## Version 4.0.0
 
 - Swift 4.2 support

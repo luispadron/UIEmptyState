@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UIEmptyState"
-  s.version      = "4.0.1"
+  s.version      = "4.1.0"
   s.summary      = "An empty state control to give visually appealing context when building iOS applications."
   s.description  = <<-DESC
   s.swift_version = '4.2'

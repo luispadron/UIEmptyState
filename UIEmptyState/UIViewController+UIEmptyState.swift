@@ -218,7 +218,7 @@ extension UIViewController {
             // Add as a subView, bring it infront of the tableView
             
             self.emptyStateDataSource?.emptyStateContainerView.addSubview(newView)
-            self.emptyStateDataSource?.emptyStateContainerView.sendSubview(toBack: newView)
+            self.emptyStateDataSource?.emptyStateContainerView.sendSubviewToBack(newView)
             
             // Animate now
             if source.emptyStateViewCanAnimate {

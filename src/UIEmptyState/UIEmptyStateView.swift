@@ -253,7 +253,7 @@ open class UIEmptyStateView: UIView {
         contentView.axis = .vertical
         contentView.distribution = .equalSpacing
         contentView.alignment = .center
-        contentView.backgroundColor = UIColor.red
+        contentView.backgroundColor = UIColor.clear
         contentView.spacing = spacing ?? 0
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addArrangedSubview(titleLabel)

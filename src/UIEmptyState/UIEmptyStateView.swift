@@ -16,13 +16,7 @@ private extension UILabel {
         }
         
         let maxSize = CGSize(width: width, height: .greatestFiniteMagnitude)
-        
-        #if swift(>=4.0)
-            let attrString = NSAttributedString(string: txt, attributes: [.font: self.font])
-        #else
-            let attrString = NSAttributedString(string: txt, attributes: [NSFontAttributeName: self.font])
-        #endif
-        
+        let attrString = NSAttributedString(string: txt, attributes: [.font: self.font!])
         let expectedRect = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil)
         return ceil(expectedRect.size.height)
         
@@ -270,7 +264,7 @@ open class UIEmptyStateView: UIView {
     private func handleAdding(view: UIView) {
         // The order we want is 1. Image View, 2. Title Label, 3. Detail Label, 4. Button
         // If already added we can return
-        if contentView.subviews.index(of: view) != nil { return }
+        if contentView.subviews.firstIndex(of: view) != nil { return }
         
         // Tags correspond to the views AND the order we want them in
         switch view.tag {

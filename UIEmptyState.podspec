@@ -2,10 +2,9 @@
 Pod::Spec.new do |s|
 
   s.name         = "UIEmptyState"
-  s.version      = "4.0.1"
+  s.version      = "5.0.0"
   s.summary      = "An empty state control to give visually appealing context when building iOS applications."
   s.description  = <<-DESC
-  s.swift_version = '4.2'
   Empty state control which gives context with either a message, image, and buttons to the user when ever there is a reason the state is empty.
   Easily conform to the protocol to provide a visually appealing view to an empty table view controller.
                    DESC
@@ -14,7 +13,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Luis Padron" => "luis@luispadron.com" }
   s.social_media_url   = "https://luispadron.com"
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "12.0"
+  s.swift_version = '5.3'
   s.source       = { :git => "https://github.com/luispadron/UIEmptyState.git", :tag => "v#{s.version}" }
   s.source_files  = "src/UIEmptyState", "src/UIEmptyState/**/*.{h,m}"
 end

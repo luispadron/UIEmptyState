@@ -266,5 +266,16 @@ extension UICollectionViewController {
     }
 }
 
+////A convenience extension for UIViewController which contains the collectionView or tableView
+extension UIViewController {
+    /// Reloads the empty state, defaults the tableView to `self.tableView`
+    public func reloadEmptyState(tableView:UITableView) {
+        self.reloadEmptyStateForTableView(tableView)
+    }
+    
+    public func reloadEmptyState(collectionView:UICollectionView) {
+        self.reloadEmptyStateForCollectionView(collectionView)
+    }
+}
 
 

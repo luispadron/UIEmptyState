@@ -159,7 +159,7 @@ open class UIEmptyStateView: UIView {
                 return
             }
             
-            detailLabel.attributedText = message
+            detailLabel.attributedText = NSAttributedString(string: message.string)
             self.setNeedsUpdateConstraints()
             handleAdding(view: detailLabel)
         }
@@ -253,7 +253,7 @@ open class UIEmptyStateView: UIView {
         contentView.axis = .vertical
         contentView.distribution = .equalSpacing
         contentView.alignment = .center
-        contentView.backgroundColor = UIColor.red
+        contentView.backgroundColor = .clear
         contentView.spacing = spacing ?? 0
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addArrangedSubview(titleLabel)
